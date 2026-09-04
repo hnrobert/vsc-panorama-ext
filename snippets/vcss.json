@@ -1,0 +1,31 @@
+{
+  "@define 常量": {
+    "prefix": "define",
+    "description": "常量声明，编译期文本替换。引用时直接写名字，不用 var()",
+    "body": ["@define ${1:name}: ${2:#3281AC};$0"]
+  },
+  "@keyframes 动画": {
+    "prefix": "keyframes",
+    "description": "关键帧动画。名字必须加引号",
+    "body": [
+      "@keyframes '${1:name}'",
+      "{",
+      "\tfrom { ${2:opacity: 0;} }",
+      "\tto { ${3:opacity: 1;} }",
+      "}",
+      "$0"
+    ]
+  },
+  "flow 容器": {
+    "prefix": "flow",
+    "description": "flow-children 容器（替代 Web 的 flex）",
+    "body": [
+      ".${1:container} {",
+      "\tflow-children: ${2|right,down,left,up,none,right-wrap,down-wrap|};",
+      "\twidth: ${3:fit-children};",
+      "\theight: ${4:fit-children};",
+      "\t$0",
+      "}"
+    ]
+  }
+}

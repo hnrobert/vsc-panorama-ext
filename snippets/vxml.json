@@ -1,0 +1,43 @@
+{
+  "VXML 文档骨架": {
+    "prefix": "root",
+    "description": "Panorama 布局骨架。根面板不能有 id，用 class 标识",
+    "body": [
+      "<root>",
+      "\t<styles>",
+      "\t\t<include src=\"s2r://panorama/styles/${1:mypanel}.vcss_c\" />",
+      "\t</styles>",
+      "",
+      "\t<Panel class=\"${2:WindowRoot}\" hittest=\"false\">",
+      "\t\t$0",
+      "\t</Panel>",
+      "</root>"
+    ]
+  },
+  "Panel 容器": {
+    "prefix": "panel",
+    "description": "容器面板",
+    "body": ["<Panel class=\"${1:name}\">", "\t$0", "</Panel>"]
+  },
+  "Label 文本": {
+    "prefix": "label",
+    "description": "文本面板。text 可用 {s:变量} 由服务端填充",
+    "body": ["<Label class=\"${1:name}\" text=\"${2:#Token}\" />"]
+  },
+  "Image 图片": {
+    "prefix": "image",
+    "description": "图片面板。src 用 s2r:// 编译路径",
+    "body": [
+      "<Image class=\"${1:name}\" src=\"s2r://panorama/images/${2:icon}.vsvg\" texturewidth=\"${3:24}\" textureheight=\"${4:24}\" />"
+    ]
+  },
+  "Button 按钮": {
+    "prefix": "button",
+    "description": "按钮面板。Button 没有 text 属性，文字用子 Label",
+    "body": [
+      "<Button id=\"${1:MyButton}\" class=\"${2:btn}\">",
+      "\t<Label text=\"${3:OK}\" />",
+      "</Button>"
+    ]
+  }
+}

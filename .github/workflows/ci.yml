@@ -1,0 +1,59 @@
+name: CI
+
+# 只做一件事：证明这份代码在干净环境里能过类型检查、能过单元测试、能构建、能打包。
+# 发布是纯手动的（本地 `npm run package` 之后自己传），所以这里没有任何
+# publish 步骤，也不需要配 secret。
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # 990 文件语料闸门需要 Valve 的解包归档，CI 上没有。tools/paths.mjs 拿不到
+      # 归档时返回空串，闸门据此整套 skip，不依赖归档的断言照常执行——这是刻意
+      # 设计的（见该文件顶部注释），不是这里在放水。
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # 打一次包：.vscodeignore 写漏、元数据缺项、dist 没构建，这些只有真打包
+      # 才暴露得出来。vscode:prepublish 会在这一步里跑构建。
+      - name: Package
+        run: npm run package -- --out vsc-panorama-ext.vsix
+
+      - name: Show package contents
+        run: npx --yes @vscode/vsce@3 ls
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: vsc-panorama-ext.vsix
+          retention-days: 14
+
+# E2E（`npm run test:e2e`）刻意不放进 CI：它要 xvfb 起真实 VS Code，本机实测
+# 15 次里出现过 1 次 flake，放进来就是隔三差五无故变红。
+#
+# 代价必须写明：**E2E 是唯一能验证 vscode.env.language -> localeOf -> messagesFor
+# 这条适配层接线的测试**（单元测试用的是 mock）。实测把接线写死成中文时，822 个
+# 单元测试全绿、只有 E2E 红。所以它是发版前的手动必跑项，不是可选项。

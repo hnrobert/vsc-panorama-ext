@@ -1,0 +1,128 @@
+{
+  "name": "Panorama VCSS",
+  "scopeName": "source.css.panorama-vcss",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#at-define" },
+    { "include": "#at-import" },
+    { "include": "#at-keyframes" },
+    { "include": "#declaration-block" },
+    { "include": "#selector" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.block.panorama-vcss",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    "at-define": {
+      "begin": "(@define)\\s+([A-Za-z_][\\w-]*)\\s*(:)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.at-rule.define.panorama-vcss" },
+        "2": { "name": "variable.other.constant.panorama-vcss" },
+        "3": { "name": "punctuation.separator.key-value.panorama-vcss" }
+      },
+      "end": "(;)",
+      "endCaptures": { "1": { "name": "punctuation.terminator.panorama-vcss" } },
+      "patterns": [{ "include": "#value" }]
+    },
+    "at-import": {
+      "begin": "(@import)\\b",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.at-rule.import.panorama-vcss" }
+      },
+      "end": "(;)",
+      "endCaptures": { "1": { "name": "punctuation.terminator.panorama-vcss" } },
+      "patterns": [{ "include": "#value" }]
+    },
+    "at-keyframes": {
+      "match": "(@keyframes)(?:\\s+('[^']*'|\"[^\"]*\"))?",
+      "captures": {
+        "1": { "name": "keyword.control.at-rule.keyframes.panorama-vcss" },
+        "2": { "name": "entity.name.function.keyframe.panorama-vcss" }
+      }
+    },
+    "declaration-block": {
+      "comment": "以 { 单独起始。真实 Panorama 样式表把 { 放在选择器的下一行，若要求同行匹配则整个规则块都不会被识别。",
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.block.begin.panorama-vcss" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.section.block.end.panorama-vcss" }
+      },
+      "patterns": [
+        { "include": "#comment" },
+        { "include": "#declaration-block" },
+        { "include": "#declaration" }
+      ]
+    },
+    "selector": {
+      "patterns": [
+        {
+          "name": "entity.other.attribute-name.class.panorama-vcss",
+          "match": "\\.[A-Za-z_][\\w-]*"
+        },
+        {
+          "name": "entity.other.attribute-name.id.panorama-vcss",
+          "match": "#[A-Za-z_][\\w-]*"
+        },
+        {
+          "name": "entity.other.attribute-name.pseudo-class.panorama-vcss",
+          "match": ":[A-Za-z-]+"
+        },
+        {
+          "name": "entity.name.tag.panel.panorama-vcss",
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    "declaration": {
+      "begin": "\\b(-?[a-zA-Z][\\w-]*)\\s*(:)",
+      "beginCaptures": {
+        "1": { "name": "support.type.property-name.panorama-vcss" },
+        "2": { "name": "punctuation.separator.key-value.panorama-vcss" }
+      },
+      "end": "(;)|(?=\\})",
+      "endCaptures": { "1": { "name": "punctuation.terminator.panorama-vcss" } },
+      "patterns": [{ "include": "#value" }]
+    },
+    "value": {
+      "patterns": [
+        { "include": "#comment" },
+        {
+          "name": "constant.other.color.rgb-value.panorama-vcss",
+          "match": "#[0-9a-fA-F]{3,8}\\b"
+        },
+        {
+          "name": "support.function.panorama.panorama-vcss",
+          "match": "\\b(fill-parent-flow|width-percentage|height-percentage|mipmapgaussian|gaussian|gradient|color-stop|radial|rect|url|from|to|min)(?=\\s*\\()"
+        },
+        {
+          "name": "string.quoted.double.panorama-vcss",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "include": "#resource-path" }]
+        },
+        {
+          "name": "string.quoted.single.panorama-vcss",
+          "begin": "'",
+          "end": "'"
+        },
+        {
+          "name": "support.constant.panorama-keyword.panorama-vcss",
+          "match": "\\b(fit-children|collapse|down-wrap-left|right-wrap|down-wrap|up-wrap|left-wrap|squish|noclip|shrink|ellipsis|alpha-only|hollow|inset|fill|infinite)\\b"
+        },
+        {
+          "name": "constant.numeric.panorama-vcss",
+          "match": "\\b\\d+(\\.\\d+)?(px|%|s|ms|deg)?\\b"
+        }
+      ]
+    },
+    "resource-path": {
+      "name": "markup.underline.link.resource.panorama-vcss",
+      "match": "s2r://[^\"\\s]*"
+    }
+  }
+}

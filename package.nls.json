@@ -1,0 +1,14 @@
+{
+  "extension.description": "Language support for CS2 Panorama layouts and styles",
+  "panorama.contentRoots.description": "Explicit content roots for resolving s2r://. Leave empty to auto-detect: first the nearest ancestor containing both layout/ and styles/, then verified against the files that actually exist",
+  "panorama.customHudLayout.include.description": "Layouts matching these globs get completions from the CustomHudLayout whitelist (only Panel/Label/Image/Button)",
+  "panorama.diagnostics.customHudWhitelist.description": "Level for CustomHudLayout strict-mode whitelist violations: panels or attributes outside the four-panel whitelist, <scripts>, inline style, {d:}/{g:}/{t:} bindings and so on",
+  "panorama.diagnostics.duplicateId.description": "Level for a duplicated id within one scope (each <snippet> is its own scope)",
+  "panorama.diagnostics.structure.description": "Level for VXML structural problems: unknown tags, rootOnly panels in a nested position, an id on the root panel, <styles>/<scripts>/<snippets> ordering, unclosed tags",
+  "panorama.diagnostics.unknownClass.description": "Level for a class name referenced by class= that has no VCSS definition in the workspace. The engine stylesheets are not part of the workspace, so this tops out at warning",
+  "panorama.diagnostics.unknownProperty.description": "Level for a property or value that is not in the known list. The list comes from documentation and the corpus and is proven incomplete, so this tops out at warning",
+  "panorama.diagnostics.unresolvedReference.description": "Level for an @define constant or @keyframes reference whose definition cannot be resolved",
+  "panorama.diagnostics.webOnlySyntax.description": "Level for Web-only CSS constructs: display/float/flex, position keywords, vw/vh/em/rem, :: pseudo-elements, visibility: hidden, -- custom properties, unquoted @keyframes names, color-first box-shadow, background-size: clip_then_cover",
+  "panorama.index.enabled.description": "When off, cross-file features (cross-file class completion, go to definition, find references) fall back to single-file behaviour",
+  "panorama.index.exclude.description": "Extra globs to exclude while indexing, appended after the built-in node_modules exclusion"
+}

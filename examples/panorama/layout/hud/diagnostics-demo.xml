@@ -1,0 +1,13 @@
+<!-- 诊断示例（M4）。这份文件**故意**写错，用来在真实编辑器里验证诊断确实挂上了
+     波浪线；E2E 会断言它的条数、级别与消息。不要照抄这里的写法。
+
+     根面板不能有 id（引擎按 id 索引根面板），要标识就用 class。 -->
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/csgostyles.vcss_c" />
+    </styles>
+
+    <Panel id="DiagRoot">
+        <Label text="#My_Title" />
+    </Panel>
+</root>

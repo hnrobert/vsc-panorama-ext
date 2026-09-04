@@ -1,0 +1,42 @@
+# 扩展包只带运行时需要的东西。
+# 注意 vsce 不读 .gitignore，这份清单必须自己维护——凡是 gitignore 掉的目录，
+# 都得在这里再排一次，否则它们只是不进版本库、却照样进 .vsix。
+
+# 源码与构建：运行时只需要 dist/ 里 esbuild 打出的单文件
+src/**
+tools/**
+test/**
+esbuild.mjs
+esbuild-e2e.mjs
+tsconfig.json
+vitest.config.ts
+
+# 开发期资料
+docs/**
+examples/**
+.vscode/**
+.superpowers/**
+
+# 构建与测试的产物。
+#
+# .vscode-test/ 是 @vscode/test-electron 下载的整个 VSCode，实测 3.1 GB——
+# 它以前不在这份清单里，因为 E2E 是 M4 才引入的，而那时最后一次打包已经过去了。
+# 漏掉它的后果不是「包大了点」，是根本传不上市场。
+.vscode-test/**
+out-e2e/**
+node_modules/**
+**/*.map
+*.vsix
+
+# data/ 的 JSON 全部由 esbuild 以 `import` 内联进 dist/extension.js
+# （src/core/data/*.ts 逐个 import，运行时没有任何一处从磁盘读它们——
+# index-host.ts 那个 fs.readFile 读的是用户工作区的文件，不是这里）。
+# 再打一份进包等于白白多出约 100 KB。
+data/**
+
+# 仅开发期需要
+package-lock.json
+.gitattributes
+.gitignore
+.git/**
+.github/**

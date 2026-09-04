@@ -1,0 +1,14 @@
+<!-- 诊断示例（M4）。这份文件**故意**写错，用来在真实编辑器里验证诊断确实挂上了
+     波浪线；E2E 会断言它的条数、级别与消息。不要照抄这里的写法。
+
+     路径含 layout/custom_game/，走 CustomHudLayout 严格模式：Button 不支持
+     text 属性，按钮文字要用子 <Label>。 -->
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/custom_game/demo/main.vcss_c" />
+    </styles>
+
+    <Panel>
+        <Button text="Go" />
+    </Panel>
+</root>

@@ -1,0 +1,13 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# 构建期生成的数据文件由脚本以 LF 写出，固定 LF 避免每次重跑生成器都出现行尾符改动
+data/*.json text eol=lf
+
+# 二进制资源显式钉住，不依赖 text=auto 的启发式。
+# 图标是仓库里第一个二进制文件；启发式看的是文件开头有没有 NUL 字节，
+# 对 PNG 一向准，但换成别的编码或别的资源类型时未必——被误判成文本就会
+# 在 checkout 时做行尾转换，把文件改坏，而且不会有任何提示。
+*.png binary
+*.ico binary
+*.vsix binary

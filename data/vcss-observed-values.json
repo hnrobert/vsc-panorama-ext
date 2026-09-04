@@ -1,0 +1,1640 @@
+{
+  "source": "从 225 个真实样式表挖掘（弱可靠：语料里出现过 != 引擎支持）",
+  "excluded": [
+    "clip_then_cover"
+  ],
+  "values": {
+    "-s2-mix-blend-mode": [
+      {
+        "value": "additive",
+        "count": 52
+      },
+      {
+        "value": "screen",
+        "count": 34
+      },
+      {
+        "value": "normal",
+        "count": 17
+      }
+    ],
+    "animation-direction": [
+      {
+        "value": "normal",
+        "count": 5
+      },
+      {
+        "value": "alternate",
+        "count": 2
+      },
+      {
+        "value": "alternate-reverse",
+        "count": 2
+      },
+      {
+        "value": "reverse",
+        "count": 1
+      }
+    ],
+    "animation-fill-mode": [
+      {
+        "value": "forwards",
+        "count": 57
+      },
+      {
+        "value": "both",
+        "count": 6
+      }
+    ],
+    "animation-iteration-count": [
+      {
+        "value": "infinite",
+        "count": 77
+      }
+    ],
+    "animation-name": [
+      {
+        "value": "DroppedBomb--Animate",
+        "count": 6
+      },
+      {
+        "value": "eom-show-glitch",
+        "count": 4
+      },
+      {
+        "value": "none",
+        "count": 4
+      },
+      {
+        "value": "BackgroundPulse",
+        "count": 3
+      },
+      {
+        "value": "bombDet",
+        "count": 3
+      },
+      {
+        "value": "bombLines",
+        "count": 3
+      },
+      {
+        "value": "fadein",
+        "count": 3
+      },
+      {
+        "value": "on-kill",
+        "count": 3
+      },
+      {
+        "value": "submit-attract",
+        "count": 3
+      },
+      {
+        "value": "submit-attract-major-23",
+        "count": 3
+      },
+      {
+        "value": "anim-pulse",
+        "count": 2
+      },
+      {
+        "value": "best",
+        "count": 2
+      },
+      {
+        "value": "chatwheel-option-highlight",
+        "count": 2
+      },
+      {
+        "value": "DelayedFadeOpacityIn",
+        "count": 2
+      },
+      {
+        "value": "draft-button-flash",
+        "count": 2
+      },
+      {
+        "value": "dropped-target",
+        "count": 2
+      },
+      {
+        "value": "DroppedDefuser--Animate",
+        "count": 2
+      },
+      {
+        "value": "eom-show-bg",
+        "count": 2
+      },
+      {
+        "value": "eom-show-bracket-bottom-left",
+        "count": 2
+      },
+      {
+        "value": "eom-show-bracket-bottom-right",
+        "count": 2
+      },
+      {
+        "value": "eom-show-bracket-top-left",
+        "count": 2
+      },
+      {
+        "value": "eom-show-bracket-top-right",
+        "count": 2
+      },
+      {
+        "value": "eom-show-double-arrows",
+        "count": 2
+      },
+      {
+        "value": "eom-show-double-arrows-right",
+        "count": 2
+      },
+      {
+        "value": "eom-show-main",
+        "count": 2
+      },
+      {
+        "value": "eom-show-team-icon",
+        "count": 2
+      },
+      {
+        "value": "eom-show-text",
+        "count": 2
+      },
+      {
+        "value": "ExtraPulse",
+        "count": 2
+      },
+      {
+        "value": "hover-glow",
+        "count": 2
+      },
+      {
+        "value": "hudVoteFinished",
+        "count": 2
+      },
+      {
+        "value": "jitter-number",
+        "count": 2
+      },
+      {
+        "value": "PickedSlot",
+        "count": 2
+      },
+      {
+        "value": "ratio-loop",
+        "count": 2
+      },
+      {
+        "value": "SpinnerRotate",
+        "count": 2
+      },
+      {
+        "value": "subtle-motion",
+        "count": 2
+      },
+      {
+        "value": "UpdateTitle",
+        "count": 2
+      },
+      {
+        "value": "activate-token-anim",
+        "count": 1
+      },
+      {
+        "value": "advertising-ring-active",
+        "count": 1
+      },
+      {
+        "value": "advertising-ring-outer-active",
+        "count": 1
+      },
+      {
+        "value": "anim-activate-pass",
+        "count": 1
+      },
+      {
+        "value": "anim-activate-pass-btn",
+        "count": 1
+      },
+      {
+        "value": "anim-activate-pass-how-to",
+        "count": 1
+      },
+      {
+        "value": "anim-glitch",
+        "count": 1
+      },
+      {
+        "value": "anim-new-credits",
+        "count": 1
+      },
+      {
+        "value": "anim-new-reveal__pfx--below",
+        "count": 1
+      },
+      {
+        "value": "anim-new-reveal-emblem",
+        "count": 1
+      },
+      {
+        "value": "anim-premier-gain-points",
+        "count": 1
+      },
+      {
+        "value": "anim-premier-lost-points",
+        "count": 1
+      },
+      {
+        "value": "anim-premier-text-gain-points",
+        "count": 1
+      },
+      {
+        "value": "anim-premier-text-lost-points",
+        "count": 1
+      },
+      {
+        "value": "animseq-pulse",
+        "count": 1
+      },
+      {
+        "value": "armsrace-current-pip",
+        "count": 1
+      },
+      {
+        "value": "armsrace-earn-pip",
+        "count": 1
+      },
+      {
+        "value": "Avatar__Sound--1Animate",
+        "count": 1
+      },
+      {
+        "value": "Avatar__Sound--2Animate",
+        "count": 1
+      },
+      {
+        "value": "BackgroundScroll",
+        "count": 1
+      },
+      {
+        "value": "balance-update",
+        "count": 1
+      },
+      {
+        "value": "balance-update-label",
+        "count": 1
+      },
+      {
+        "value": "bomb-pulse",
+        "count": 1
+      },
+      {
+        "value": "bombsite-anim__flash",
+        "count": 1
+      },
+      {
+        "value": "bonuspanel-kill-animation",
+        "count": 1
+      },
+      {
+        "value": "bonuspanel-timerbar-animation",
+        "count": 1
+      },
+      {
+        "value": "broadcast-searching-inner-active",
+        "count": 1
+      },
+      {
+        "value": "broadcast-searching-outer-active",
+        "count": 1
+      },
+      {
+        "value": "broken-screen-anim",
+        "count": 1
+      },
+      {
+        "value": "cart-update",
+        "count": 1
+      },
+      {
+        "value": "challengecode-pulse",
+        "count": 1
+      },
+      {
+        "value": "chat-new-entry",
+        "count": 1
+      },
+      {
+        "value": "circle-full-to-empty",
+        "count": 1
+      },
+      {
+        "value": "claim-reveal",
+        "count": 1
+      },
+      {
+        "value": "countdown-timerbar-animation",
+        "count": 1
+      },
+      {
+        "value": "cracked-screen-anim",
+        "count": 1
+      },
+      {
+        "value": "deal",
+        "count": 1
+      },
+      {
+        "value": "DeathPanelCameraFlashAnim",
+        "count": 1
+      },
+      {
+        "value": "DeathPanelFadeInAnim",
+        "count": 1
+      },
+      {
+        "value": "decrease",
+        "count": 1
+      },
+      {
+        "value": "Download",
+        "count": 1
+      },
+      {
+        "value": "drag-drop",
+        "count": 1
+      },
+      {
+        "value": "DropIn",
+        "count": 1
+      },
+      {
+        "value": "eom-earned-rewards",
+        "count": 1
+      },
+      {
+        "value": "eom-remove-skillgroup-icon",
+        "count": 1
+      },
+      {
+        "value": "eom-show-rank-flag",
+        "count": 1
+      },
+      {
+        "value": "eom-show-rank-flare",
+        "count": 1
+      },
+      {
+        "value": "eom-show-rank-flare-halo",
+        "count": 1
+      },
+      {
+        "value": "eom-show-rank-image",
+        "count": 1
+      },
+      {
+        "value": "eom-skillgroup-bg",
+        "count": 1
+      },
+      {
+        "value": "eom-skillgroup-new",
+        "count": 1
+      },
+      {
+        "value": "ExpectedBombDamage",
+        "count": 1
+      },
+      {
+        "value": "fadeout",
+        "count": 1
+      },
+      {
+        "value": "failure-pulse",
+        "count": 1
+      },
+      {
+        "value": "FlashAnim",
+        "count": 1
+      },
+      {
+        "value": "frame-badge-reveal-claimed",
+        "count": 1
+      },
+      {
+        "value": "frame-badge-reveal-store",
+        "count": 1
+      },
+      {
+        "value": "gg-last-level",
+        "count": 1
+      },
+      {
+        "value": "gg-last-level--image",
+        "count": 1
+      },
+      {
+        "value": "glow",
+        "count": 1
+      },
+      {
+        "value": "GlowRotate",
+        "count": 1
+      },
+      {
+        "value": "GlowRotate2",
+        "count": 1
+      },
+      {
+        "value": "hide-graph",
+        "count": 1
+      },
+      {
+        "value": "HideFlash",
+        "count": 1
+      },
+      {
+        "value": "highlight",
+        "count": 1
+      },
+      {
+        "value": "hud-game-icons-defuse-bomb--on-pickup",
+        "count": 1
+      },
+      {
+        "value": "hud-game-icons-defuse-icon-arrow--on-pickup",
+        "count": 1
+      },
+      {
+        "value": "hud-game-icons-icon-hostage-transit--while-carried",
+        "count": 1
+      },
+      {
+        "value": "hud-HA-armor--pickup",
+        "count": 1
+      },
+      {
+        "value": "hud-progress-bar-bomb-animate",
+        "count": 1
+      },
+      {
+        "value": "hud-progress-bar-defuse-animate",
+        "count": 1
+      },
+      {
+        "value": "hud-progress-bar-hostage-animate",
+        "count": 1
+      },
+      {
+        "value": "hud-progress-bar-sides-animate",
+        "count": 1
+      },
+      {
+        "value": "hudProgressBarCancelShake",
+        "count": 1
+      },
+      {
+        "value": "hudProgressBarSuccessZoom",
+        "count": 1
+      },
+      {
+        "value": "hudVoteStarted",
+        "count": 1
+      },
+      {
+        "value": "icon-show-prdr",
+        "count": 1
+      },
+      {
+        "value": "InvitePulse",
+        "count": 1
+      },
+      {
+        "value": "item-seen-anim",
+        "count": 1
+      },
+      {
+        "value": "jitter-bar",
+        "count": 1
+      },
+      {
+        "value": "JoinPanel--Animate-FadeIn",
+        "count": 1
+      },
+      {
+        "value": "JoinPanel--Animate-FadeOut",
+        "count": 1
+      },
+      {
+        "value": "just-claimed-1",
+        "count": 1
+      },
+      {
+        "value": "just-claimed-2",
+        "count": 1
+      },
+      {
+        "value": "live-pulse",
+        "count": 1
+      },
+      {
+        "value": "loading-screen--closing-animation",
+        "count": 1
+      },
+      {
+        "value": "loading-stats-anim",
+        "count": 1
+      },
+      {
+        "value": "loadingbar-indeterminate",
+        "count": 1
+      },
+      {
+        "value": "Map__Animate-FadeIn",
+        "count": 1
+      },
+      {
+        "value": "Map__Animate-FadeOut",
+        "count": 1
+      },
+      {
+        "value": "money-anim__add-flash-survival",
+        "count": 1
+      },
+      {
+        "value": "money-anim__add-survival",
+        "count": 1
+      },
+      {
+        "value": "navbar-gc-alert",
+        "count": 1
+      },
+      {
+        "value": "navbar-red-alert",
+        "count": 1
+      },
+      {
+        "value": "navbar-yellow-alert",
+        "count": 1
+      },
+      {
+        "value": "new-phase",
+        "count": 1
+      },
+      {
+        "value": "NotificationShowHide",
+        "count": 1
+      },
+      {
+        "value": "offscreen-pulse",
+        "count": 1
+      },
+      {
+        "value": "on-c4-pickup",
+        "count": 1
+      },
+      {
+        "value": "on-damage",
+        "count": 1
+      },
+      {
+        "value": "on-kill-spotlight",
+        "count": 1
+      },
+      {
+        "value": "on-kit-pickup",
+        "count": 1
+      },
+      {
+        "value": "onscreen-pulse",
+        "count": 1
+      },
+      {
+        "value": "op-purchase-stars-update",
+        "count": 1
+      },
+      {
+        "value": "op-reward-show",
+        "count": 1
+      },
+      {
+        "value": "open-screen-anim",
+        "count": 1
+      },
+      {
+        "value": "panel-reveal",
+        "count": 1
+      },
+      {
+        "value": "party-search-loop",
+        "count": 1
+      },
+      {
+        "value": "party-search-loop-fast",
+        "count": 1
+      },
+      {
+        "value": "pass-activate",
+        "count": 1
+      },
+      {
+        "value": "pick-btn-errorloop",
+        "count": 1
+      },
+      {
+        "value": "pick-btn-loop",
+        "count": 1
+      },
+      {
+        "value": "pick-update",
+        "count": 1
+      },
+      {
+        "value": "pick-wiggle",
+        "count": 1
+      },
+      {
+        "value": "ping",
+        "count": 1
+      },
+      {
+        "value": "PlantedBombAnimateRed--Animate",
+        "count": 1
+      },
+      {
+        "value": "play-menu-controls-lobby-count-full-team",
+        "count": 1
+      },
+      {
+        "value": "play-menu-save-favorites",
+        "count": 1
+      },
+      {
+        "value": "playerping--Animate-FadeIn",
+        "count": 1
+      },
+      {
+        "value": "PlayerSoundMaxxedOut",
+        "count": 1
+      },
+      {
+        "value": "price-reveal-spinner",
+        "count": 1
+      },
+      {
+        "value": "progress-made",
+        "count": 1
+      },
+      {
+        "value": "progress-pulse",
+        "count": 1
+      },
+      {
+        "value": "pulse-me",
+        "count": 1
+      },
+      {
+        "value": "pulse-random",
+        "count": 1
+      },
+      {
+        "value": "purchased",
+        "count": 1
+      },
+      {
+        "value": "QuickHide",
+        "count": 1
+      },
+      {
+        "value": "RadarBombPlantPulse--Animate",
+        "count": 1
+      },
+      {
+        "value": "RadialSweep",
+        "count": 1
+      },
+      {
+        "value": "refresh-alert-anim",
+        "count": 1
+      },
+      {
+        "value": "RefreshButtonAnimation",
+        "count": 1
+      },
+      {
+        "value": "reload",
+        "count": 1
+      },
+      {
+        "value": "reveal-claimed-item",
+        "count": 1
+      },
+      {
+        "value": "RosettaInventory__Image--Hover",
+        "count": 1
+      },
+      {
+        "value": "SelectedFlashAnim",
+        "count": 1
+      },
+      {
+        "value": "settings-highlight",
+        "count": 1
+      },
+      {
+        "value": "SettingsButtonAnimation",
+        "count": 1
+      },
+      {
+        "value": "show-canvas",
+        "count": 1
+      },
+      {
+        "value": "show-graph",
+        "count": 1
+      },
+      {
+        "value": "show-leaderboard-btn",
+        "count": 1
+      },
+      {
+        "value": "ShowAndHide",
+        "count": 1
+      },
+      {
+        "value": "skillgroup-pulse",
+        "count": 1
+      },
+      {
+        "value": "skillgroup-reveal",
+        "count": 1
+      },
+      {
+        "value": "slam",
+        "count": 1
+      },
+      {
+        "value": "slide",
+        "count": 1
+      },
+      {
+        "value": "slide-show-end",
+        "count": 1
+      },
+      {
+        "value": "slide-show-start",
+        "count": 1
+      },
+      {
+        "value": "slow-pulse",
+        "count": 1
+      },
+      {
+        "value": "SoundIcon1Anim",
+        "count": 1
+      },
+      {
+        "value": "SoundIcon2Anim",
+        "count": 1
+      },
+      {
+        "value": "SoundIcon3Anim",
+        "count": 1
+      },
+      {
+        "value": "stars-after-apply-anim",
+        "count": 1
+      },
+      {
+        "value": "stars-after-purchase-anim",
+        "count": 1
+      },
+      {
+        "value": "stars-after-purchase-remove-anim",
+        "count": 1
+      },
+      {
+        "value": "staticfadein",
+        "count": 1
+      },
+      {
+        "value": "teamselect-animation",
+        "count": 1
+      },
+      {
+        "value": "unlock-countdown-anim",
+        "count": 1
+      },
+      {
+        "value": "update-price-rotate",
+        "count": 1
+      },
+      {
+        "value": "UpdateElement",
+        "count": 1
+      },
+      {
+        "value": "victim-killed",
+        "count": 1
+      },
+      {
+        "value": "wait-bounce",
+        "count": 1
+      },
+      {
+        "value": "weapon--change",
+        "count": 1
+      },
+      {
+        "value": "weapon-row-background--weapon-row--on-active",
+        "count": 1
+      },
+      {
+        "value": "weapon-selection-item--weapon-selection-item--on-active",
+        "count": 1
+      },
+      {
+        "value": "weapon-selection-item--weapon-selection-item--on-active-icon",
+        "count": 1
+      },
+      {
+        "value": "xpshop-reveal",
+        "count": 1
+      },
+      {
+        "value": "xptrail-acquired",
+        "count": 1
+      },
+      {
+        "value": "xptrail-announcement-reveal",
+        "count": 1
+      }
+    ],
+    "animation-timing-function": [
+      {
+        "value": "ease-in-out",
+        "count": 114
+      },
+      {
+        "value": "linear",
+        "count": 64
+      },
+      {
+        "value": "ease-out",
+        "count": 43
+      },
+      {
+        "value": "ease-in",
+        "count": 27
+      }
+    ],
+    "background-color": [
+      {
+        "value": "none",
+        "count": 84
+      },
+      {
+        "value": "white",
+        "count": 73
+      },
+      {
+        "value": "black",
+        "count": 42
+      },
+      {
+        "value": "None",
+        "count": 11
+      },
+      {
+        "value": "red",
+        "count": 10
+      },
+      {
+        "value": "gray",
+        "count": 5
+      },
+      {
+        "value": "green",
+        "count": 5
+      },
+      {
+        "value": "blue",
+        "count": 3
+      },
+      {
+        "value": "transparent",
+        "count": 3
+      },
+      {
+        "value": "grey",
+        "count": 2
+      },
+      {
+        "value": "yellow",
+        "count": 2
+      },
+      {
+        "value": "greenyellow",
+        "count": 1
+      },
+      {
+        "value": "olive",
+        "count": 1
+      },
+      {
+        "value": "purple",
+        "count": 1
+      }
+    ],
+    "background-image": [
+      {
+        "value": "none",
+        "count": 19
+      }
+    ],
+    "background-position": [
+      {
+        "value": "center",
+        "count": 18
+      },
+      {
+        "value": "top",
+        "count": 3
+      },
+      {
+        "value": "bottom",
+        "count": 2
+      }
+    ],
+    "background-repeat": [
+      {
+        "value": "no-repeat",
+        "count": 101
+      },
+      {
+        "value": "repeat",
+        "count": 2
+      }
+    ],
+    "background-size": [
+      {
+        "value": "cover",
+        "count": 19
+      },
+      {
+        "value": "contain",
+        "count": 8
+      },
+      {
+        "value": "auto",
+        "count": 1
+      }
+    ],
+    "blur": [
+      {
+        "value": "none",
+        "count": 4
+      }
+    ],
+    "border-color": [
+      {
+        "value": "red",
+        "count": 4
+      },
+      {
+        "value": "blue",
+        "count": 2
+      },
+      {
+        "value": "white",
+        "count": 2
+      },
+      {
+        "value": "grey",
+        "count": 1
+      },
+      {
+        "value": "none",
+        "count": 1
+      },
+      {
+        "value": "transparent",
+        "count": 1
+      }
+    ],
+    "border-style": [
+      {
+        "value": "solid",
+        "count": 13
+      },
+      {
+        "value": "none",
+        "count": 1
+      }
+    ],
+    "box-shadow": [
+      {
+        "value": "none",
+        "count": 67
+      }
+    ],
+    "color": [
+      {
+        "value": "white",
+        "count": 298
+      },
+      {
+        "value": "black",
+        "count": 48
+      },
+      {
+        "value": "grey",
+        "count": 24
+      },
+      {
+        "value": "White",
+        "count": 14
+      },
+      {
+        "value": "red",
+        "count": 11
+      },
+      {
+        "value": "gray",
+        "count": 6
+      },
+      {
+        "value": "gold",
+        "count": 5
+      },
+      {
+        "value": "transparent",
+        "count": 4
+      },
+      {
+        "value": "yellow",
+        "count": 3
+      },
+      {
+        "value": "Black",
+        "count": 2
+      },
+      {
+        "value": "green",
+        "count": 2
+      },
+      {
+        "value": "lightgreen",
+        "count": 2
+      },
+      {
+        "value": "beige",
+        "count": 1
+      },
+      {
+        "value": "darkgrey",
+        "count": 1
+      },
+      {
+        "value": "lightgray",
+        "count": 1
+      },
+      {
+        "value": "none",
+        "count": 1
+      },
+      {
+        "value": "wheat",
+        "count": 1
+      }
+    ],
+    "context-menu-position": [
+      {
+        "value": "bottom",
+        "count": 1
+      },
+      {
+        "value": "top",
+        "count": 1
+      }
+    ],
+    "cursor": [
+      {
+        "value": "text",
+        "count": 1
+      }
+    ],
+    "flow-children": [
+      {
+        "value": "right",
+        "count": 530
+      },
+      {
+        "value": "down",
+        "count": 495
+      },
+      {
+        "value": "none",
+        "count": 93
+      },
+      {
+        "value": "left",
+        "count": 51
+      },
+      {
+        "value": "right-wrap",
+        "count": 26
+      },
+      {
+        "value": "up",
+        "count": 23
+      },
+      {
+        "value": "down-wrap",
+        "count": 3
+      }
+    ],
+    "font-family": [
+      {
+        "value": "Stratum2",
+        "count": 16
+      },
+      {
+        "value": "notosans",
+        "count": 1
+      }
+    ],
+    "font-stretch": [
+      {
+        "value": "condensed",
+        "count": 11
+      }
+    ],
+    "font-style": [
+      {
+        "value": "italic",
+        "count": 8
+      },
+      {
+        "value": "italics",
+        "count": 7
+      },
+      {
+        "value": "normal",
+        "count": 1
+      }
+    ],
+    "font-weight": [
+      {
+        "value": "bold",
+        "count": 201
+      },
+      {
+        "value": "medium",
+        "count": 118
+      },
+      {
+        "value": "normal",
+        "count": 64
+      },
+      {
+        "value": "lighter",
+        "count": 31
+      },
+      {
+        "value": "light",
+        "count": 24
+      },
+      {
+        "value": "black",
+        "count": 23
+      },
+      {
+        "value": "bolder",
+        "count": 4
+      },
+      {
+        "value": "Bold",
+        "count": 3
+      },
+      {
+        "value": "Medium",
+        "count": 2
+      },
+      {
+        "value": "thin",
+        "count": 1
+      }
+    ],
+    "height": [
+      {
+        "value": "fit-children",
+        "count": 242
+      },
+      {
+        "value": "fit-Children",
+        "count": 1
+      }
+    ],
+    "horizontal-align": [
+      {
+        "value": "center",
+        "count": 1282
+      },
+      {
+        "value": "right",
+        "count": 347
+      },
+      {
+        "value": "left",
+        "count": 316
+      },
+      {
+        "value": "middle",
+        "count": 29
+      },
+      {
+        "value": "center_nopixelsnap",
+        "count": 22
+      },
+      {
+        "value": "Left",
+        "count": 1
+      }
+    ],
+    "ignore-parent-flow": [
+      {
+        "value": "true",
+        "count": 51
+      },
+      {
+        "value": "false",
+        "count": 1
+      }
+    ],
+    "img-shadow": [
+      {
+        "value": "none",
+        "count": 17
+      }
+    ],
+    "layout-position": [
+      {
+        "value": "fixed",
+        "count": 3
+      }
+    ],
+    "letter-spacing": [
+      {
+        "value": "normal",
+        "count": 2
+      }
+    ],
+    "opacity-mask": [
+      {
+        "value": "none",
+        "count": 2
+      }
+    ],
+    "overflow": [
+      {
+        "value": "noclip",
+        "count": 109
+      },
+      {
+        "value": "clip",
+        "count": 14
+      },
+      {
+        "value": "scroll",
+        "count": 4
+      },
+      {
+        "value": "squish",
+        "count": 2
+      }
+    ],
+    "text-align": [
+      {
+        "value": "center",
+        "count": 318
+      },
+      {
+        "value": "left",
+        "count": 82
+      },
+      {
+        "value": "right",
+        "count": 73
+      },
+      {
+        "value": "center_nopixelsnap",
+        "count": 1
+      }
+    ],
+    "text-decoration": [
+      {
+        "value": "underline",
+        "count": 7
+      },
+      {
+        "value": "line-through",
+        "count": 5
+      },
+      {
+        "value": "none",
+        "count": 2
+      }
+    ],
+    "text-overflow": [
+      {
+        "value": "shrink",
+        "count": 139
+      },
+      {
+        "value": "ellipsis",
+        "count": 76
+      },
+      {
+        "value": "noclip",
+        "count": 11
+      },
+      {
+        "value": "clip",
+        "count": 7
+      }
+    ],
+    "text-shadow": [
+      {
+        "value": "none",
+        "count": 20
+      }
+    ],
+    "text-transform": [
+      {
+        "value": "uppercase",
+        "count": 93
+      },
+      {
+        "value": "none",
+        "count": 20
+      },
+      {
+        "value": "lowercase",
+        "count": 2
+      }
+    ],
+    "tooltip-position": [
+      {
+        "value": "bottom",
+        "count": 30
+      },
+      {
+        "value": "top",
+        "count": 20
+      },
+      {
+        "value": "left",
+        "count": 7
+      }
+    ],
+    "transform": [
+      {
+        "value": "none",
+        "count": 1
+      }
+    ],
+    "transition-property": [
+      {
+        "value": "opacity",
+        "count": 196
+      },
+      {
+        "value": "background-color",
+        "count": 102
+      },
+      {
+        "value": "transform",
+        "count": 66
+      },
+      {
+        "value": "brightness",
+        "count": 57
+      },
+      {
+        "value": "height",
+        "count": 29
+      },
+      {
+        "value": "color",
+        "count": 27
+      },
+      {
+        "value": "position",
+        "count": 27
+      },
+      {
+        "value": "wash-color",
+        "count": 26
+      },
+      {
+        "value": "width",
+        "count": 14
+      },
+      {
+        "value": "border",
+        "count": 9
+      },
+      {
+        "value": "pre-transform-scale2d",
+        "count": 8
+      },
+      {
+        "value": "none",
+        "count": 5
+      },
+      {
+        "value": "box-shadow",
+        "count": 4
+      },
+      {
+        "value": "world-blur",
+        "count": 3
+      },
+      {
+        "value": "background-colo",
+        "count": 2
+      },
+      {
+        "value": "contrast",
+        "count": 2
+      },
+      {
+        "value": "margin-top",
+        "count": 2
+      },
+      {
+        "value": "ui-scale",
+        "count": 2
+      },
+      {
+        "value": "y",
+        "count": 2
+      },
+      {
+        "value": "blur",
+        "count": 1
+      },
+      {
+        "value": "clip",
+        "count": 1
+      },
+      {
+        "value": "color-wash",
+        "count": 1
+      },
+      {
+        "value": "img-shadow",
+        "count": 1
+      },
+      {
+        "value": "x",
+        "count": 1
+      }
+    ],
+    "transition-timing-function": [
+      {
+        "value": "ease-in-out",
+        "count": 947
+      },
+      {
+        "value": "ease-in",
+        "count": 66
+      },
+      {
+        "value": "linear",
+        "count": 45
+      },
+      {
+        "value": "ease-out",
+        "count": 41
+      }
+    ],
+    "vertical-align": [
+      {
+        "value": "center",
+        "count": 1121
+      },
+      {
+        "value": "bottom",
+        "count": 344
+      },
+      {
+        "value": "top",
+        "count": 273
+      },
+      {
+        "value": "middle",
+        "count": 147
+      },
+      {
+        "value": "center_nopixelsnap",
+        "count": 18
+      },
+      {
+        "value": "Bottom",
+        "count": 3
+      }
+    ],
+    "visibility": [
+      {
+        "value": "collapse",
+        "count": 693
+      },
+      {
+        "value": "visible",
+        "count": 388
+      }
+    ],
+    "wash-color": [
+      {
+        "value": "white",
+        "count": 46
+      },
+      {
+        "value": "black",
+        "count": 33
+      },
+      {
+        "value": "none",
+        "count": 20
+      },
+      {
+        "value": "red",
+        "count": 14
+      },
+      {
+        "value": "gray",
+        "count": 6
+      },
+      {
+        "value": "gold",
+        "count": 5
+      },
+      {
+        "value": "green",
+        "count": 4
+      },
+      {
+        "value": "grey",
+        "count": 4
+      },
+      {
+        "value": "yellow",
+        "count": 4
+      },
+      {
+        "value": "darkgrey",
+        "count": 3
+      },
+      {
+        "value": "lightgreen",
+        "count": 3
+      },
+      {
+        "value": "White",
+        "count": 2
+      },
+      {
+        "value": "orange",
+        "count": 1
+      },
+      {
+        "value": "silver",
+        "count": 1
+      }
+    ],
+    "white-space": [
+      {
+        "value": "nowrap",
+        "count": 24
+      },
+      {
+        "value": "normal",
+        "count": 5
+      }
+    ],
+    "width": [
+      {
+        "value": "fit-children",
+        "count": 221
+      }
+    ],
+    "world-blur": [
+      {
+        "value": "none",
+        "count": 9
+      }
+    ]
+  }
+}

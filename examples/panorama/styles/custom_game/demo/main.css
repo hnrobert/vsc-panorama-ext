@@ -1,0 +1,65 @@
+/* VCSS 示例。
+   注意：CustomHudLayout 的 4 面板白名单「只约束 VXML」——
+   样式完全不受限，VCSS 全套能力可用。
+
+   验收点 F：在规则块内输入 flow-
+            应补出 flow-children，并标注「Panorama 专属」。
+   验收点 G：把光标停在 box-shadow 上悬停
+            说明里应提到「颜色在前」。
+   验收点 H：在 .btn 后面输入 : 再接受 hover 补全
+            结果应是 .btn:hover，而不是 .btn::hover。 */
+
+@define accentColor: #3281AC;
+@define panelBackground: gradient( linear, 0% 0%, 0% 100%, from( #14202b ), to( #1e2d3d ) );
+
+.hud-root
+{
+    flow-children: down;
+    width: fit-children;
+    height: fit-children;
+    padding: 16px;
+    background-color: panelBackground;
+    border-radius: 6px;
+    box-shadow: fill #00000050 1px 1px 6px 0px;
+}
+
+.score
+{
+    font-size: 20px;
+    color: accentColor;
+    horizontal-align: center;
+}
+
+.warning
+{
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+}
+
+.warning.is-active
+{
+    opacity: 1;
+}
+
+.btn
+{
+    width: 160px;
+    height: 44px;
+    background-color: accentColor;
+    horizontal-align: center;
+    margin-top: 12px;
+    transition-property: brightness;
+    transition-duration: 0.1s;
+}
+
+.btn:hover
+{
+    brightness: 1.2;
+}
+
+@keyframes 'pulse'
+{
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}

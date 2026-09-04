@@ -1,0 +1,1342 @@
+{
+  "source": "docs/VCSS-Panorama专属.md + docs/CSS属性清单.md（人工整理，非机器生成）。description / signature / webEquivalent 以及 webOnly 的值是双语对象 { \"zh-cn\", \"en\" }：两种语言都必填、都不能为空串，英文那一份里不能出现汉字——三条都由 test/unit/core/data/properties-i18n.test.ts 逐条钉住。本文件是人工维护的，没有生成器会覆写它，所以译文直接内联；data/panels.json 的 attributeDocs 由生成器全量重建，那一半的中文对照另放 data/attribute-docs.zh-cn.json。",
+  "properties": {
+    "flow-children": {
+      "panoramaOnly": true,
+      "frequency": 1221,
+      "description": {
+        "zh-cn": "子元素排列方向，替代 Web 的 flex / grid",
+        "en": "Direction in which children are laid out; replaces Web flex / grid"
+      },
+      "webEquivalent": {
+        "zh-cn": "display: flex + flex-direction",
+        "en": "display: flex + flex-direction"
+      },
+      "values": [
+        "none",
+        "down",
+        "right",
+        "left",
+        "up",
+        "down-wrap",
+        "right-wrap",
+        "up-wrap",
+        "left-wrap",
+        "down-wrap-left"
+      ]
+    },
+    "horizontal-align": {
+      "panoramaOnly": true,
+      "frequency": 1997,
+      "description": {
+        "zh-cn": "自身在父容器内的水平对齐。center_nopixelsnap = center 但不吸附像素网格——该值在 horizontal-align / vertical-align / text-align 三个同族属性上系统性出现，不是笔误。注意 middle 是 vertical-align 的取值，本属性没有",
+        "en": "Horizontal alignment of the panel within its parent. center_nopixelsnap means center without snapping to the pixel grid — the value shows up systematically across horizontal-align / vertical-align / text-align, so it is not a typo. Note that middle belongs to vertical-align; this property does not accept it"
+      },
+      "values": [
+        "left",
+        "center",
+        "right",
+        "center_nopixelsnap"
+      ]
+    },
+    "vertical-align": {
+      "panoramaOnly": true,
+      "frequency": 1906,
+      "description": {
+        "zh-cn": "自身在父容器内的垂直对齐（center 与 middle 同义）。center_nopixelsnap = center 但不吸附像素网格，在三个同族对齐属性上系统性出现",
+        "en": "Vertical alignment of the panel within its parent (center and middle are synonyms). center_nopixelsnap means center without snapping to the pixel grid, and shows up systematically across all three sibling alignment properties"
+      },
+      "values": [
+        "top",
+        "center",
+        "middle",
+        "bottom",
+        "center_nopixelsnap"
+      ]
+    },
+    "align": {
+      "panoramaOnly": true,
+      "frequency": 17,
+      "description": {
+        "zh-cn": "对齐简写：<horizontal> <vertical>",
+        "en": "Alignment shorthand: <horizontal> <vertical>"
+      },
+      "values": []
+    },
+    "width": {
+      "panoramaOnly": false,
+      "frequency": 3075,
+      "description": {
+        "zh-cn": "宽度。除 px / % 外支持 fit-children、fill-parent-flow(权重)、height-percentage(%)",
+        "en": "Width. Besides px / %, accepts fit-children, fill-parent-flow(weight) and height-percentage(%)"
+      },
+      "values": [
+        "fit-children"
+      ]
+    },
+    "height": {
+      "panoramaOnly": false,
+      "frequency": 2558,
+      "description": {
+        "zh-cn": "高度。除 px / % 外支持 fit-children、fill-parent-flow(权重)、width-percentage(%)",
+        "en": "Height. Besides px / %, accepts fit-children, fill-parent-flow(weight) and width-percentage(%)"
+      },
+      "values": [
+        "fit-children"
+      ]
+    },
+    "overflow": {
+      "panoramaOnly": true,
+      "frequency": 185,
+      "description": {
+        "zh-cn": "溢出处理，可分轴写两值（横 纵）。默认 squish",
+        "en": "Overflow handling; can take two values, one per axis (horizontal vertical). Defaults to squish"
+      },
+      "values": [
+        "squish",
+        "clip",
+        "scroll",
+        "noclip"
+      ]
+    },
+    "text-overflow": {
+      "panoramaOnly": true,
+      "frequency": 243,
+      "description": {
+        "zh-cn": "文本溢出处理。默认 ellipsis，与标准 CSS 相反。可写 shrink min(10px) ellipsis",
+        "en": "Text overflow handling. Defaults to ellipsis — the opposite of standard CSS. Can be written as shrink min(10px) ellipsis"
+      },
+      "values": [
+        "clip",
+        "ellipsis",
+        "shrink",
+        "noclip"
+      ]
+    },
+    "clip": {
+      "panoramaOnly": true,
+      "frequency": 34,
+      "description": {
+        "zh-cn": "裁剪形状。不影响布局、开销小、支持 transition/animation",
+        "en": "Clipping shape. Does not affect layout, is cheap, and supports transition / animation"
+      },
+      "values": []
+    },
+    "position": {
+      "panoramaOnly": true,
+      "frequency": 137,
+      "description": {
+        "zh-cn": "三轴偏移 x y z，不是 Web 的定位模型。该面板必须处于 flow-children: none 的父容器里",
+        "en": "Three-axis offset x y z — not the Web positioning model. The panel must sit inside a parent with flow-children: none"
+      },
+      "values": []
+    },
+    "x": {
+      "panoramaOnly": true,
+      "frequency": 96,
+      "description": {
+        "zh-cn": "X 轴偏移",
+        "en": "X-axis offset"
+      },
+      "values": []
+    },
+    "y": {
+      "panoramaOnly": true,
+      "frequency": 142,
+      "description": {
+        "zh-cn": "Y 轴偏移",
+        "en": "Y-axis offset"
+      },
+      "values": []
+    },
+    "z": {
+      "panoramaOnly": true,
+      "frequency": 10,
+      "description": {
+        "zh-cn": "Z 轴偏移",
+        "en": "Z-axis offset"
+      },
+      "values": []
+    },
+    "ignore-parent-flow": {
+      "panoramaOnly": true,
+      "frequency": 52,
+      "description": {
+        "zh-cn": "脱离父级 flow 排列",
+        "en": "Opts the panel out of its parent flow layout"
+      },
+      "values": [
+        "true",
+        "false"
+      ]
+    },
+    "layout-position": {
+      "panoramaOnly": true,
+      "frequency": 3,
+      "description": {
+        "zh-cn": "布局定位辅助",
+        "en": "Layout positioning helper"
+      },
+      "values": [
+        "fixed"
+      ]
+    },
+    "visibility": {
+      "panoramaOnly": true,
+      "frequency": 1081,
+      "description": {
+        "zh-cn": "collapse 会隐藏并从布局中移除（不占位）。Panorama 没有 hidden；只想保留占位请用 opacity: 0",
+        "en": "collapse hides the panel and removes it from layout (it takes up no space). Panorama has no hidden; to keep the space reserved, use opacity: 0"
+      },
+      "values": [
+        "visible",
+        "collapse"
+      ]
+    },
+    "wash-color": {
+      "panoramaOnly": true,
+      "frequency": 751,
+      "description": {
+        "zh-cn": "在面板及所有子元素上叠加着色(tint)；颜色的 alpha 即着色强度",
+        "en": "Tints the panel and all of its children; the alpha of the color is the tint strength"
+      },
+      "values": []
+    },
+    "brightness": {
+      "panoramaOnly": true,
+      "frequency": 575,
+      "description": {
+        "zh-cn": "HSB 亮度倍率：1=不变，>1 变亮，<1 变暗",
+        "en": "HSB brightness multiplier: 1 = unchanged, > 1 brighter, < 1 darker"
+      },
+      "values": []
+    },
+    "saturation": {
+      "panoramaOnly": true,
+      "frequency": 45,
+      "description": {
+        "zh-cn": "饱和度：1.0=不变，0.0=灰度，>1.0=过饱和",
+        "en": "Saturation: 1.0 = unchanged, 0.0 = greyscale, > 1.0 oversaturated"
+      },
+      "values": []
+    },
+    "contrast": {
+      "panoramaOnly": true,
+      "frequency": 20,
+      "description": {
+        "zh-cn": "对比度倍率：1=不变",
+        "en": "Contrast multiplier: 1 = unchanged"
+      },
+      "values": []
+    },
+    "hue-rotation": {
+      "panoramaOnly": true,
+      "frequency": 2,
+      "description": {
+        "zh-cn": "色相旋转，单位 deg",
+        "en": "Hue rotation, in deg"
+      },
+      "values": []
+    },
+    "blur": {
+      "panoramaOnly": true,
+      "frequency": 105,
+      "description": {
+        "zh-cn": "面板自身模糊。仅高斯：gaussian(标准差) 或 gaussian(x, y, passes)。建议标准差 0–10；passes>1 很伤性能",
+        "en": "Blurs the panel itself. Gaussian only: gaussian(std-dev) or gaussian(x, y, passes). A std-dev of 0-10 is recommended; passes > 1 is very expensive"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "world-blur": {
+      "panoramaOnly": true,
+      "frequency": 37,
+      "description": {
+        "zh-cn": "模糊面板背后的世界/backbuffer。支持 mipmapgaussian 省性能",
+        "en": "Blurs the world / backbuffer behind the panel. Supports mipmapgaussian to save performance"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "img-shadow": {
+      "panoramaOnly": true,
+      "frequency": 194,
+      "description": {
+        "zh-cn": "图片投影，形状跟随图形。语法 x y blur 强度 颜色 [采样模式]，仅对 Image 有意义",
+        "en": "Image drop shadow; the shape follows the artwork. Syntax: x y blur strength color [sampling mode]. Only meaningful on Image"
+      },
+      "values": [
+        "none",
+        "alpha-only",
+        "legacy",
+        "point"
+      ]
+    },
+    "opacity-mask": {
+      "panoramaOnly": true,
+      "frequency": 68,
+      "description": {
+        "zh-cn": "用图做透明遮罩",
+        "en": "Uses an image as a transparency mask"
+      },
+      "values": []
+    },
+    "opacity-brush": {
+      "panoramaOnly": true,
+      "frequency": 3,
+      "description": {
+        "zh-cn": "用渐变做透明遮罩",
+        "en": "Uses a gradient as a transparency mask"
+      },
+      "values": []
+    },
+    "background-img-opacity": {
+      "panoramaOnly": true,
+      "frequency": 118,
+      "description": {
+        "zh-cn": "背景图独立透明度，不影响前景与子元素",
+        "en": "Separate opacity for the background image; does not affect the foreground or children"
+      },
+      "values": []
+    },
+    "ui-scale": {
+      "panoramaOnly": true,
+      "frequency": 42,
+      "description": {
+        "zh-cn": "在布局层缩放面板及所有后代；文字会真正放大字号，不是位图拉伸",
+        "en": "Scales the panel and all of its descendants at the layout level; text is genuinely rendered at a larger size rather than being stretched as a bitmap"
+      },
+      "values": []
+    },
+    "-s2-mix-blend-mode": {
+      "panoramaOnly": true,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "混合模式",
+        "en": "Blend mode"
+      },
+      "values": [
+        "normal",
+        "multiply",
+        "screen",
+        "additive",
+        "opaque",
+        "overlay",
+        "hardlight",
+        "linearburn",
+        "darken",
+        "lighten",
+        "colordodge",
+        "colorburn",
+        "hue"
+      ]
+    },
+    "box-shadow": {
+      "panoramaOnly": true,
+      "frequency": 330,
+      "description": {
+        "zh-cn": "⚠️ 颜色在前：[inset|fill|hollow] <color> <x> <y> <blur> <spread>。负 blur 得到硬边描边效果",
+        "en": "⚠️ Color comes first: [inset|fill|hollow] <color> <x> <y> <blur> <spread>. A negative blur produces a hard-edged outline"
+      },
+      "values": [
+        "none",
+        "inset",
+        "fill",
+        "hollow"
+      ]
+    },
+    "text-shadow": {
+      "panoramaOnly": true,
+      "frequency": 200,
+      "description": {
+        "zh-cn": "比 Web 多一个强度参数：<x> <y> <blur> <强度> <color>。仅对 Label 有意义",
+        "en": "Takes one more parameter than the Web version — a strength: <x> <y> <blur> <strength> <color>. Only meaningful on Label"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "pre-transform-scale2d": {
+      "panoramaOnly": true,
+      "frequency": 81,
+      "description": {
+        "zh-cn": "transform 之前先缩放",
+        "en": "Scales before transform is applied"
+      },
+      "values": []
+    },
+    "pre-transform-rotate2d": {
+      "panoramaOnly": true,
+      "frequency": 2,
+      "description": {
+        "zh-cn": "transform 之前先旋转",
+        "en": "Rotates before transform is applied"
+      },
+      "values": []
+    },
+    "sound": {
+      "panoramaOnly": true,
+      "frequency": 98,
+      "description": {
+        "zh-cn": "选择器命中时播放的 soundevent（如悬浮进入）",
+        "en": "soundevent played when the selector starts matching (e.g. hover enter)"
+      },
+      "values": []
+    },
+    "sound-out": {
+      "panoramaOnly": true,
+      "frequency": 1,
+      "description": {
+        "zh-cn": "选择器取消命中时播放的 soundevent（如悬浮离开）",
+        "en": "soundevent played when the selector stops matching (e.g. hover leave)"
+      },
+      "values": []
+    },
+    "tooltip-position": {
+      "panoramaOnly": true,
+      "frequency": 57,
+      "description": {
+        "zh-cn": "提示框相对目标出现在哪一侧",
+        "en": "Which side of the target the tooltip appears on"
+      },
+      "values": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ]
+    },
+    "tooltip-body-position": {
+      "panoramaOnly": true,
+      "frequency": 19,
+      "description": {
+        "zh-cn": "提示框主体锚点 X% Y%",
+        "en": "Anchor point of the tooltip body, X% Y%"
+      },
+      "values": []
+    },
+    "context-menu-position": {
+      "panoramaOnly": true,
+      "frequency": 2,
+      "description": {
+        "zh-cn": "右键菜单方向",
+        "en": "Direction the context menu opens in"
+      },
+      "values": [
+        "top",
+        "bottom"
+      ]
+    },
+    "context-menu-body-position": {
+      "panoramaOnly": true,
+      "frequency": 1,
+      "description": {
+        "zh-cn": "右键菜单主体锚点",
+        "en": "Anchor point of the context menu body"
+      },
+      "values": []
+    },
+    "background-size": {
+      "panoramaOnly": false,
+      "frequency": 245,
+      "description": {
+        "zh-cn": "可用像素、百分比、contain、cover、auto（默认，保持图片比例）。支持逗号分隔多背景层",
+        "en": "Accepts pixels, percentages, contain, cover and auto (the default, which preserves the image aspect ratio). Comma-separated values give multiple background layers"
+      },
+      "values": [
+        "auto",
+        "contain",
+        "cover"
+      ]
+    },
+    "background-color": {
+      "panoramaOnly": false,
+      "frequency": 1670,
+      "description": {
+        "zh-cn": "背景色，可用 gradient(...)",
+        "en": "Background color; accepts gradient(...)"
+      },
+      "values": [
+        "none",
+        "transparent"
+      ]
+    },
+    "background-image": {
+      "panoramaOnly": false,
+      "frequency": 290,
+      "description": {
+        "zh-cn": "背景图，值为 url(\"s2r://...\")，可多层逗号叠加",
+        "en": "Background image; the value is url(\"s2r://...\"). Multiple layers can be stacked with commas"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "background-position": {
+      "panoramaOnly": false,
+      "frequency": 132,
+      "description": {
+        "zh-cn": "背景定位",
+        "en": "Background position"
+      },
+      "values": []
+    },
+    "background-repeat": {
+      "panoramaOnly": false,
+      "frequency": 107,
+      "description": {
+        "zh-cn": "背景平铺方式",
+        "en": "Background repeat mode"
+      },
+      "values": [
+        "repeat",
+        "no-repeat",
+        "repeat-x",
+        "repeat-y"
+      ]
+    },
+    "opacity": {
+      "panoramaOnly": false,
+      "frequency": 1769,
+      "description": {
+        "zh-cn": "整体透明度",
+        "en": "Overall opacity"
+      },
+      "values": []
+    },
+    "color": {
+      "panoramaOnly": false,
+      "frequency": 988,
+      "description": {
+        "zh-cn": "文本颜色",
+        "en": "Text color"
+      },
+      "values": []
+    },
+    "font-size": {
+      "panoramaOnly": false,
+      "frequency": 993,
+      "description": {
+        "zh-cn": "字号（px）",
+        "en": "Font size, in px"
+      },
+      "values": []
+    },
+    "font-family": {
+      "panoramaOnly": false,
+      "frequency": 378,
+      "description": {
+        "zh-cn": "字体。CS2 正文为 Stratum2 家族，CJK 回退 'Arial Unicode MS'",
+        "en": "Font. CS2 body text uses the Stratum2 family, with 'Arial Unicode MS' as the CJK fallback"
+      },
+      "values": []
+    },
+    "font-weight": {
+      "panoramaOnly": false,
+      "frequency": 471,
+      "description": {
+        "zh-cn": "字重。来源文档没有给出取值枚举，本清单的取值全部由语料统计派生；lighter / bolder 是 CSS 规范的相对字重关键字，出现频次高于本表已收录的 thin / black / light，按同一准入标准一并收录",
+        "en": "Font weight. The source document gives no enumeration, so every value in this list is derived from corpus statistics; lighter / bolder are the relative-weight keywords from the CSS spec and occur more often than thin / black / light, which this table already lists, so they are included under the same admission standard"
+      },
+      "values": [
+        "normal",
+        "bold",
+        "light",
+        "medium",
+        "black",
+        "thin",
+        "lighter",
+        "bolder"
+      ]
+    },
+    "font-style": {
+      "panoramaOnly": false,
+      "frequency": 16,
+      "description": {
+        "zh-cn": "字形",
+        "en": "Font style"
+      },
+      "values": [
+        "normal",
+        "italic"
+      ]
+    },
+    "font-stretch": {
+      "panoramaOnly": false,
+      "frequency": 11,
+      "description": {
+        "zh-cn": "字宽拉伸",
+        "en": "Font stretch"
+      },
+      "values": [
+        "normal",
+        "condensed",
+        "expanded"
+      ]
+    },
+    "text-align": {
+      "panoramaOnly": false,
+      "frequency": 474,
+      "description": {
+        "zh-cn": "文本对齐。center_nopixelsnap = center 但不吸附像素网格，在三个同族对齐属性上系统性出现",
+        "en": "Text alignment. center_nopixelsnap means center without snapping to the pixel grid, and shows up systematically across all three sibling alignment properties"
+      },
+      "values": [
+        "left",
+        "center",
+        "right",
+        "center_nopixelsnap"
+      ]
+    },
+    "text-transform": {
+      "panoramaOnly": false,
+      "frequency": 115,
+      "description": {
+        "zh-cn": "大小写转换",
+        "en": "Case transformation"
+      },
+      "values": [
+        "none",
+        "uppercase",
+        "lowercase"
+      ]
+    },
+    "text-decoration": {
+      "panoramaOnly": false,
+      "frequency": 14,
+      "description": {
+        "zh-cn": "文本装饰",
+        "en": "Text decoration"
+      },
+      "values": [
+        "none",
+        "underline",
+        "line-through"
+      ]
+    },
+    "letter-spacing": {
+      "panoramaOnly": false,
+      "frequency": 118,
+      "description": {
+        "zh-cn": "字间距",
+        "en": "Letter spacing"
+      },
+      "values": []
+    },
+    "line-height": {
+      "panoramaOnly": false,
+      "frequency": 8,
+      "description": {
+        "zh-cn": "行高",
+        "en": "Line height"
+      },
+      "values": []
+    },
+    "white-space": {
+      "panoramaOnly": false,
+      "frequency": 29,
+      "description": {
+        "zh-cn": "空白处理",
+        "en": "Whitespace handling"
+      },
+      "values": [
+        "normal",
+        "nowrap",
+        "pre"
+      ]
+    },
+    "margin": {
+      "panoramaOnly": false,
+      "frequency": 679,
+      "description": {
+        "zh-cn": "外边距",
+        "en": "Margin"
+      },
+      "values": []
+    },
+    "margin-top": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "上外边距",
+        "en": "Top margin"
+      },
+      "values": []
+    },
+    "margin-right": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "右外边距",
+        "en": "Right margin"
+      },
+      "values": []
+    },
+    "margin-bottom": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "下外边距",
+        "en": "Bottom margin"
+      },
+      "values": []
+    },
+    "margin-left": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "左外边距",
+        "en": "Left margin"
+      },
+      "values": []
+    },
+    "padding": {
+      "panoramaOnly": false,
+      "frequency": 624,
+      "description": {
+        "zh-cn": "内边距",
+        "en": "Padding"
+      },
+      "values": []
+    },
+    "padding-top": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "上内边距",
+        "en": "Top padding"
+      },
+      "values": []
+    },
+    "padding-right": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "右内边距",
+        "en": "Right padding"
+      },
+      "values": []
+    },
+    "padding-bottom": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "下内边距",
+        "en": "Bottom padding"
+      },
+      "values": []
+    },
+    "padding-left": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "左内边距",
+        "en": "Left padding"
+      },
+      "values": []
+    },
+    "max-width": {
+      "panoramaOnly": false,
+      "frequency": 127,
+      "description": {
+        "zh-cn": "最大宽度",
+        "en": "Maximum width"
+      },
+      "values": []
+    },
+    "max-height": {
+      "panoramaOnly": false,
+      "frequency": 103,
+      "description": {
+        "zh-cn": "最大高度",
+        "en": "Maximum height"
+      },
+      "values": []
+    },
+    "min-width": {
+      "panoramaOnly": false,
+      "frequency": 77,
+      "description": {
+        "zh-cn": "最小宽度",
+        "en": "Minimum width"
+      },
+      "values": []
+    },
+    "min-height": {
+      "panoramaOnly": false,
+      "frequency": 46,
+      "description": {
+        "zh-cn": "最小高度",
+        "en": "Minimum height"
+      },
+      "values": []
+    },
+    "border": {
+      "panoramaOnly": false,
+      "frequency": 319,
+      "description": {
+        "zh-cn": "边框",
+        "en": "Border"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "border-top": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "上边框",
+        "en": "Top border"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "border-right": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "右边框",
+        "en": "Right border"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "border-bottom": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "下边框",
+        "en": "Bottom border"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "border-left": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "左边框",
+        "en": "Left border"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "border-color": {
+      "panoramaOnly": false,
+      "frequency": 24,
+      "description": {
+        "zh-cn": "边框颜色",
+        "en": "Border color"
+      },
+      "values": []
+    },
+    "border-width": {
+      "panoramaOnly": false,
+      "frequency": 12,
+      "description": {
+        "zh-cn": "边框宽度",
+        "en": "Border width"
+      },
+      "values": []
+    },
+    "border-top-width": {
+      "panoramaOnly": false,
+      "frequency": 0,
+      "description": {
+        "zh-cn": "上边框宽度",
+        "en": "Top border width"
+      },
+      "values": []
+    },
+    "border-right-width": {
+      "panoramaOnly": false,
+      "frequency": 2,
+      "description": {
+        "zh-cn": "右边框宽度",
+        "en": "Right border width"
+      },
+      "values": []
+    },
+    "border-bottom-width": {
+      "panoramaOnly": false,
+      "frequency": 3,
+      "description": {
+        "zh-cn": "下边框宽度",
+        "en": "Bottom border width"
+      },
+      "values": []
+    },
+    "border-left-width": {
+      "panoramaOnly": false,
+      "frequency": 1,
+      "description": {
+        "zh-cn": "左边框宽度",
+        "en": "Left border width"
+      },
+      "values": []
+    },
+    "border-style": {
+      "panoramaOnly": false,
+      "frequency": 14,
+      "description": {
+        "zh-cn": "边框样式",
+        "en": "Border style"
+      },
+      "values": [
+        "none",
+        "solid"
+      ]
+    },
+    "border-radius": {
+      "panoramaOnly": false,
+      "frequency": 414,
+      "description": {
+        "zh-cn": "圆角",
+        "en": "Corner radius"
+      },
+      "values": []
+    },
+    "border-top-left-radius": {
+      "panoramaOnly": false,
+      "frequency": 5,
+      "description": {
+        "zh-cn": "左上角圆角",
+        "en": "Top-left corner radius"
+      },
+      "values": []
+    },
+    "border-top-right-radius": {
+      "panoramaOnly": false,
+      "frequency": 5,
+      "description": {
+        "zh-cn": "右上角圆角",
+        "en": "Top-right corner radius"
+      },
+      "values": []
+    },
+    "border-bottom-right-radius": {
+      "panoramaOnly": false,
+      "frequency": 12,
+      "description": {
+        "zh-cn": "右下角圆角",
+        "en": "Bottom-right corner radius"
+      },
+      "values": []
+    },
+    "border-bottom-left-radius": {
+      "panoramaOnly": false,
+      "frequency": 9,
+      "description": {
+        "zh-cn": "左下角圆角",
+        "en": "Bottom-left corner radius"
+      },
+      "values": []
+    },
+    "z-index": {
+      "panoramaOnly": false,
+      "frequency": 238,
+      "description": {
+        "zh-cn": "层叠顺序",
+        "en": "Stacking order"
+      },
+      "values": []
+    },
+    "transform": {
+      "panoramaOnly": false,
+      "frequency": 1169,
+      "description": {
+        "zh-cn": "变换。函数名大小写不敏感",
+        "en": "Transform. Function names are case-insensitive"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "transform-origin": {
+      "panoramaOnly": false,
+      "frequency": 100,
+      "description": {
+        "zh-cn": "变换原点",
+        "en": "Transform origin"
+      },
+      "values": []
+    },
+    "perspective": {
+      "panoramaOnly": false,
+      "frequency": 12,
+      "description": {
+        "zh-cn": "透视距离",
+        "en": "Perspective distance"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "perspective-origin": {
+      "panoramaOnly": false,
+      "frequency": 11,
+      "description": {
+        "zh-cn": "透视原点",
+        "en": "Perspective origin"
+      },
+      "values": []
+    },
+    "transition-property": {
+      "panoramaOnly": false,
+      "frequency": 1181,
+      "description": {
+        "zh-cn": "参与过渡的属性列表",
+        "en": "List of properties that take part in the transition"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "transition-duration": {
+      "panoramaOnly": false,
+      "frequency": 1195,
+      "description": {
+        "zh-cn": "过渡时长",
+        "en": "Transition duration"
+      },
+      "values": []
+    },
+    "transition-timing-function": {
+      "panoramaOnly": false,
+      "frequency": 1106,
+      "description": {
+        "zh-cn": "过渡缓动",
+        "en": "Transition easing"
+      },
+      "values": [
+        "linear",
+        "ease",
+        "ease-in",
+        "ease-out",
+        "ease-in-out"
+      ]
+    },
+    "transition-delay": {
+      "panoramaOnly": false,
+      "frequency": 61,
+      "description": {
+        "zh-cn": "过渡延迟",
+        "en": "Transition delay"
+      },
+      "values": []
+    },
+    "animation-name": {
+      "panoramaOnly": false,
+      "frequency": 259,
+      "description": {
+        "zh-cn": "@keyframes 名（定义时名字必须加引号）",
+        "en": "@keyframes name (the name must be quoted where it is defined)"
+      },
+      "values": [
+        "none"
+      ]
+    },
+    "animation-duration": {
+      "panoramaOnly": false,
+      "frequency": 260,
+      "description": {
+        "zh-cn": "动画时长",
+        "en": "Animation duration"
+      },
+      "values": []
+    },
+    "animation-timing-function": {
+      "panoramaOnly": false,
+      "frequency": 251,
+      "description": {
+        "zh-cn": "动画缓动",
+        "en": "Animation easing"
+      },
+      "values": [
+        "linear",
+        "ease",
+        "ease-in",
+        "ease-out",
+        "ease-in-out"
+      ]
+    },
+    "animation-iteration-count": {
+      "panoramaOnly": false,
+      "frequency": 245,
+      "description": {
+        "zh-cn": "动画次数",
+        "en": "Number of animation iterations"
+      },
+      "values": [
+        "infinite"
+      ]
+    },
+    "animation-fill-mode": {
+      "panoramaOnly": false,
+      "frequency": 63,
+      "description": {
+        "zh-cn": "动画填充模式",
+        "en": "Animation fill mode"
+      },
+      "values": [
+        "none",
+        "forwards",
+        "backwards",
+        "both"
+      ]
+    },
+    "animation-delay": {
+      "panoramaOnly": false,
+      "frequency": 52,
+      "description": {
+        "zh-cn": "动画延迟",
+        "en": "Animation delay"
+      },
+      "values": []
+    },
+    "animation-direction": {
+      "panoramaOnly": false,
+      "frequency": 10,
+      "description": {
+        "zh-cn": "动画方向",
+        "en": "Animation direction"
+      },
+      "values": [
+        "normal",
+        "reverse",
+        "alternate",
+        "alternate-reverse"
+      ]
+    },
+    "cursor": {
+      "panoramaOnly": true,
+      "frequency": 1,
+      "description": {
+        "zh-cn": "光标",
+        "en": "Cursor"
+      },
+      "values": []
+    }
+  },
+  "functions": [
+    {
+      "name": "fill-parent-flow",
+      "signature": {
+        "zh-cn": "fill-parent-flow(权重)",
+        "en": "fill-parent-flow(weight)"
+      },
+      "description": {
+        "zh-cn": "沿 flow 方向按权重填满剩余空间，近似 flex-grow",
+        "en": "Fills the remaining space along the flow direction, distributed by weight; close to flex-grow"
+      }
+    },
+    {
+      "name": "width-percentage",
+      "signature": {
+        "zh-cn": "width-percentage(百分比)",
+        "en": "width-percentage(percentage)"
+      },
+      "description": {
+        "zh-cn": "尺寸 = 本面板自身宽度的百分比，用于锁宽高比",
+        "en": "Size = a percentage of this panel's own width; used to lock an aspect ratio"
+      }
+    },
+    {
+      "name": "height-percentage",
+      "signature": {
+        "zh-cn": "height-percentage(百分比)",
+        "en": "height-percentage(percentage)"
+      },
+      "description": {
+        "zh-cn": "尺寸 = 本面板自身高度的百分比，用于锁宽高比",
+        "en": "Size = a percentage of this panel's own height; used to lock an aspect ratio"
+      }
+    },
+    {
+      "name": "gradient",
+      "signature": {
+        "zh-cn": "gradient(linear|radial, x0 y0, x1 y1, from(c1), color-stop(t, c2), to(c3))",
+        "en": "gradient(linear|radial, x0 y0, x1 y1, from(c1), color-stop(t, c2), to(c3))"
+      },
+      "description": {
+        "zh-cn": "渐变",
+        "en": "Gradient"
+      }
+    },
+    {
+      "name": "gaussian",
+      "signature": {
+        "zh-cn": "gaussian(标准差) | gaussian(x, y, passes)",
+        "en": "gaussian(std-dev) | gaussian(x, y, passes)"
+      },
+      "description": {
+        "zh-cn": "高斯模糊参数。passes>1 很伤性能",
+        "en": "Gaussian blur parameters. passes > 1 is very expensive"
+      }
+    },
+    {
+      "name": "mipmapgaussian",
+      "signature": {
+        "zh-cn": "mipmapgaussian(x, y, passes)",
+        "en": "mipmapgaussian(x, y, passes)"
+      },
+      "description": {
+        "zh-cn": "带 1/4 降采样的高斯，仅用于 world-blur",
+        "en": "Gaussian with 1/4 downsampling; world-blur only"
+      }
+    },
+    {
+      "name": "rect",
+      "signature": {
+        "zh-cn": "rect(top, right, bottom, left)",
+        "en": "rect(top, right, bottom, left)"
+      },
+      "description": {
+        "zh-cn": "clip 的矩形裁剪",
+        "en": "Rectangular clip for clip"
+      }
+    },
+    {
+      "name": "radial",
+      "signature": {
+        "zh-cn": "radial(圆心, 起始角, 角宽度)",
+        "en": "radial(center, start-angle, angle-width)"
+      },
+      "description": {
+        "zh-cn": "clip 的径向裁剪；第三参为角度跨度，不是结束角",
+        "en": "Radial clip for clip; the third argument is the angular span, not the end angle"
+      }
+    },
+    {
+      "name": "url",
+      "signature": {
+        "zh-cn": "url(\"s2r://...\")",
+        "en": "url(\"s2r://...\")"
+      },
+      "description": {
+        "zh-cn": "资源引用",
+        "en": "Resource reference"
+      }
+    },
+    {
+      "name": "min",
+      "signature": {
+        "zh-cn": "min(Npx)",
+        "en": "min(Npx)"
+      },
+      "description": {
+        "zh-cn": "text-overflow: shrink 的最小字号修饰",
+        "en": "Minimum font size modifier for text-overflow: shrink"
+      }
+    }
+  ],
+  "atRules": {
+    "@define": {
+      "signature": {
+        "zh-cn": "@define 名字: 值;",
+        "en": "@define name: value;"
+      },
+      "description": {
+        "zh-cn": "常量声明，编译期文本替换。引用时直接写名字，不用 var()",
+        "en": "Constant declaration, substituted textually at compile time. Reference it by name directly — no var()"
+      }
+    },
+    "@import": {
+      "signature": {
+        "zh-cn": "@import url(\"s2r://...vcss_c\");",
+        "en": "@import url(\"s2r://...vcss_c\");"
+      },
+      "description": {
+        "zh-cn": "导入样式表，用编译路径",
+        "en": "Imports a stylesheet, using the compiled path"
+      }
+    },
+    "@keyframes": {
+      "signature": {
+        "zh-cn": "@keyframes '名字' { ... }",
+        "en": "@keyframes 'name' { ... }"
+      },
+      "description": {
+        "zh-cn": "关键帧。⚠️ 名字必须加引号",
+        "en": "⚠️ Keyframes. The name must be quoted"
+      }
+    }
+  },
+  "pseudoClasses": [
+    ":hover",
+    ":active",
+    ":focus",
+    ":selected",
+    ":disabled",
+    ":descendantfocus"
+  ],
+  "webOnly": {
+    "display": {
+      "zh-cn": "Panorama 没有 display。用 flow-children 控制子元素排列方向",
+      "en": "Panorama has no display. Use flow-children to control the direction children are laid out in"
+    },
+    "float": {
+      "zh-cn": "Panorama 没有 float。用 flow-children 与 horizontal-align",
+      "en": "Panorama has no float. Use flow-children together with horizontal-align"
+    },
+    "flex": {
+      "zh-cn": "Panorama 没有 flex。用 flow-children + fill-parent-flow(权重)",
+      "en": "Panorama has no flex. Use flow-children + fill-parent-flow(weight)"
+    },
+    "flex-direction": {
+      "zh-cn": "用 flow-children: down | right | left | up",
+      "en": "Use flow-children: down | right | left | up"
+    },
+    "flex-grow": {
+      "zh-cn": "用 width: fill-parent-flow(权重) 或 height: fill-parent-flow(权重)",
+      "en": "Use width: fill-parent-flow(weight) or height: fill-parent-flow(weight)"
+    },
+    "flex-wrap": {
+      "zh-cn": "用 flow-children 的 -wrap 变体，如 right-wrap",
+      "en": "Use the -wrap variants of flow-children, such as right-wrap"
+    },
+    "flex-basis": {
+      "zh-cn": "Panorama 没有 flex-basis。直接写 width / height",
+      "en": "Panorama has no flex-basis. Write width / height directly"
+    },
+    "grid": {
+      "zh-cn": "Panorama 没有 grid。用嵌套 Panel + flow-children",
+      "en": "Panorama has no grid. Use nested Panels with flow-children"
+    },
+    "grid-template-columns": {
+      "zh-cn": "Panorama 没有 grid。用嵌套 Panel + flow-children: right",
+      "en": "Panorama has no grid. Use nested Panels with flow-children: right"
+    },
+    "grid-template-rows": {
+      "zh-cn": "Panorama 没有 grid。用嵌套 Panel + flow-children: down",
+      "en": "Panorama has no grid. Use nested Panels with flow-children: down"
+    },
+    "justify-content": {
+      "zh-cn": "用 horizontal-align 或 vertical-align",
+      "en": "Use horizontal-align or vertical-align"
+    },
+    "align-items": {
+      "zh-cn": "用 horizontal-align 或 vertical-align",
+      "en": "Use horizontal-align or vertical-align"
+    },
+    "align-self": {
+      "zh-cn": "用 horizontal-align 或 vertical-align",
+      "en": "Use horizontal-align or vertical-align"
+    },
+    "box-sizing": {
+      "zh-cn": "Panorama 没有 box-sizing",
+      "en": "Panorama has no box-sizing"
+    },
+    "transition": {
+      "zh-cn": "Panorama 不做多属性简写展开，transition 简写整条静默失效。拆成 transition-property / -duration / -timing-function / -delay 四条",
+      "en": "Panorama does not expand multi-property shorthands, so a transition shorthand silently does nothing. Split it into transition-property / -duration / -timing-function / -delay"
+    }
+  }
+}

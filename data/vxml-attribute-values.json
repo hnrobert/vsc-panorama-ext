@@ -1,0 +1,42 @@
+{
+  "source": "README.md §5.3（Valve 解包档案根目录，人工整理，非机器生成）+ 对 20260716/20260829 两份归档的真实 VXML 布局文件逐属性核实。运行时 XSD（panorama_generate_layout_xsd 产出）不含任何 xs:enumeration，全部属性一律声明 type=xs:string，不提供取值域信息，仅经 docs/VXML-XSD参考.md §3 确认这些属性名真实存在。注意：并非每个值都有语料实证——byPanel/anyPanel 每一条的证据强弱分别逐条记在 byPanelEvidence/anyPanelEvidence 里。anyPanel 九条里有三条（unlocalized/draggable/disabled）只实证了 true 一侧，false 一侧是按同语义家族的 true/false 惯例推断出来的，不是文档或语料的直接证据，证据强度低于其余六条，不要当同等确凿程度使用",
+  "byPanel": {
+    "Image": {
+      "scaling": [
+        "stretch-to-fit-preserve-aspect",
+        "stretch-to-fit-x-preserve-aspect",
+        "stretch-to-fit-y-preserve-aspect",
+        "stretch-to-cover-preserve-aspect",
+        "stretch",
+        "none"
+      ]
+    }
+  },
+  "byPanelEvidence": {
+    "Image": {
+      "scaling": "文档实证（README.md §5.3 原文列出六值）+ 语料实证（20260716/20260829 归档 .xml 中六值悉数出现，且没有第七个值）——本文件里证据最扎实的一组"
+    }
+  },
+  "anyPanel": {
+    "hittest": ["true", "false"],
+    "hittestchildren": ["true", "false"],
+    "unlocalized": ["true", "false"],
+    "html": ["true", "false"],
+    "acceptsinput": ["true", "false"],
+    "acceptsfocus": ["true", "false"],
+    "draggable": ["true", "false"],
+    "selected": ["true", "false"],
+    "disabled": ["true", "false"]
+  },
+  "anyPanelEvidence": {
+    "hittest": "语料实证：true 与 false 均在归档 .xml 中直接出现（如 buymenu.xml、endofmatch-skillgroup.xml）",
+    "hittestchildren": "语料实证：true 与 false 均在归档 .xml 中直接出现（如 buymenu.xml:57 与 :90）",
+    "html": "语料实证：true 与 false 均在归档 .xml 中直接出现（如 mainmenu_playerstats.xml:34 与 :37）",
+    "acceptsinput": "语料实证：true 与 false 均在归档 .xml 中直接出现（如 chat.xml 为 true、avatar.xml 为 false）",
+    "acceptsfocus": "语料实证：true 与 false 均在归档 .xml 中直接出现（如 mainmenu_stream.xml 为 false、多处 context_menu_*.xml 为 true）",
+    "selected": "语料实证：true（settings_kbmouse.xml:247）与 false（mainmenu_license.xml:14、mainmenu_store_fullscreen.xml:76 共 2 处）均直接出现。注意：buymenu.xml:58 的 neverselected=\"false\" 是另一个属性（子串误命中过一次，已排除，不算在这 2 处证据内）",
+    "unlocalized": "仅 true 有语料实证（数十处，如 console.xml、itempreviewdebug.xml）。false 未在语料中直接出现——按同语义家族的 true/false 惯例推断，不是文档或语料的直接证据",
+    "draggable": "仅 true 有语料实证（5 处，如 console.xml、pickem_bracket.xml）。false 未在语料中直接出现——按同语义家族的 true/false 惯例推断，不是文档或语料的直接证据",
+    "disabled": "仅 true 有语料实证（10 余处，如 loadout_grid.xml、settings_game.xml）。false 未在语料中直接出现——按同语义家族的 true/false 惯例推断，不是文档或语料的直接证据"
+  }
+}

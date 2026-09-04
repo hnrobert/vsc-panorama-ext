@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.vsix
+.vscode-test/
+
+# 设计规格、实现计划与里程碑台账仅本地保留，不进版本库。
+# .superpowers/ 此前只靠工具自己生成的 .superpowers/sdd/.gitignore（内容为 *）
+# 排除，那是副产品而非声明：工具换了目录结构、那个文件被删、或顶层放了 sdd/
+# 之外的东西，台账就会悄无声息地进版本库——而台账里记着大量本机绝对路径。
+docs/
+out-e2e/
+.vscode/
+tools/.archive-path
+.superpowers/

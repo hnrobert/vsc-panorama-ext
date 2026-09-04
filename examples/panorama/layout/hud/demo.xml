@@ -1,0 +1,19 @@
+<!-- 完整 Panorama 语言模式示例。
+     路径不含 custom_game/，所以不套白名单。
+
+     验收点 D：在 <Panel> 内部另起一行输入 `<`
+              候选应有大量面板类型（嵌套位置 202 种），
+              与同目录 custom_game/demo/main.xml 的 4 个形成对照。
+     验收点 E：把光标停在 Label 标签名上悬停
+              应显示「继承自 Panel」。 -->
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/csgostyles.vcss_c" />
+    </styles>
+
+    <Panel class="WindowRoot" hittest="false">
+        <Label class="title" text="#My_Title" />
+        <ProgressBar value="0.5" />
+        <TextButton class="action" text="确定" />
+    </Panel>
+</root>

@@ -1,0 +1,160 @@
+{
+  "source": "从 20260829 构建的 271 个真实布局挖掘（弱可靠：语料里出现过 != 引擎支持）。这一层只用于**压制**提示，绝不用于产生提示——运行期 XSD 的属性集本身不完整（D-M4-1），此处补的是它的缺口。",
+  "minedFrom": "20260829",
+  "excludedTags": [
+    "include",
+    "root",
+    "scripts",
+    "snippet",
+    "snippets",
+    "styles"
+  ],
+  "excludedAttributePrefixes": [
+    "data-",
+    "on"
+  ],
+  "tags": {
+    "CSGOInfoHudLayouts": 1,
+    "CSGOShieldDamageAlert": 1,
+    "ItemPreviewColorSlider": 4,
+    "ItemPreviewDebug": 1,
+    "ItemPreviewPanel": 2,
+    "ItemPreviewSlider": 2
+  },
+  "attributes": {
+    "Button": {
+      "group": 2,
+      "menuclass": 2
+    },
+    "Carousel": {
+      "allow-focus-changes-on-scroll": 5,
+      "incrementsound": 5
+    },
+    "CarouselNav": {
+      "incrementsound": 3
+    },
+    "ConsoleText": {
+      "AllowOversized": 1
+    },
+    "Countdown": {
+      "text": 1
+    },
+    "CountdownTimer": {
+      "end-time": 1,
+      "time-dialog-variable": 1,
+      "update-interval": 1
+    },
+    "CSGOAvatarImage": {
+      "textureheight": 1,
+      "texturewidth": 1
+    },
+    "CSGOBlurTarget": {
+      "blurrects": 13,
+      "force-no-composition-layer": 2
+    },
+    "CSGOCompassPanel": {
+      "force-no-composition-layer": 1
+    },
+    "CSGOCrosshair": {
+      "clampfractionalpixelpositions": 1
+    },
+    "CSGOGameTimeLabel": {
+      "soundevent-on-finish": 1
+    },
+    "CSGOHudAlerts": {
+      "alertstate": 1
+    },
+    "CSGOMoneyPanel": {
+      "force-no-composition-layer": 1
+    },
+    "CSGORetakePanel": {
+      "force-no-composition-layer": 1
+    },
+    "Frame": {
+      "api": 1,
+      "hitest": 4,
+      "lbtype": 2
+    },
+    "HTML": {
+      "mousetracking": 1
+    },
+    "Image": {
+      "antialias": 1,
+      "clampfractionalpixelpositions": 7,
+      "defaultimage": 2,
+      "enginertsrc": 1,
+      "force-no-composition-layer": 1,
+      "texturehwidth": 1
+    },
+    "ItemImage": {
+      "large": 2
+    },
+    "Label": {
+      "clampfractionalpixelpositions": 1,
+      "group": 11,
+      "menuclass": 1,
+      "modenum": 16,
+      "teamnum": 5,
+      "value": 337
+    },
+    "MapItemPreviewPanel": {
+      "active_item_idx": 1,
+      "player": 2
+    },
+    "MapPlayerPreviewPanel": {
+      "item": 1
+    },
+    "Movie": {
+      "scaling": 1
+    },
+    "Panel": {
+      "antialias": 7,
+      "autoscroll-delay": 1,
+      "bkg-id": 1,
+      "blurrects": 2,
+      "cachepaintcmdlist": 16,
+      "clampfractionalpixelpositions": 16,
+      "clas": 2,
+      "context_menu_filter": 2,
+      "force-no-composition-layer": 7,
+      "group": 5,
+      "hitchildren": 1,
+      "hittext": 1,
+      "introorder": 2,
+      "no-label": 2,
+      "paintfullscrollarea": 2,
+      "panels-visible": 1,
+      "progress-animation": 3,
+      "scaling": 1,
+      "styles": 2,
+      "textureheight": 2,
+      "texturewidth": 2,
+      "transparentbackground": 1
+    },
+    "PopupCustomLayout": {
+      "hittext": 1,
+      "popupfullscreenopaque": 11
+    },
+    "ProgressBar": {
+      "clampfractionalpixelpositions": 1
+    },
+    "RadioButton": {
+      "value": 2
+    },
+    "TextButton": {
+      "force-no-composition-layer": 1,
+      "selected": 2
+    },
+    "TextEntry": {
+      "unlocalized": 1
+    },
+    "ToggleButton": {
+      "filter-button": 6,
+      "group": 2,
+      "series-button": 3
+    },
+    "UICanvas": {
+      "allowDrawing": 1
+    }
+  }
+}

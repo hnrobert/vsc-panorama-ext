@@ -1,0 +1,27 @@
+<!-- CustomHudLayout 严格模式示例。
+     判定依据是路径含 layout/custom_game/，见规格 §6.2。
+
+     验收点 A：在 <Panel> 内部另起一行输入 `<`
+              候选应「只有」Panel / Label / Image / Button 四个。
+     验收点 B：把光标放到下面 <Button 后面的空格处
+              候选里「不应」出现 text —— 按钮文字要用子 <Label>。
+     验收点 C：在 text="{ 后面接受 {s:} 补全
+              结果应是 text="{s:}"，而不是 text="s:"。 -->
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/custom_game/demo/main.vcss_c" />
+    </styles>
+
+    <!-- 根面板不能有 id（引擎硬约束），要标识就用 class -->
+    <Panel class="hud-root">
+        <Label class="score" text="Score: {s:score}" />
+
+        <Panel id="Warning" class="warning">
+            <Label text="DANGER" />
+        </Panel>
+
+        <Button id="StartButton" class="btn">
+            <Label text="START" />
+        </Button>
+    </Panel>
+</root>

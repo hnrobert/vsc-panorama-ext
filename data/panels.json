@@ -1,0 +1,2396 @@
+{
+  "attributeSets": {
+    "AnimatedImageStrip": [
+      "animating",
+      "defaultframe",
+      "framecount",
+      "frameheight",
+      "frametime",
+      "framewidth",
+      "loop",
+      "loopcount"
+    ],
+    "AsyncDataPanel": [
+      "error-text",
+      "loading-text",
+      "state"
+    ],
+    "Carousel": [
+      "autoscroll-delay",
+      "focus",
+      "focus-offset",
+      "focus-x-offset",
+      "focus-y-offset",
+      "focus-z-offset",
+      "include-scale2d",
+      "panels-visible",
+      "shuffle-into-view",
+      "title",
+      "wrap",
+      "x-offset",
+      "y-offset",
+      "z-offset"
+    ],
+    "CarouselNav": [
+      "carouselid",
+      "disablenav",
+      "ignoredisabledchildren",
+      "maxpips",
+      "steps",
+      "wraparound"
+    ],
+    "CarouselNavButton": [
+      "carouselid",
+      "itemstoscroll"
+    ],
+    "CCSGOQuickBuyRadial": [
+      "buy_menu"
+    ],
+    "CCSGORadialMenuBase": [
+      "sound_click",
+      "sound_failed_selection",
+      "sound_open_radial",
+      "sound_rollover",
+      "sound_rollover_cannot_select"
+    ],
+    "CCSGOSettingsEnumDropDownBind": [
+      "bindkey"
+    ],
+    "CCSGOSteamInputAction": [
+      "action",
+      "actionset",
+      "controllernumber",
+      "glyphsize",
+      "separatortext",
+      "svg"
+    ],
+    "CCSGOSteamInputActionLabel": [
+      "action",
+      "controllernumber"
+    ],
+    "CCSGOSteamInputGlyph": [
+      "button_or_axis_name",
+      "controllernumber",
+      "glyphsize",
+      "svg"
+    ],
+    "CircularProgressBar": [
+      "max",
+      "min",
+      "value"
+    ],
+    "Countdown": [
+      "end-time",
+      "server-time",
+      "start-time",
+      "time-dialog-variable",
+      "update-interval"
+    ],
+    "CountdownTimer": [
+      "clock",
+      "output_milliseconds",
+      "timeleft"
+    ],
+    "CrosshairPreviewControls": [
+      "crosshair"
+    ],
+    "CSGOAvatarHealthBar": [
+      "max",
+      "min",
+      "value"
+    ],
+    "CSGOAvatarImage": [
+      "accountid",
+      "defaultsrc",
+      "notifyavatarloaded",
+      "scaling",
+      "steamid"
+    ],
+    "CSGOBaseSlider": [
+      "audiogain",
+      "constrainrange",
+      "displayprecision",
+      "eventname",
+      "invert",
+      "max",
+      "min",
+      "mindisplaypercentage",
+      "percentage",
+      "showdefaultvalue",
+      "text",
+      "toggleconvar",
+      "value100percent"
+    ],
+    "CSGOCrosshair": [
+      "preview"
+    ],
+    "CSGOFrameTimeSlider": [
+      "edit_box_text"
+    ],
+    "CSGOGameTimeLabel": [
+      "audible-seconds",
+      "time-type"
+    ],
+    "CSGOHonorIcon": [
+      "do_fx",
+      "force_type"
+    ],
+    "CSGOHudHintText": [
+      "priority"
+    ],
+    "CSGOHudWeaponSelection": [
+      "neverfade",
+      "neverselected"
+    ],
+    "CSGOPopupCustomLayout": [
+      "popupfullscreenopaque"
+    ],
+    "CSGORadialSelector": [
+      "sound_click",
+      "sound_rollover"
+    ],
+    "CSGORetakeLoadout": [
+      "sound_click",
+      "sound_rollover"
+    ],
+    "CSGOSettingsEnum": [
+      "convar",
+      "text"
+    ],
+    "CSGOSettingsEnumDropDown": [
+      "convar"
+    ],
+    "CSGOSettingsKeyBinder": [
+      "bind",
+      "text"
+    ],
+    "CSGOSettingsSlider": [
+      "convar"
+    ],
+    "CSGOTimeSlider": [
+      "edit_box_text"
+    ],
+    "CustomLayoutPanel": [
+      "layout"
+    ],
+    "CycleButton": [
+      "cycle_classes",
+      "html",
+      "text",
+      "unlocalized"
+    ],
+    "DeepStatsPanel": [
+      "days",
+      "gamemode"
+    ],
+    "DelayLoadList": [
+      "itemheight",
+      "itemwidth",
+      "spacerperiod",
+      "spacersize"
+    ],
+    "DragZoom": [
+      "defaultfastzoom",
+      "disabledoubleclick",
+      "dragclickzone",
+      "extrazoomout",
+      "invertminscalecalc",
+      "maxscale",
+      "minscale",
+      "mousewheeltickcount",
+      "multitouchzoomscale",
+      "startingscale",
+      "startzoomed",
+      "strictclamptranslation",
+      "zoomwithuiscale"
+    ],
+    "DropDown": [
+      "initialselection",
+      "menuclass"
+    ],
+    "EdgeScroller": [
+      "pagescroll"
+    ],
+    "Frame": [
+      "snippet",
+      "src"
+    ],
+    "GameScenePanel": [
+      "allowsuspendrepaint",
+      "camera",
+      "live-mode",
+      "map",
+      "pin-fov",
+      "post-process-material",
+      "use_game_map"
+    ],
+    "GlobalClassListener": [
+      "classes"
+    ],
+    "HTML": [
+      "dpiaware",
+      "embedded",
+      "manualscroll",
+      "popuplinks",
+      "url"
+    ],
+    "HTMLSimpleNavigationWrapper": [
+      "wrappedhtmlid"
+    ],
+    "HudNetJitterGraph": [
+      "net_flow"
+    ],
+    "Image": [
+      "animate",
+      "defaultsrc",
+      "horizontalalign",
+      "scaling",
+      "src",
+      "srcset",
+      "svgfill",
+      "svgfillopacity",
+      "svgfillrule",
+      "svgopacity",
+      "svgstroke",
+      "svgstrokelinecap",
+      "svgstrokelinejoin",
+      "svgstrokeopacity",
+      "svgstrokewidth",
+      "textureheight",
+      "texturewidth",
+      "verticalalign"
+    ],
+    "InputForwardingPanel": [
+      "targetid"
+    ],
+    "InventoryItemList": [
+      "inventoryfilter",
+      "item_context_menu_filter",
+      "itemlayout"
+    ],
+    "ItemImage": [
+      "itemid",
+      "offline_icon",
+      "small"
+    ],
+    "Label": [
+      "allowtextselection",
+      "html",
+      "htmlescapednewlines",
+      "text",
+      "unlocalized"
+    ],
+    "MapItemPreviewPanel": [
+      "auto_recenter",
+      "auto_rotate_delay_after_adjustment",
+      "auto_rotate_period_x",
+      "auto_rotate_period_y",
+      "auto_rotate_x",
+      "auto_rotate_y",
+      "initial_entity",
+      "itemmodel",
+      "render_translucent_after_depth_of_field",
+      "rotation_limit_x",
+      "rotation_limit_y"
+    ],
+    "MapPlayerPreviewPanel": [
+      "animgraphcharactermode",
+      "animgraphturns",
+      "player",
+      "playermodel",
+      "playername",
+      "sync_spawn_addons"
+    ],
+    "MapPreviewPanel": [
+      "camera",
+      "csm_split_plane0_distance_override",
+      "disable-depth-of-field",
+      "game-background",
+      "hide_while_waiting_for_composite_materials",
+      "keychain_application_mode",
+      "load_map_char_entities_as_info_targets",
+      "load_map_item_entities_as_info_targets",
+      "map",
+      "mouse_rotate",
+      "panzoom_enabled",
+      "parallax-when-mouse-pressed",
+      "parallax_degrees",
+      "parallax_offset",
+      "pin-fov",
+      "sticker_application_mode",
+      "sticker_scrape_mode",
+      "transparent-background",
+      "workshop_preview"
+    ],
+    "MaterialPanel": [
+      "alwaysrepaint",
+      "src"
+    ],
+    "Movie": [
+      "autoplay",
+      "captions",
+      "controls",
+      "controlsnotfullscreen",
+      "disableactivatepause",
+      "disableaudio",
+      "loadbehavior",
+      "muted",
+      "notreadybehavior",
+      "repeat",
+      "src",
+      "title"
+    ],
+    "MovieCaptions": [
+      "src"
+    ],
+    "MoviePanel": [
+      "autoplay",
+      "disableaudio",
+      "loadbehavior",
+      "muted",
+      "notreadybehavior",
+      "repeat",
+      "scaling",
+      "src",
+      "volume"
+    ],
+    "NumberEntry": [
+      "increment",
+      "max",
+      "min",
+      "value"
+    ],
+    "Panel": [
+      "acceptsfocus",
+      "acceptsinput",
+      "always-cache-composition-layer",
+      "analogstickscroll",
+      "childfocusonhover",
+      "class",
+      "clipaftertransform",
+      "composition-layer-texture-name",
+      "defaultfocus",
+      "disabled",
+      "disallowedstyleflags",
+      "draggable",
+      "focusonhover",
+      "focusonmousedown",
+      "hittest",
+      "hittestchildren",
+      "id",
+      "inputnamespace",
+      "keepscrolltobottom",
+      "mousecanactivate",
+      "never-cache-composition-layer",
+      "onactivate",
+      "onblur",
+      "oncancel",
+      "oncontextmenu",
+      "ondblclick",
+      "ondescendantblur",
+      "ondescendantfocus",
+      "ondeselect",
+      "onfocus",
+      "onload",
+      "onmouseactivate",
+      "onmousedown",
+      "onmouseout",
+      "onmouseover",
+      "onmouseup",
+      "onmovedown",
+      "onmoveleft",
+      "onmoveright",
+      "onmoveup",
+      "onscrolledtobottom",
+      "onscrolledtorightedge",
+      "onselect",
+      "ontabbackward",
+      "ontabforward",
+      "overscroll-x",
+      "overscroll-y",
+      "readyfordisplay",
+      "registerforreadyevents",
+      "rememberchildfocus",
+      "require-composition-layer",
+      "scrollparenttofitwhenfocused",
+      "selectionpos",
+      "selectionposboundary",
+      "sendchildscrolledintoviewevents",
+      "style",
+      "tabindex",
+      "useglobalcontext"
+    ],
+    "ParticleScenePanel": [
+      "ambientLight",
+      "cameraOrigin",
+      "farPlane",
+      "fov",
+      "inexpensiveLightingPath",
+      "lookAt",
+      "particleName",
+      "squarePixels",
+      "startActive",
+      "syncSpawn",
+      "unloadWhenNotPainting",
+      "useMapCamera"
+    ],
+    "Popup": [
+      "popupbackground"
+    ],
+    "ProgressBar": [
+      "hasnotches",
+      "max",
+      "min",
+      "value",
+      "valuepernotch",
+      "vertical"
+    ],
+    "ProgressBarWithMiddle": [
+      "lowervalue",
+      "max",
+      "min",
+      "uppervalue",
+      "vertical"
+    ],
+    "RadioButton": [
+      "global",
+      "group",
+      "html",
+      "selected",
+      "text",
+      "unlocalized"
+    ],
+    "RangeSlider": [
+      "direction"
+    ],
+    "Slider": [
+      "direction"
+    ],
+    "SlottedSlider": [
+      "notches"
+    ],
+    "Spinner": [
+      "max",
+      "min",
+      "throw"
+    ],
+    "SplitLabel": [
+      "html",
+      "text"
+    ],
+    "TabButton": [
+      "global",
+      "group",
+      "html",
+      "selected",
+      "text"
+    ],
+    "TabContents": [
+      "global",
+      "group",
+      "selected",
+      "tabid"
+    ],
+    "TextButton": [
+      "html",
+      "text",
+      "unlocalized"
+    ],
+    "TextEntry": [
+      "autocompleteposition",
+      "capslockwarn",
+      "maxchars",
+      "multiline",
+      "placeholder",
+      "text",
+      "textmode",
+      "undohistory"
+    ],
+    "ToastManager": [
+      "addtoaststohead",
+      "delaytime",
+      "maxtoastbehavior",
+      "maxtoastsvisible",
+      "preservefadedtoasts",
+      "toastduration"
+    ],
+    "ToggleButton": [
+      "html",
+      "selected",
+      "text",
+      "unlocalized"
+    ],
+    "TooltipPanel": [
+      "image-src",
+      "src",
+      "src-id",
+      "src-parameters",
+      "tooltip",
+      "tooltip-class",
+      "tooltip-title"
+    ],
+    "TypewriterLabel": [
+      "paused"
+    ],
+    "VerticalScrollForwarding": [
+      "target"
+    ]
+  },
+  "attributeDocs": {
+    "audible-seconds": "The number of seconds remaining before we start playing counter sounds every second.",
+    "defaultfastzoom": "Normally false. If true, use fast zoom unless explicitly told not to.",
+    "dragclickzone": "If >= 0, drags longer than this distance will suppress mouse click events (e.g. onactivate of embedded panels)",
+    "framecount": "If set, how many frames in the sprite sheet. Default assumes every space in image is filled.",
+    "invertminscalecalc": "If this is > 0, the min scale is set to account for the higher value, where the smaller dimension is maxed out first",
+    "loopcount": "If 'loop = true', how many times to loop before stopping. -1 == infinite",
+    "minscale": "Just ignore the calculations, you can zoom to this amount (will validate that this is <= maxscale)",
+    "multitouchzoomscale": "Scale for the pinch zoom gesture.",
+    "popupfullscreenopaque": "Boolean to indicate that this popup ends up full screen opaque following any initial transitions. From this we know any panels underneath can be safely hidden.",
+    "src-id": "required with src",
+    "src-parameters": "optional with src",
+    "strictclamptranslation": "If this is > 0, don't let the content panel translate in a way that would let you see through the frame",
+    "textureheight": "texturewidth and textureheight can be used to override the size of vector graphics. Default value of -1 indicates texture width/height to be determined from source file",
+    "texturewidth": "texturewidth and textureheight can be used to override the size of vector graphics. Default value of -1 indicates texture width/height to be determined from source file"
+  },
+  "panels": {
+    "AnimatedImageStrip": {
+      "derivedFrom": "Image",
+      "sets": [
+        "AnimatedImageStrip",
+        "Image",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "AsyncDataPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "AsyncDataPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "BaseScrollBar": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "Button": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Carousel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Carousel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CarouselNav": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CarouselNav",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CarouselNavButton": {
+      "derivedFrom": "Button",
+      "sets": [
+        "CarouselNavButton",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOInventoryRadial": {
+      "derivedFrom": "CCSGORadialMenuBase",
+      "sets": [
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOMiniProfileBackground": {
+      "derivedFrom": "MoviePanel",
+      "sets": [
+        "MoviePanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOQuickBuyRadial": {
+      "derivedFrom": "CCSGOInventoryRadial",
+      "sets": [
+        "CCSGOQuickBuyRadial",
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOQuickGrenadesRadial": {
+      "derivedFrom": "CCSGOInventoryRadial",
+      "sets": [
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOQuickUtilityItemRadial": {
+      "derivedFrom": "CCSGOInventoryRadial",
+      "sets": [
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGORadialMenuBase": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGORetakeBombSiteAnimLabel": {
+      "derivedFrom": "Label",
+      "sets": [
+        "Label",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOSettingsEnumDropDownBind": {
+      "derivedFrom": "DropDown",
+      "sets": [
+        "CCSGOSettingsEnumDropDownBind",
+        "DropDown",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOSteamInputAction": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CCSGOSteamInputAction",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOSteamInputActionLabel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CCSGOSteamInputActionLabel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CCSGOSteamInputGlyph": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CCSGOSteamInputGlyph",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CircularProgressBar": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CircularProgressBar",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ClientUIDialogPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ConsoleInput": {
+      "derivedFrom": "TextEntry",
+      "sets": [
+        "Panel",
+        "TextEntry"
+      ],
+      "rootOnly": false
+    },
+    "ConsolePanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ConsoleText": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ContextMenu": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "ContextMenuBase": {
+      "derivedFrom": "ContextMenu",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "ContextMenuCustomLayout": {
+      "derivedFrom": "ContextMenuBase",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "ContextMenuManager": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ContextMenuScript": {
+      "derivedFrom": "ContextMenuBase",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ControlLibTestPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Countdown": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Countdown",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CountdownTimer": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CountdownTimer",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CrosshairPreviewControls": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CrosshairPreviewControls",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSColorPicker": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSColorPickerHue": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSColorPickerSaturationValue": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOAudioMeter": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOAudioSettings": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOAvatarHealthBar": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOAvatarHealthBar",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOAvatarImage": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOAvatarImage",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOBackbufferImagePanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOBaseSlider": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOBaseSlider",
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "CSGOBlurTarget": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOBuyMenu": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOChat": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOCompassPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOCrosshair": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOCrosshair",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOCustomHud": {
+      "derivedFrom": "UIRoot",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOCustomHudLayoutRoot": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGODelayLoadPanel": {
+      "derivedFrom": "DelayLoadPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOEndOfMatch": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOEndOfMatchCharactersPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOEndOfMatchSkillgroupPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOEndOfMatchVotingPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOEndOfMatchXpPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOFrameTimeSlider": {
+      "derivedFrom": "CSGOSettingsSlider",
+      "sets": [
+        "CSGOBaseSlider",
+        "CSGOFrameTimeSlider",
+        "CSGOSettingsSlider",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOGameTimeLabel": {
+      "derivedFrom": "Label",
+      "sets": [
+        "CSGOGameTimeLabel",
+        "Label",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOGlobalPopups": {
+      "derivedFrom": "UIRoot",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHonorIcon": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOHonorIcon",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHud": {
+      "derivedFrom": "UIRoot",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudAlerts": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudAutoDisconnect": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudBlurTarget": {
+      "derivedFrom": "CSGOBlurTarget",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudChat": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudDamageIndicator": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudDeathNotice": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudDeathPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudDemoController": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudDemoPlayback": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudDMBonusPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudGameIcons": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudHealthAmmoCenter": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudHealthBars": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudHintText": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOHudHintText",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudInstructor": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudNotice": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "CSGOHudProgressBar": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudRadar": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudRadio": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudReticle": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudRosettaSelector": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudTeamCounter": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudVoiceStatus": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudVote": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudWeaponSelection": {
+      "derivedFrom": "CSGOWeaponSelectionViewAbstract",
+      "sets": [
+        "CSGOHudWeaponSelection",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOHudWinPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOIntroMovie": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOLoadingScreen": {
+      "derivedFrom": "UIRoot",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOMainMenu": {
+      "derivedFrom": "UIRoot",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOMapOverview": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOMoneyPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOOutOfAmmo": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOPerfTestsJsMultipleContexts": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOPerfTestsJsSingleContext": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOPerfTestsTypeSafety": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOPopupCustomLayout": {
+      "derivedFrom": "PopupCustomLayout",
+      "sets": [
+        "CSGOPopupCustomLayout",
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "CSGOPopupGeneric": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "CSGOPopupManager": {
+      "derivedFrom": "PopupManager",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOQuickInventory": {
+      "derivedFrom": "CCSGOInventoryRadial",
+      "sets": [
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGORadialRadio": {
+      "derivedFrom": "CCSGORadialMenuBase",
+      "sets": [
+        "CCSGORadialMenuBase",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGORadialSelector": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGORadialSelector",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGORetakeLoadout": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGORetakeLoadout",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGORetakePanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOScoreboard": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOScoreboardContainer": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOScoreboardOwner": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOSettingsAnnotationsDropDown": {
+      "derivedFrom": "CSGOSettingsEnumDropDownBase",
+      "sets": [
+        "DropDown",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOSettingsEnum": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOSettingsEnum",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOSettingsEnumDropDown": {
+      "derivedFrom": "CSGOSettingsEnumDropDownBase",
+      "sets": [
+        "CSGOSettingsEnumDropDown",
+        "DropDown",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOSettingsEnumDropDownBase": {
+      "derivedFrom": "DropDown",
+      "sets": [
+        "DropDown",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOSettingsKeyBinder": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CSGOSettingsKeyBinder",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOSettingsSlider": {
+      "derivedFrom": "CSGOBaseSlider",
+      "sets": [
+        "CSGOBaseSlider",
+        "CSGOSettingsSlider",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOStatsProgressGraph": {
+      "derivedFrom": "DeepStatsPanel",
+      "sets": [
+        "DeepStatsPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOTeamIntroMenu": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOTeamSelectMenu": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOTimeSlider": {
+      "derivedFrom": "CSGOSettingsSlider",
+      "sets": [
+        "CSGOBaseSlider",
+        "CSGOSettingsSlider",
+        "CSGOTimeSlider",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOTooltipManager": {
+      "derivedFrom": "TooltipManager",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOVideoSettings": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOVoiceNotice": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "CSGOWeaponSelectionView": {
+      "derivedFrom": "CSGOWeaponSelectionViewAbstract",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CSGOWeaponSelectionViewAbstract": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "CUI_Popup": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": false
+    },
+    "CUI_Popup_Annotation": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": false
+    },
+    "CustomLayoutPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "CustomLayoutPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "CycleButton": {
+      "derivedFrom": "Button",
+      "sets": [
+        "CycleButton",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugAutoComplete": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "Debugger": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "DebugIndividualStyle": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugInheritedStylesHeader": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugLayout": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugPanelAttributes": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugPanelComputed": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugPanelDialogVariables": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugPanelParents": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugPanelStyle": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugStyleAnimation": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugStyleBlock": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DebugStyleSeparator": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DeepStatsPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "DeepStatsPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DelayLoadList": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "DelayLoadList",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DelayLoadPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DragPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DragZoom": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "DragZoom",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DropDown": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "DropDown",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "DropDownMenu": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "EconItemImage": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "EdgeScrollBar": {
+      "derivedFrom": "BaseScrollBar",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "EdgeScroller": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "EdgeScroller",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "EngineConsole": {
+      "derivedFrom": "ConsolePanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "FileOpenDialog": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "FileOpenDialogEntry": {
+      "derivedFrom": "Button",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Frame": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Frame",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "GameScenePanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "GameScenePanel",
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "GlobalClassListener": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "GlobalClassListener",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HeatMap": {
+      "derivedFrom": "DeepStatsPanel",
+      "sets": [
+        "DeepStatsPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HorizontalScrollBar": {
+      "derivedFrom": "ScrollBar",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "HorizontalSplitter": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HTML": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "HTML",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HTMLHorizontalScrollBar": {
+      "derivedFrom": "ScrollBar",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "HTMLSimpleNavigationWrapper": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "HTMLSimpleNavigationWrapper",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HTMLVerticalScrollBar": {
+      "derivedFrom": "ScrollBar",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "HudCommandQueueGraph": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HudEventIndicator": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "HudFrameTimeGraph": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HudNetJitterGraph": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "HudNetJitterGraph",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "HudPerfStatsBasics": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Image": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Image",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "InputForwardingPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "InputForwardingPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "InventoryItemList": {
+      "derivedFrom": "DelayLoadList",
+      "sets": [
+        "DelayLoadList",
+        "InventoryItemList",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ItemImage": {
+      "derivedFrom": "Image",
+      "sets": [
+        "Image",
+        "ItemImage",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "JSDelayLoadList": {
+      "derivedFrom": "DelayLoadList",
+      "sets": [
+        "DelayLoadList",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Label": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Label",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "LegacyConsoleInput": {
+      "derivedFrom": "ConsoleInput",
+      "sets": [
+        "Panel",
+        "TextEntry"
+      ],
+      "rootOnly": false
+    },
+    "LineGraph": {
+      "derivedFrom": "UICanvas",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapGraphicsSettingsPanel": {
+      "derivedFrom": "MapPreviewPanel",
+      "sets": [
+        "MapPreviewPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapItemPreviewPanel": {
+      "derivedFrom": "MapPreviewPanel",
+      "sets": [
+        "MapItemPreviewPanel",
+        "MapPreviewPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapPlayerPreviewPanel": {
+      "derivedFrom": "MapPreviewPanel",
+      "sets": [
+        "MapPlayerPreviewPanel",
+        "MapPreviewPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapPreviewMagnifier": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapPreviewPanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "MapPreviewPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapSpiderGraph": {
+      "derivedFrom": "DeepStatsPanel",
+      "sets": [
+        "DeepStatsPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MapVanityPreviewPanel": {
+      "derivedFrom": "MapPlayerPreviewPanel",
+      "sets": [
+        "MapPlayerPreviewPanel",
+        "MapPreviewPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MaterialPanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "MaterialPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MouseScrollRegion": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Movie": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Movie",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MovieCaptions": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "MovieCaptions",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "MovieDebug": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "MoviePanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "MoviePanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "NumberEntry": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "NumberEntry",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "PageManager": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Panel": {
+      "derivedFrom": null,
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ParticleScenePanel": {
+      "derivedFrom": "MapPreviewPanel",
+      "sets": [
+        "MapPreviewPanel",
+        "Panel",
+        "ParticleScenePanel"
+      ],
+      "rootOnly": false
+    },
+    "Popup": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "PopupConfirmWorkshopDownload": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "PopupCustomLayout": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "PopupGeneric": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "PopupGenericDropDown": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "PopupGenericTextEntry": {
+      "derivedFrom": "Popup",
+      "sets": [
+        "Panel",
+        "Popup"
+      ],
+      "rootOnly": true
+    },
+    "PopupManager": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "ProgressBar": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "ProgressBar"
+      ],
+      "rootOnly": false
+    },
+    "ProgressBarWithMiddle": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "ProgressBarWithMiddle"
+      ],
+      "rootOnly": false
+    },
+    "RadioButton": {
+      "derivedFrom": "Button",
+      "sets": [
+        "Panel",
+        "RadioButton"
+      ],
+      "rootOnly": false
+    },
+    "RangeSlider": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "RangeSlider"
+      ],
+      "rootOnly": false
+    },
+    "RenderPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "ScrollBar": {
+      "derivedFrom": "BaseScrollBar",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "SimpleContextMenu": {
+      "derivedFrom": "ContextMenu",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "Slider": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "Slider"
+      ],
+      "rootOnly": false
+    },
+    "SlottedSlider": {
+      "derivedFrom": "Slider",
+      "sets": [
+        "Panel",
+        "Slider",
+        "SlottedSlider"
+      ],
+      "rootOnly": false
+    },
+    "SpiderGraph": {
+      "derivedFrom": "UICanvas",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "Spinner": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "Spinner"
+      ],
+      "rootOnly": false
+    },
+    "SplitLabel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "SplitLabel"
+      ],
+      "rootOnly": false
+    },
+    "SuggestionPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TabButton": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "TabButton"
+      ],
+      "rootOnly": false
+    },
+    "TabContents": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "TabContents"
+      ],
+      "rootOnly": false
+    },
+    "TextButton": {
+      "derivedFrom": "Button",
+      "sets": [
+        "Panel",
+        "TextButton"
+      ],
+      "rootOnly": false
+    },
+    "TextEntry": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "TextEntry"
+      ],
+      "rootOnly": false
+    },
+    "TextEntryAutocomplete": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TextEntryIMEControls": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TextInputDaisy": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TextInputDaisyGroup": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "TextInputPickPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "TextTooltip": {
+      "derivedFrom": "Tooltip",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "ToastManager": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "ToastManager"
+      ],
+      "rootOnly": false
+    },
+    "ToggleButton": {
+      "derivedFrom": "Button",
+      "sets": [
+        "Panel",
+        "ToggleButton"
+      ],
+      "rootOnly": false
+    },
+    "Tooltip": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TooltipBase": {
+      "derivedFrom": "Tooltip",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TooltipContents": {
+      "derivedFrom": "CustomLayoutPanel",
+      "sets": [
+        "CustomLayoutPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "TooltipCustomLayout": {
+      "derivedFrom": "TooltipBase",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TooltipManager": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "TooltipPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "TooltipPanel"
+      ],
+      "rootOnly": false
+    },
+    "TooltipText": {
+      "derivedFrom": "TooltipBase",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TooltipTitleImageText": {
+      "derivedFrom": "TooltipBase",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TooltipTitleText": {
+      "derivedFrom": "TooltipBase",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "TypewriterLabel": {
+      "derivedFrom": "SplitLabel",
+      "sets": [
+        "Panel",
+        "SplitLabel",
+        "TypewriterLabel"
+      ],
+      "rootOnly": false
+    },
+    "UICanvas": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "UIRoot": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "VanityCapturePanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "VanityCrossFadePanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "VanityLoadoutPanel": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "VanityOverlayPanel": {
+      "derivedFrom": "RenderPanel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "VerticalScrollBar": {
+      "derivedFrom": "ScrollBar",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": true
+    },
+    "VerticalScrollForwarding": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel",
+        "VerticalScrollForwarding"
+      ],
+      "rootOnly": false
+    },
+    "VerticalSplitter": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "VideoQualityPopup": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "VolumeSliderPopup": {
+      "derivedFrom": "Panel",
+      "sets": [
+        "Panel"
+      ],
+      "rootOnly": false
+    },
+    "WeaponSpiderGraph": {
+      "derivedFrom": "DeepStatsPanel",
+      "sets": [
+        "DeepStatsPanel",
+        "Panel"
+      ],
+      "rootOnly": false
+    }
+  },
+  "generatedFrom": "panorama_generate_layout_xsd.txt (CS2 build 20260829)"
+}

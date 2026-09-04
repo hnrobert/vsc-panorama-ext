@@ -1,0 +1,244 @@
+{
+  "name": "vsc-panorama-ext",
+  "displayName": "CS2 Panorama (VXML / VCSS)",
+  "description": "%extension.description%",
+  "version": "1.0.0",
+  "publisher": "Kxnrl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kxnrl/vsc-panorama-ext.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kxnrl/vsc-panorama-ext/issues"
+  },
+  "homepage": "https://github.com/kxnrl/vsc-panorama-ext#readme",
+  "icon": "media/icon.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "cs2",
+    "counter-strike",
+    "panorama",
+    "vxml",
+    "vcss",
+    "source2",
+    "csgo",
+    "game-ui",
+    "modding"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "private": true,
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:panorama-vxml",
+    "onLanguage:panorama-vcss"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "panorama-vxml",
+        "aliases": [
+          "Panorama VXML",
+          "vxml"
+        ],
+        "extensions": [
+          ".vxml"
+        ],
+        "filenamePatterns": [
+          "**/panorama/**/layout/**/*.xml"
+        ],
+        "configuration": "./language-configuration-vxml.json"
+      },
+      {
+        "id": "panorama-vcss",
+        "aliases": [
+          "Panorama VCSS",
+          "vcss"
+        ],
+        "extensions": [
+          ".vcss"
+        ],
+        "filenamePatterns": [
+          "**/panorama/**/styles/**/*.css"
+        ],
+        "configuration": "./language-configuration-vcss.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "panorama-vxml",
+        "scopeName": "text.xml.panorama-vxml",
+        "path": "./syntaxes/panorama-vxml.tmLanguage.json"
+      },
+      {
+        "language": "panorama-vcss",
+        "scopeName": "source.css.panorama-vcss",
+        "path": "./syntaxes/panorama-vcss.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "panorama-vxml",
+        "path": "./snippets/vxml.json"
+      },
+      {
+        "language": "panorama-vcss",
+        "path": "./snippets/vcss.json"
+      }
+    ],
+    "configuration": {
+      "title": "CS2 Panorama",
+      "properties": {
+        "panorama.customHudLayout.include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/layout/custom_game/**"
+          ],
+          "description": "%panorama.customHudLayout.include.description%"
+        },
+        "panorama.contentRoots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%panorama.contentRoots.description%"
+        },
+        "panorama.index.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "%panorama.index.enabled.description%"
+        },
+        "panorama.index.exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%panorama.index.exclude.description%"
+        },
+        "panorama.diagnostics.webOnlySyntax": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "description": "%panorama.diagnostics.webOnlySyntax.description%"
+        },
+        "panorama.diagnostics.unknownProperty": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning"
+          ],
+          "default": "hint",
+          "description": "%panorama.diagnostics.unknownProperty.description%"
+        },
+        "panorama.diagnostics.unknownClass": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning"
+          ],
+          "default": "hint",
+          "description": "%panorama.diagnostics.unknownClass.description%"
+        },
+        "panorama.diagnostics.unresolvedReference": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "description": "%panorama.diagnostics.unresolvedReference.description%"
+        },
+        "panorama.diagnostics.duplicateId": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning"
+          ],
+          "default": "hint",
+          "description": "%panorama.diagnostics.duplicateId.description%"
+        },
+        "panorama.diagnostics.structure": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "description": "%panorama.diagnostics.structure.description%"
+        },
+        "panorama.diagnostics.customHudWhitelist": {
+          "type": "string",
+          "enum": [
+            "off",
+            "hint",
+            "warning",
+            "error"
+          ],
+          "default": "error",
+          "description": "%panorama.diagnostics.customHudWhitelist.description%"
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[panorama-vxml]": {
+        "editor.quickSuggestions": {
+          "strings": true,
+          "other": true,
+          "comments": false
+        }
+      },
+      "[panorama-vcss]": {
+        "editor.quickSuggestions": {
+          "strings": true,
+          "other": true,
+          "comments": false
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.mjs --production",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "npm run build && node esbuild-e2e.mjs && node out-e2e/runTest.cjs",
+    "package": "npx --yes @vscode/vsce@3 package",
+    "gen:panels": "node tools/gen-panel-data.mjs",
+    "gen:values": "node --experimental-strip-types tools/mine-css-values.mts && node --experimental-strip-types tools/mine-vxml-attributes.mts"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "1.85.0",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.24.0",
+    "minimatch": "^10.2.6",
+    "mocha": "^10.8.2",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
+  }
+}

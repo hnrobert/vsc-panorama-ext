@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:complexType name="Internal_RootStyles">
+    <xs:sequence><xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/></xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Internal_BaseType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Panel" type="PanelType" />
+      <xs:element name="Label" type="LabelType" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PanelType">
+    <xs:complexContent>
+      <xs:extension base="Internal_BaseType">
+        <xs:attribute name="id" type="xs:string">
+          <xs:annotation><xs:documentation xml:lang="en">&lt;b&gt;id&lt;/b&gt; (from Panel)&lt;br /&gt;&lt;br /&gt;</xs:documentation></xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LabelType">
+    <xs:complexContent>
+      <xs:extension base="Internal_BaseType">
+        <xs:annotation><xs:documentation xml:lang="en">&lt;b&gt;Label&lt;/b&gt; (derived from Panel)</xs:documentation></xs:annotation>
+        <xs:attribute name="text" type="xs:string">
+          <xs:annotation><xs:documentation xml:lang="en">&lt;b&gt;text&lt;/b&gt; (from Label)&lt;br /&gt;&lt;br /&gt;</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="id" type="xs:string">
+          <xs:annotation><xs:documentation xml:lang="en">&lt;b&gt;id&lt;/b&gt; (from Panel)&lt;br /&gt;&lt;br /&gt;</xs:documentation></xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PopupType">
+    <xs:complexContent>
+      <xs:extension base="Internal_BaseType">
+        <xs:attribute name="popupwidth" type="xs:string">
+          <xs:annotation><xs:documentation xml:lang="en">&lt;b&gt;popupwidth&lt;/b&gt; (from Popup)&lt;br /&gt;&lt;br /&gt;How wide the popup is. Default is &apos;100px&apos;</xs:documentation></xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="styles" type="Internal_RootStyles" minOccurs="0" maxOccurs="1" />
+        <xs:choice minOccurs="1" maxOccurs="1">
+          <xs:element name="Panel" type="PanelType" />
+          <xs:element name="Label" type="LabelType" />
+          <xs:element name="Popup" type="PopupType" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

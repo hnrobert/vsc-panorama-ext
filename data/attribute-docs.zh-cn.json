@@ -1,0 +1,19 @@
+{
+  "source": "data/panels.json 的 attributeDocs 是 Valve 的英文原文，由 tools/gen-panel-data.mjs 从 panorama_generate_layout_xsd 全量重建——每次跑 npm run gen:panels 都会覆写。本文件是它的中文对照，人工维护，生成器绝不写入这里。CS2 出新 build、attributeDocs 增加条目时，test/unit/core/data/panels-i18n.test.ts 会指出这里缺哪几条，而不是悄悄少一块中文。",
+  "docs": {
+    "audible-seconds": "开始每秒播放倒计时提示音之前，剩余的秒数。",
+    "defaultfastzoom": "通常为 false。为 true 时，除非被显式禁止，否则使用快速缩放。",
+    "dragclickzone": "大于等于 0 时，拖动距离超过该值将抑制鼠标点击事件（例如内嵌面板的 onactivate）。",
+    "framecount": "若设置，表示精灵图里有多少帧。默认假定图片中每一格都被填满。",
+    "invertminscalecalc": "大于 0 时，最小缩放按较大的那个值计算，即较短的一边先撑满。",
+    "loopcount": "当 loop = true 时，停止前循环多少次。-1 表示无限循环。",
+    "minscale": "忽略自动计算，直接允许缩放到该值（会校验它不大于 maxscale）。",
+    "multitouchzoomscale": "双指捏合缩放手势的缩放系数。",
+    "popupfullscreenopaque": "布尔值，表示该弹窗在初始过渡结束后会占满全屏且不透明。据此可以安全隐藏它下面的所有面板。",
+    "src-id": "与 src 搭配使用，必填。",
+    "src-parameters": "与 src 搭配使用，选填。",
+    "strictclamptranslation": "大于 0 时，禁止内容面板以能看穿边框的方式平移。",
+    "textureheight": "texturewidth 与 textureheight 可用于覆盖矢量图形的尺寸。默认值 -1 表示纹理宽高由源文件决定。",
+    "texturewidth": "texturewidth 与 textureheight 可用于覆盖矢量图形的尺寸。默认值 -1 表示纹理宽高由源文件决定。"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "Panorama VXML",
+  "scopeName": "text.xml.panorama-vxml",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#structural-tag" },
+    { "include": "#panel-tag" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.block.panorama-vxml",
+      "begin": "<!--",
+      "end": "-->"
+    },
+    "structural-tag": {
+      "begin": "(</?)(root|styles|scripts|snippets|snippet|include)\\b",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.panorama-vxml" },
+        "2": { "name": "entity.name.tag.structural.panorama-vxml" }
+      },
+      "end": "(/?>)",
+      "endCaptures": { "1": { "name": "punctuation.definition.tag.panorama-vxml" } },
+      "patterns": [{ "include": "#attribute" }]
+    },
+    "panel-tag": {
+      "begin": "(</?)([A-Z][A-Za-z0-9_]*)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.panorama-vxml" },
+        "2": { "name": "entity.name.tag.panel.panorama-vxml" }
+      },
+      "end": "(/?>)",
+      "endCaptures": { "1": { "name": "punctuation.definition.tag.panorama-vxml" } },
+      "patterns": [{ "include": "#attribute" }]
+    },
+    "attribute": {
+      "patterns": [
+        {
+          "match": "\\b(on[a-z]+)\\s*(=)",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.event.panorama-vxml" },
+            "2": { "name": "punctuation.separator.key-value.panorama-vxml" }
+          }
+        },
+        {
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_.-]*)\\s*(=)",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.panorama-vxml" },
+            "2": { "name": "punctuation.separator.key-value.panorama-vxml" }
+          }
+        },
+        { "include": "#attribute-value" }
+      ]
+    },
+    "attribute-value": {
+      "name": "string.quoted.double.panorama-vxml",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "include": "#data-binding" },
+        { "include": "#localization-token" },
+        { "include": "#resource-path" }
+      ]
+    },
+    "data-binding": {
+      "match": "(\\{)([sdgt])(:)([^}]*)(\\})",
+      "captures": {
+        "1": { "name": "punctuation.section.embedded.begin.panorama-vxml" },
+        "2": { "name": "keyword.other.binding-prefix.panorama-vxml" },
+        "3": { "name": "punctuation.separator.panorama-vxml" },
+        "4": { "name": "variable.other.binding.panorama-vxml" },
+        "5": { "name": "punctuation.section.embedded.end.panorama-vxml" }
+      }
+    },
+    "localization-token": {
+      "name": "constant.language.localization-token.panorama-vxml",
+      "match": "#[A-Za-z_][A-Za-z0-9_.]*"
+    },
+    "resource-path": {
+      "name": "markup.underline.link.resource.panorama-vxml",
+      "match": "s2r://[^\"\\s]*"
+    }
+  }
+}

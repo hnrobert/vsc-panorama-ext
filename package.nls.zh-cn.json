@@ -1,0 +1,14 @@
+{
+  "extension.description": "CS2 Panorama 布局与样式的语言支持",
+  "panorama.contentRoots.description": "s2r:// 解析的显式内容根。留空则自动探测（先找同时含 layout/ 与 styles/ 的最近祖先，再按文件存在性验证）",
+  "panorama.customHudLayout.include.description": "命中这些 glob 的布局按 CustomHudLayout 白名单（仅 Panel/Label/Image/Button）提供补全",
+  "panorama.diagnostics.customHudWhitelist.description": "CustomHudLayout 严格模式白名单违规（面板/属性不在四面板白名单内、<scripts>、内联 style、{d:}/{g:}/{t:} 绑定等）的级别",
+  "panorama.diagnostics.duplicateId.description": "同一作用域内 id 重复的级别（每个 <snippet> 是独立作用域）",
+  "panorama.diagnostics.structure.description": "VXML 结构问题（未知标签、rootOnly 面板出现在嵌套位置、根面板带 id、<styles>/<scripts>/<snippets> 顺序、标签未闭合）的级别",
+  "panorama.diagnostics.unknownClass.description": "class= 引用的类名在工作区里找不到 VCSS 定义的级别。引擎自带样式表不在工作区内，因此最高只到 warning",
+  "panorama.diagnostics.unknownProperty.description": "属性或取值不在已知清单里的级别。清单来自文档与语料，被证明不完整，因此最高只到 warning",
+  "panorama.diagnostics.unresolvedReference.description": "@define 常量或 @keyframes 关键帧引用不到定义的级别",
+  "panorama.diagnostics.webOnlySyntax.description": "Web CSS 专有写法（display/float/flex、position 关键字、vw/vh/em/rem、::伪元素、visibility: hidden、--自定义属性、@keyframes 名字不加引号、box-shadow 颜色在前、background-size: clip_then_cover）的级别",
+  "panorama.index.enabled.description": "关闭后跨文件能力（class 跨文件补全、跳转定义、查找引用）降级为单文件能力",
+  "panorama.index.exclude.description": "索引时额外排除的 glob，追加在内置的 node_modules 排除之后"
+}

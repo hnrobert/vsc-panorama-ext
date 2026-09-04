@@ -3,7 +3,10 @@
 Language support for Counter-Strike 2's Panorama UI — layout (`.xml` / `.vxml`) and style
 (`.css` / `.vcss`) files.
 
-*[中文说明见下](#中文)*
+**[Install from the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Kxnrl.vsc-panorama-ext)** — or run `ext install Kxnrl.vsc-panorama-ext`
+in the Quick Open bar (<kbd>Ctrl</kbd>+<kbd>P</kbd>).
+
+*[中文说明见下](https://github.com/Kxnrl/vsc-panorama-ext#中文)*
 
 ---
 
@@ -110,15 +113,16 @@ everything else gets English.
 ## Not affiliated with Valve
 
 This is an unofficial community tool. Counter-Strike, Source 2 and Panorama are trademarks of
-Valve Corporation. See [LICENSE](LICENSE) for the full notice.
+Valve Corporation. See [LICENSE](https://github.com/Kxnrl/vsc-panorama-ext/blob/master/LICENSE) for the full notice.
 
 ---
-
-<a name="中文"></a>
 
 # 中文
 
 Counter-Strike 2 的 Panorama UI 语言支持——布局（`.xml` / `.vxml`）与样式（`.css` / `.vcss`）。
+
+**[从 Visual Studio Marketplace 安装](https://marketplace.visualstudio.com/items?itemName=Kxnrl.vsc-panorama-ext)**，或在快速打开栏
+（<kbd>Ctrl</kbd>+<kbd>P</kbd>）里执行 `ext install Kxnrl.vsc-panorama-ext`。
 
 ## 为什么需要它
 
@@ -202,4 +206,4 @@ Panorama 为什么不一样。
 ## 与 Valve 无关联
 
 这是非官方的社区工具。Counter-Strike、Source 2、Panorama 是 Valve Corporation 的商标。
-完整声明见 [LICENSE](LICENSE)。
+完整声明见 [LICENSE](https://github.com/Kxnrl/vsc-panorama-ext/blob/master/LICENSE)。

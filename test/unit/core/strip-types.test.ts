@@ -62,6 +62,17 @@ function tsFiles(dir: string, out: string[] = []): string[] {
   return out;
 }
 
+/**
+ * 这个 API 只在 Node 22.13+ 上存在（见 Node 22.x 的 module API 文档）。
+ *
+ * 单独判一次，是因为不判会让「Node 太老、API 根本不存在」被下面那条守卫的
+ * try/catch 吞成「每一个文件都无法被擦除」——GitHub Actions 上实测过这个症状：
+ * 工作流当时写的是 `node-version: 20`，于是 CI 日志里刷出 140 条
+ * `stripTypeScriptTypes is not a function` 的 offender，看日志的人会去查代码
+ * 而不是查 Node 版本。
+ */
+const HAS_STRIP = typeof nodeModule.stripTypeScriptTypes === 'function';
+
 describe('src/core 与 Node 的 strip-only 类型擦除兼容', () => {
   const files = tsFiles(CORE);
 
@@ -69,7 +80,21 @@ describe('src/core 与 Node 的 strip-only 类型擦除兼容', () => {
     expect(files.length).toBeGreaterThanOrEqual(10);
   });
 
-  it('每个文件都能被 strip-only 模式实际处理（真实执行，不是正则近似）', () => {
+  /*
+   * 这条不做 skip 而是直接红：tools/*.mts 经 `node --experimental-strip-types`
+   * 运行，Node 22.13+ 是这个项目的真实开发期要求，不是可选项。
+   */
+  it('运行的 Node 提供了 stripTypeScriptTypes（22.13+）', () => {
+    expect(
+      HAS_STRIP,
+      `当前 Node ${process.version} 没有 node:module.stripTypeScriptTypes。` +
+        '本项目开发期要求 Node >= 22.13（tools/*.mts 经 --experimental-strip-types 运行）。',
+    ).toBe(true);
+  });
+
+  // API 不在时跳过：上面那条已经把真正的原因报清楚了，这里再报 140 条
+  // 「文件无法擦除」只是噪音，而且指向错误的方向。
+  it.skipIf(!HAS_STRIP)('每个文件都能被 strip-only 模式实际处理（真实执行，不是正则近似）', () => {
     const offenders = files
       .map((f) => {
         try {

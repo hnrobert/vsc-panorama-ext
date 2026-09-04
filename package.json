@@ -29,7 +29,8 @@
     "modding"
   ],
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.85.0",
+    "node": ">=22.13"
   },
   "private": true,
   "main": "./dist/extension.js",

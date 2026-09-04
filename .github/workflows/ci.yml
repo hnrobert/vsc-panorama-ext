@@ -20,7 +20,10 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # 22 而不是 20：test/unit/core/strip-types.test.ts 用的
+          # node:module.stripTypeScriptTypes 是 Node 22.13+ 才有的 API，
+          # tools/*.mts 也经 --experimental-strip-types 运行。
+          node-version: 22
           cache: npm
 
       - run: npm ci

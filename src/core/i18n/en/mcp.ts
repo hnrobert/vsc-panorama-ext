@@ -19,6 +19,12 @@ export const mcp: McpMessages = {
     'Query workspace-wide symbols from Panorama files: CSS class definitions and usages, ' +
     'ids, @define constants and @keyframes. The root is scanned once and cached; pass ' +
     'refresh to force a rescan',
+  toolApplyFixesDesc: () =>
+    'Apply the deterministic auto-fixes to a Panorama file on disk (visibility: hidden to ' +
+    'collapse, @keyframes quoting, box-shadow reordering, transition splitting, missing ' +
+    'closing tags, root-panel id removal, Button text into a child Label, binding prefixes) ' +
+    'and re-validate. Only unambiguous fixes are applied mechanically — everything else is ' +
+    'left for you to decide. dryRun returns the plan without writing',
   resourceDataDesc: () =>
     'Raw reference data behind the extension: panel registry, VCSS property domains, ' +
     'observed values and observed attributes, as generated from the schema CS2 emits and ' +

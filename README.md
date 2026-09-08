@@ -47,7 +47,10 @@ existence checking.
 Web equivalent would have been and why Panorama differs.
 
 **Diagnostics** — 28 rules across three tiers, each with a concrete replacement rather than just
-"this is wrong":
+"this is wrong". Wherever the replacement is unambiguous, it is also a **quick fix**: put the
+cursor on the squiggle and the lightbulb offers the exact edit (`hidden`→`collapse`, quoting a
+`@keyframes` name, closing an unclosed tag, moving `<Button>` text into a child `<Label>`…).
+Fixes with more than one right answer stay suggestions.
 
 | Tier | Examples |
 | --- | --- |
@@ -85,6 +88,11 @@ editor uses:
 - **`validate`** — check a layout or stylesheet file from disk; every diagnostic comes with a rule
   id, 1-based line/column and a concrete replacement. Pass a workspace root (or let it auto-detect)
   and the cross-file rules run too.
+- **`apply_fixes`** — apply the **deterministic** fixes to a file on disk and re-validate:
+  `visibility: hidden`→`collapse`, `@keyframes` quoting, box-shadow reordering, transition
+  shorthand splitting, missing closing tags, root-panel `id` removal, `<Button>` text into a child
+  `<Label>`, binding prefixes `{d:}`→`{s:}`. Supports `ruleIds` filtering and `dryRun`. Fixes
+  without a unique answer are never applied mechanically — those stay the agent's job.
 - **`panel_info` / `property_info`** — the 245-panel registry and the VCSS property domains,
   including the web equivalent and why Panorama differs. `display` comes back as *web-only* with
   the `flow-children` replacement, not as a guess.
@@ -190,7 +198,10 @@ dialog 变量绑定。
 **悬停**——每个面板类型、属性、CSS 属性都带文档，包括「Web 里对应的写法是什么」以及
 Panorama 为什么不一样。
 
-**诊断**——28 条规则分三档，每条都给出**替代写法**而不只是说「这样不行」：
+**诊断**——28 条规则分三档，每条都给出**替代写法**而不只是说「这样不行」。替代写法
+唯一的地方同时也是**灯泡 quick fix**：光标停在波浪线上，灯泡直接给出确切编辑
+（`hidden`→`collapse`、`@keyframes` 名字补引号、补上未闭合标签、`<Button>` 文字包进子
+`<Label>`……）。答案不唯一的修复保持为建议、不代猜：
 
 | 档位 | 举例 |
 | --- | --- |
@@ -224,6 +235,10 @@ Panorama 为什么不一样。
 
 - **`validate`**——从磁盘校验布局或样式文件；每条诊断带规则 ID、1 起始的行列和具体
   替代写法。传入工作区根（或让它自动探测）时跨文件规则也会跑。
+- **`apply_fixes`**——把**确定性**修复直接落盘并复诊：`visibility: hidden`→`collapse`、
+  `@keyframes` 补引号、box-shadow 重排序、transition 简写拆分、补闭合标签、删根面板
+  `id`、`<Button>` 文字挪进子 `<Label>`、绑定前缀 `{d:}`→`{s:}`。支持 `ruleIds` 过滤与
+  `dryRun` 演算。没有唯一答案的修复永远不会被机械执行——那些是对面 agent 的活。
 - **`panel_info` / `property_info`**——245 种面板注册表与 VCSS 属性域，含 Web 对应写法
   与 Panorama 为何不同。查 `display` 会得到「Web 独有 + `flow-children` 替代」，
   而不是一次瞎猜。

@@ -90,6 +90,7 @@ describe('daemon · HTTP 层', () => {
       tools: { name: string }[];
     };
     expect(tools.tools.map((t) => t.name).sort()).toEqual([
+      'apply_fixes',
       'panel_info',
       'property_info',
       'symbols',
@@ -132,5 +133,30 @@ describe('daemon · HTTP 层', () => {
     expect(res.status).toBe(400);
     const body = (await res.json()) as { error: { code: number } };
     expect(body.error.code).toBe(-32700);
+  });
+
+  it('apply_fixes 真落盘：临时文件修复后可从磁盘读回', async () => {
+    const { writeFileSync, readFileSync, rmSync } = await import('node:fs');
+    const tmp = join(ROOT, '.tmp-apply-fixes.css');
+    writeFileSync(tmp, '.x {\n  visibility: hidden;\n}\n@keyframes pulse { from { opacity: 1; } }\n');
+
+    try {
+      const res = (await rpc('tools/call', { name: 'apply_fixes', arguments: { path: tmp } }, 4)) as {
+        content: { text: string }[];
+      };
+      const parsed = JSON.parse(res.content[0].text) as {
+        applied: { ruleId: string }[];
+        remaining: unknown[];
+      };
+      expect(parsed.applied.map((a) => a.ruleId).sort()).toEqual([
+        'vcss.keyframesUnquoted',
+        'vcss.visibilityHidden',
+      ]);
+      expect(readFileSync(tmp, 'utf8')).toBe(
+        '.x {\n  visibility: collapse;\n}\n@keyframes "pulse" { from { opacity: 1; } }\n',
+      );
+    } finally {
+      rmSync(tmp, { force: true });
+    }
   });
 });

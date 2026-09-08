@@ -38,6 +38,12 @@ const FILES = new Map<string, string>([
   ['/fake/repo/src/styles/web.css', '.a { display: flex; }'],
 ]);
 
+beforeEach(() => {
+  // apply_fixes 用例会改写 FILES；每轮恢复原始现场，避免用例间串味
+  FILES.set('/fake/repo/panorama/layout/custom_game/hud.xml', LAYOUT);
+  FILES.set('/fake/repo/panorama/styles/custom_game/hud.css', STYLES);
+});
+
 function fakeEnv(): McpEnv {
   const fs: McpFs = {
     readFile: (p) => {
@@ -45,6 +51,7 @@ function fakeEnv(): McpEnv {
       if (t === undefined) throw new Error(`ENOENT: ${p}`);
       return t;
     },
+    writeFile: (p, text) => FILES.set(p, text),
     exists: (p) => FILES.has(p),
     isDirectory: (p) =>
       [...FILES.keys()].some((f) => f.startsWith(p.replace(/\/+$/, '') + '/')),
@@ -71,9 +78,10 @@ async function callJson(name: string, args: Record<string, unknown>): Promise<un
 }
 
 describe('MCP server · 工具面板', () => {
-  it('注册四个工具', async () => {
+  it('注册五个工具', async () => {
     const res = await client.listTools();
     expect(res.tools.map((t) => t.name).sort()).toEqual([
+      'apply_fixes',
       'panel_info',
       'property_info',
       'symbols',
@@ -216,5 +224,44 @@ describe('MCP server · symbols', () => {
     };
     expect(r.ok).toBe(false);
     expect(r.error).toBe('root-not-dir');
+  });
+});
+
+describe('MCP server · apply_fixes', () => {
+  const LAYOUT_PATH = '/fake/repo/panorama/layout/custom_game/hud.xml';
+
+  it('确定性修复落盘，remaining 清零', async () => {
+    const r = (await callJson('apply_fixes', { path: LAYOUT_PATH })) as {
+      ok: boolean;
+      applied: { ruleId: string }[];
+      remaining: { ruleId: string }[];
+    };
+    expect(r.ok).toBe(true);
+    // 夹具里两处机械修复：Button text + 根面板 id（vxml.rootPanelId）
+    expect(r.applied.map((a) => a.ruleId).sort()).toEqual(['hud.buttonText', 'vxml.rootPanelId']);
+    expect(r.remaining).toEqual([]);
+
+    const after = FILES.get(LAYOUT_PATH)!;
+    expect(after).toContain('<Button><Label text="OK" /></Button>');
+    expect(after).toContain('<Panel class="hud-root">'); // id 已删，只剩 class
+  });
+
+  it('dryRun 演算但不落盘', async () => {
+    const r = (await callJson('apply_fixes', { path: LAYOUT_PATH, dryRun: true })) as {
+      applied: { ruleId: string }[];
+    };
+    expect(r.applied.length).toBeGreaterThan(0);
+    expect(FILES.get(LAYOUT_PATH)).toBe(LAYOUT); // 原文未动
+  });
+
+  it('ruleIds 过滤：只动指定的规则', async () => {
+    const r = (await callJson('apply_fixes', {
+      path: LAYOUT_PATH,
+      ruleIds: ['hud.buttonText'],
+    })) as { applied: { ruleId: string }[] };
+    expect(r.applied.map((a) => a.ruleId)).toEqual(['hud.buttonText']);
+    const after = FILES.get(LAYOUT_PATH)!;
+    expect(after).toContain('<Button><Label text="OK" /></Button>');
+    expect(after).toContain('id="root-panel"'); // rootPanelId 不在名单里，未动
   });
 });

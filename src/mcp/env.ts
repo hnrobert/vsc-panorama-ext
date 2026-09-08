@@ -20,6 +20,8 @@ import { ObservedAttributes } from '../core/data/observed-attributes';
 export interface McpFs {
   /** 抛异常表示读不到（不存在 / 无权限），文案由调用方给 */
   readonly readFile: (path: string) => string;
+  /** apply_fixes 的落盘通道；抛异常表示写失败（权限等） */
+  readonly writeFile: (path: string, text: string) => void;
   readonly exists: (path: string) => boolean;
   readonly isDirectory: (path: string) => boolean;
   /**

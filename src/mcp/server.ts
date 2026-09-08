@@ -4,6 +4,7 @@ import pkg from '../../package.json';
 import type { McpEnv, McpServices } from './env';
 import { WorkspaceScanner, querySymbols } from './tools/symbols';
 import { validateFile } from './tools/validate';
+import { applyFixes } from './tools/fix';
 import { panelInfo, propertyInfo } from './tools/reference';
 import rawPanels from '../../data/panels.json';
 import rawProperties from '../../data/vcss-properties.json';
@@ -84,6 +85,21 @@ export function buildMcpServer(env: McpEnv, services: McpServices, scanner: Work
       json(querySymbols({ root, kind, name, refresh }, scanner, services.msg.mcp.errRootNotDir)),
   );
 
+  server.registerTool(
+    'apply_fixes',
+    {
+      description: services.msg.mcp.toolApplyFixesDesc(),
+      inputSchema: {
+        path: z.string().describe('Absolute path of the file to fix (edited in place)'),
+        root: z.string().optional().describe('Workspace root for cross-file checks; omitted = auto-detect'),
+        ruleIds: z.array(z.string()).optional().describe('Restrict to these rule ids; omitted = all fixable'),
+        dryRun: z.boolean().optional().describe('Compute the fixes without writing the file'),
+      },
+    },
+    async ({ path, root, ruleIds, dryRun }) =>
+      json(applyFixes({ path, root, ruleIds, dryRun }, env, services, scanner)),
+  );
+
   registerDataResources(server, services);
   registerPrompts(server);
 
@@ -135,11 +151,15 @@ function registerPrompts(server: McpServer): void {
             text:
               `Review the Counter-Strike 2 Panorama file ${path}${root ? ` (workspace root ${root})` : ''}:\n` +
               '1. Call the validate tool on it.\n' +
-              '2. For every diagnostic, apply the fix it suggests. Prefer the panel_info and property_info tools ' +
-              'over your own memory when picking replacements — Panorama looks like web CSS but is not web CSS.\n' +
-              '3. Write the corrected file back to disk.\n' +
-              '4. Re-validate. Repeat until zero diagnostics remain.\n' +
-              'Never silence a rule or edit unrelated lines. Report what you changed.',
+              '2. Call apply_fixes to clear every deterministic fix mechanically (visibility: hidden, ' +
+              '@keyframes quoting, box-shadow order, transition shorthand, closing tags, Button text, ' +
+              'binding prefixes).\n' +
+              '3. For what remains, decide yourself using the panel_info and property_info tools — ' +
+              'Panorama looks like web CSS but is not web CSS, do not answer from memory. A rule marked ' +
+              'as "not in the known list" is NOT proof of invalidity: the reference data is incomplete, ' +
+              'keep constructs you cannot disprove.\n' +
+              '4. Re-validate. Repeat until no provable issue remains.\n' +
+              'Never silence a rule or edit unrelated lines. Report what you changed and what you kept.',
           },
         },
       ],

@@ -17,6 +17,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   seconds. A Command Palette entry (`CS2 Panorama: Enable MCP for AI Assistants`) writes or
   copies the client config. Requires VS Code 1.101+ (`engines.vscode` raised from 1.85 for the
   stable `vscode.lm.registerMcpServerDefinitionProvider` API).
+- **Auto-fixes** — deterministic repairs are now machine-executable in two places: as editor quick
+  fixes on the lightbulb, and as the MCP `apply_fixes` tool (`ruleIds` filter, `dryRun`, automatic
+  re-validation). Covers `visibility: hidden`→`collapse`, `@keyframes` quoting, box-shadow
+  reordering, transition shorthand splitting, missing closing tags, root-panel `id` removal,
+  `<Button>` text into a child `<Label>`, and binding prefixes `{d:}/{g:}/{t:}`→`{s:}`. Fixes
+  with more than one defensible answer (what `display: flex` becomes, where an inline `style`
+  moves) deliberately produce no mechanical edit.
 
 ### Changed (unreleased)
 

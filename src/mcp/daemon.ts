@@ -13,7 +13,7 @@
  *   （en | zh-cn，跟随 spawn 它的 VS Code 显示语言）。
  */
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
-import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, existsSync, writeFileSync } from 'node:fs';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { buildMcpServer, SERVER_NAME } from './server';
 import { servicesFor, type McpEnv, type McpFs } from './env';
@@ -64,6 +64,7 @@ function listFiles(root: string): string[] {
 
 const fs: McpFs = {
   readFile: (p) => readFileSync(p, 'utf8'),
+  writeFile: (p, text) => writeFileSync(p, text, 'utf8'),
   exists: (p) => existsSync(p),
   isDirectory: (p) => {
     try {

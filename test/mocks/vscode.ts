@@ -579,3 +579,37 @@ export const window = {
 };
 
 Object.assign(env, { clipboard: { async writeText(): Promise<void> {} } });
+
+// ---- 以下为灯泡 quick fix（src/vscode/providers/code-actions.ts）所需，追加 ----
+
+export const CodeActionKind = { QuickFix: { value: 'quickfix' } } as const;
+
+export class CodeAction {
+  edit?: unknown;
+  diagnostics?: unknown[];
+  isPreferred?: boolean;
+  constructor(
+    public readonly title: string,
+    public readonly kind?: unknown,
+  ) {}
+}
+
+/** 记录 replace 调用，供测试断言「灯泡里的编辑到底改哪段」 */
+export class WorkspaceEdit {
+  readonly replaces: Array<{ uri: unknown; range: Range; newText: string }> = [];
+  replace(uri: unknown, range: Range, newText: string): void {
+    this.replaces.push({ uri, range, newText });
+  }
+}
+
+Object.assign(languages, {
+  registerCodeActionsProvider(
+    selector: { language: string },
+    provider: unknown,
+    _metadata?: unknown,
+  ) {
+    const disposable = { dispose() {} };
+    registered.push({ type: 'codeaction', language: selector.language, provider, disposable });
+    return disposable;
+  },
+});

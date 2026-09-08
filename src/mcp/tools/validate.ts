@@ -50,11 +50,11 @@ export interface ValidateErr {
 export type ValidateResult = ValidateOk | ValidateErr;
 
 /** 与 index-host 的 isVxml 同判据：后缀即语言 */
-function isVxmlPath(path: string): boolean {
+export function isVxmlPath(path: string): boolean {
   return path.endsWith('.xml') || path.endsWith('.vxml');
 }
 
-function isStylesheetPath(path: string): boolean {
+export function isStylesheetPath(path: string): boolean {
   return path.endsWith('.css') || path.endsWith('.vcss');
 }
 

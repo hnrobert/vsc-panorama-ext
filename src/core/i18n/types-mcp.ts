@@ -14,6 +14,8 @@ export interface McpMessages {
   toolPropertyInfoDesc(): string;
   /** panorama_symbols 的工具描述 */
   toolSymbolsDesc(): string;
+  /** apply_fixes 的工具描述 */
+  toolApplyFixesDesc(): string;
   /** resources/panorama 数据集的描述 */
   resourceDataDesc(): string;
   /** prompt panorama_review_file 的描述 */

@@ -1,0 +1,207 @@
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+import pkg from '../../package.json';
+import type { McpEnv, McpServices } from './env';
+import { WorkspaceScanner, querySymbols } from './tools/symbols';
+import { validateFile } from './tools/validate';
+import { panelInfo, propertyInfo } from './tools/reference';
+import rawPanels from '../../data/panels.json';
+import rawProperties from '../../data/vcss-properties.json';
+import rawObservedValues from '../../data/vcss-observed-values.json';
+import rawObservedAttributes from '../../data/vxml-observed-attributes.json';
+import rawAttributeValues from '../../data/vxml-attribute-values.json';
+
+export const SERVER_NAME = 'cs2-panorama';
+
+/**
+ * 工具名刻意不带 panorama_ 前缀：主流客户端（含 Claude Code）会把服务器名
+ * 拼进工具全名（cs2-panorama__validate），前缀写两遍就是
+ * cs2-panorama__panorama_validate。
+ */
+
+/**
+ * 装配完整的 MCP server。每次 HTTP 请求新建一个 McpServer 实例
+ * （Streamable HTTP 的 stateless 模式），但 services 与 scanner 由调用方
+ * 持有、跨请求共享——注册表只读，scanner 的 TTL 缓存是进程级资产，
+ * 按请求重建缓存等于没有缓存。
+ */
+export function buildMcpServer(env: McpEnv, services: McpServices, scanner: WorkspaceScanner): McpServer {
+  const server = new McpServer(
+    { name: SERVER_NAME, version: pkg.version },
+    { capabilities: { tools: {}, resources: {}, prompts: {} } },
+  );
+
+  const json = (data: unknown) => ({
+    content: [{ type: 'text' as const, text: JSON.stringify(data, null, 2) }],
+  });
+
+  server.registerTool(
+    'validate',
+    {
+      description: services.msg.mcp.toolValidateDesc(),
+      inputSchema: {
+        path: z.string().describe('Absolute path of the .xml/.vxml layout or .css/.vcss stylesheet'),
+        root: z.string().optional().describe('Workspace root for cross-file checks; omitted = auto-detect'),
+      },
+    },
+    async ({ path, root }) => json(validateFile({ path, root }, env, services, scanner)),
+  );
+
+  server.registerTool(
+    'panel_info',
+    {
+      description: services.msg.mcp.toolPanelInfoDesc(),
+      inputSchema: {
+        panel: z.string().optional().describe('Panel type name, e.g. Label; omitted = list all'),
+      },
+    },
+    async ({ panel }) => json(panelInfo({ panel }, services.panels, services.msg.mcp.noteDataIncomplete)),
+  );
+
+  server.registerTool(
+    'property_info',
+    {
+      description: services.msg.mcp.toolPropertyInfoDesc(),
+      inputSchema: {
+        name: z.string().optional().describe('Property / function / at-rule name; omitted = list all'),
+      },
+    },
+    async ({ name }) => json(propertyInfo({ name }, services.props, services.msg.mcp.noteDataIncomplete)),
+  );
+
+  server.registerTool(
+    'symbols',
+    {
+      description: services.msg.mcp.toolSymbolsDesc(),
+      inputSchema: {
+        root: z.string().describe('Workspace or content root to scan'),
+        kind: z.enum(['class', 'id', 'define', 'keyframe']),
+        name: z.string().optional().describe('Symbol name; omitted = list all names of this kind'),
+        refresh: z.boolean().optional().describe('Force a rescan, bypassing the cache'),
+      },
+    },
+    async ({ root, kind, name, refresh }) =>
+      json(querySymbols({ root, kind, name, refresh }, scanner, services.msg.mcp.errRootNotDir)),
+  );
+
+  registerDataResources(server, services);
+  registerPrompts(server);
+
+  return server;
+}
+
+const DATA_RESOURCES = [
+  { name: 'panels', uri: 'panorama://data/panels', data: rawPanels },
+  { name: 'properties', uri: 'panorama://data/properties', data: rawProperties },
+  { name: 'observed-values', uri: 'panorama://data/observed-values', data: rawObservedValues },
+  { name: 'observed-attributes', uri: 'panorama://data/observed-attributes', data: rawObservedAttributes },
+  { name: 'attribute-values', uri: 'panorama://data/attribute-values', data: rawAttributeValues },
+] as const;
+
+function registerDataResources(server: McpServer, services: McpServices): void {
+  for (const r of DATA_RESOURCES) {
+    server.registerResource(
+      r.name,
+      r.uri,
+      { mimeType: 'application/json', description: services.msg.mcp.resourceDataDesc() },
+      async (uri) => ({
+        contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify(r.data, null, 2) }],
+      }),
+    );
+  }
+}
+
+/**
+ * Prompt **模板正文**刻意只用英文，尽管描述本地化了：正文是给模型的操作指令，
+ * 英文指令的遵循度最稳；用户看的是描述（ localized），发起后模型再用用户的
+ * 语言回答。i18n 目录里 prompt*Desc 三条就是这条边界的落点。
+ */
+function registerPrompts(server: McpServer): void {
+  server.registerPrompt(
+    'review_file',
+    {
+      description: 'Validate a Panorama file, then fix every reported diagnostic following its suggested replacement, re-validating after each round until clean',
+      argsSchema: {
+        path: z.string().describe('Absolute path of the file to review'),
+        root: z.string().optional().describe('Workspace root for cross-file checks'),
+      },
+    },
+    ({ path, root }) => ({
+      messages: [
+        {
+          role: 'user',
+          content: {
+            type: 'text',
+            text:
+              `Review the Counter-Strike 2 Panorama file ${path}${root ? ` (workspace root ${root})` : ''}:\n` +
+              '1. Call the validate tool on it.\n' +
+              '2. For every diagnostic, apply the fix it suggests. Prefer the panel_info and property_info tools ' +
+              'over your own memory when picking replacements — Panorama looks like web CSS but is not web CSS.\n' +
+              '3. Write the corrected file back to disk.\n' +
+              '4. Re-validate. Repeat until zero diagnostics remain.\n' +
+              'Never silence a rule or edit unrelated lines. Report what you changed.',
+          },
+        },
+      ],
+    }),
+  );
+
+  server.registerPrompt(
+    'web_to_panorama',
+    {
+      description: 'Convert web CSS declarations into Panorama equivalents, explaining every difference',
+      argsSchema: {
+        declarations: z.string().describe('The web CSS declarations to convert'),
+      },
+    },
+    ({ declarations }) => ({
+      messages: [
+        {
+          role: 'user',
+          content: {
+            type: 'text',
+            text:
+              `Convert these web CSS declarations to Panorama VCSS:\n${declarations}\n\n` +
+              'For every name, look it up with the property_info tool first — do not answer from memory. ' +
+              'If it is web-only, use the replacement the tool suggests; if it is unknown, say so explicitly ' +
+              'instead of guessing. Present the result as a VCSS rule body, then list each difference from ' +
+              'web CSS in one line (name change, value-domain change, units, shorthand pitfalls).',
+          },
+        },
+      ],
+    }),
+  );
+
+  server.registerPrompt(
+    'scaffold_layout',
+    {
+      description: 'Scaffold a new Panorama layout and stylesheet pair, honouring CustomHudLayout restrictions',
+      argsSchema: {
+        name: z.string().describe('Base name for the new files, e.g. score_panel'),
+        directory: z.string().describe('Absolute directory where the files should be created'),
+        custom_hud: z.boolean().optional().describe('Target lives under layout/custom_game/ (strict mode)'),
+      },
+    },
+    ({ name, directory, custom_hud }) => ({
+      messages: [
+        {
+          role: 'user',
+          content: {
+            type: 'text',
+            text:
+              `Create a Panorama layout + stylesheet pair named ${name} in ${directory}.\n` +
+              (custom_hud
+                ? 'Target is a CustomHudLayout (custom_game): only <Panel> <Label> <Image> <Button> are allowed, ' +
+                  'attributes are whitelisted (Panel: id/class/hittest, Label: +text, Image: +src/texturewidth/textureheight, ' +
+                  'Button: id/class only, text goes in a child Label), no <scripts>, no snippets, no inline style=, ' +
+                  'only {s:} bindings. Styling itself is unrestricted VCSS.\n'
+                : 'Full Panorama mode: any of the 245 panel types, all binding kinds available. ' +
+                  'Check panel_info before using a less common panel type.\n') +
+              'Write layout/custom_game style paths as s2r:// URIs in <styles><include>. ' +
+              'After writing both files, run validate on the layout and fix anything it reports.',
+          },
+        },
+      ],
+    }),
+  );
+}

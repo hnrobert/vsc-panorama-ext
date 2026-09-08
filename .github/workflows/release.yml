@@ -1,0 +1,79 @@
+name: Release
+
+# 发版 = 打 tag 推上来。v* 之外的一切 push 都只走 ci.yml。
+# 版本号以 tag 为准，但要求 tag 与 package.json 的 version 一致——不一致
+# 说明有人忘了 bump 就打 tag，这时候 vsce 发出去的版本号与 GitHub Release
+# 对不上，事后无法补救。这不是 CHANGELOG 校验（那个刻意不做），
+# 只是「发的东西和标签是同一份」的底线。
+#
+# 需要 repo secret：VSCE_PAT（Visual Studio Marketplace 的 personal access
+# token，Read & Manage 权限）。发布是这一条工作流唯一动 secret 的地方。
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write # 创建 GitHub Release 与上传产物
+
+# 发版永远排队不取消：一个 tag 一条流水线，取消半截的发布比排队更糟
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # action 版本基线：2026-08-23 核实的最新 major（checkout v7 /
+      # setup-node v7 / action-gh-release v3）。写这份文件当时 GitHub API
+      # 不可达、未能当场复查——首次真实发版前请重跑一次版本核实。
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # 与 ci.yml 同一条理由：strip-types 测试与 tools/*.mts 需要 22.13+
+          node-version: 22
+          cache: npm
+
+      - name: tag 与 package.json 版本一致才发
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG=$(node -p "require('./package.json').version")
+          if [ "$TAG" != "$PKG" ]; then
+            echo "::error::tag v$TAG 与 package.json 的 $PKG 不一致——先 bump 版本再打 tag"
+            exit 1
+          fi
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # 与 ci.yml 相同：990 文件语料闸门在没有 Valve 归档的机器上整套
+      # skip，不依赖归档的断言照常执行（tools/paths.mjs 顶部注释）。
+      # daemon.http.test.ts 在这里顺带验证了 mcp-daemon 产物能起服务。
+      - name: Unit tests
+        run: npm test
+
+      - name: Package
+        run: npm run package -- --out "vsc-panorama-ext-${GITHUB_REF_NAME}.vsix"
+
+      # MCP daemon 是这个包的新承重件：esbuild 双入口哪天配坏、
+      # .vscodeignore 哪天把 dist/ 排掉，构建与单测都可能照常绿，
+      # 只有「VSIX 里到底有没有这个文件」钉得住。
+      - name: VSIX 必须包含 MCP daemon
+        run: |
+          npx --yes @vscode/vsce@3 ls | grep -q '^dist/mcp-daemon\.cjs$' \
+            || { echo '::error::VSIX 里没有 dist/mcp-daemon.cjs——MCP 通道会整个缺失'; exit 1; }
+
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: vsc-panorama-ext-${{ github.ref_name }}.vsix
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to Marketplace
+        run: npx --yes @vscode/vsce@3 publish -p ${{ secrets.VSCE_PAT }}

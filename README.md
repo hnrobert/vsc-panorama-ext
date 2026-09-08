@@ -76,6 +76,36 @@ The extension recognises that custom game HUDs run under a far stricter subset.
 Completion and diagnostics always agree on the mode, so you are never offered something that is
 then flagged.
 
+## MCP for AI assistants
+
+The extension embeds an MCP server, so AI assistants stop hallucinating web CSS at you. While any
+VS Code window with the extension is open, a small localhost daemon serves the same engine the
+editor uses:
+
+- **`validate`** — check a layout or stylesheet file from disk; every diagnostic comes with a rule
+  id, 1-based line/column and a concrete replacement. Pass a workspace root (or let it auto-detect)
+  and the cross-file rules run too.
+- **`panel_info` / `property_info`** — the 245-panel registry and the VCSS property domains,
+  including the web equivalent and why Panorama differs. `display` comes back as *web-only* with
+  the `flow-children` replacement, not as a guess.
+- **`symbols`** — workspace-wide class names, ids, `@define` constants and `@keyframes`, with
+  definitions and references by line.
+- Plus three prompts (`review_file`, `web_to_panorama`, `scaffold_layout`) and the raw reference
+  data as resources.
+
+Run **`CS2 Panorama: Enable MCP for AI Assistants`** from the Command Palette and pick your client
+— it writes the config for Claude Code (`.mcp.json`), VS Code (`.vscode/mcp.json`) or Cursor, or
+copies a snippet for Claude Desktop. The endpoint is `http://127.0.0.1:4377/mcp` (one daemon, every
+workspace — no per-project ports), it binds to loopback only, follows VS Code's display language,
+and exits on its own after 90 idle seconds. The VS Code agent needs no configuration at all: the
+extension registers the server natively.
+
+Manual smoke test: `npx @modelcontextprotocol/inspector node dist/mcp-daemon.cjs` inside the
+installed extension folder, or against a running daemon at `http://127.0.0.1:4377/mcp`.
+
+Requires VS Code 1.101+. Notes: the daemon reads files from disk (unsaved editor buffers are not
+visible to it), and with the port forwarded to a remote it lives on the remote side.
+
 ## File recognition
 
 | Language | Recognised by |
@@ -101,6 +131,8 @@ hatch if your layout lives somewhere unusual.
 | `panorama.diagnostics.duplicateId` | `hint` | Duplicate `id` within one scope |
 | `panorama.diagnostics.structure` | `warning` | VXML structural problems |
 | `panorama.diagnostics.customHudWhitelist` | `error` | Strict-mode whitelist violations |
+| `panorama.mcp.enabled` | `true` | Run the embedded MCP daemon for AI assistants |
+| `panorama.mcp.port` | `4377` | Port of the MCP daemon on 127.0.0.1 |
 
 Every diagnostic group can also be set to `off`.
 
@@ -184,6 +216,32 @@ Panorama 为什么不一样。
 | 样式 | 不受限 | 同样不受限——白名单管的是布局属性，VCSS 全套能力都可用 |
 
 补全与诊断永远用同一个模式判定，所以不会出现「补全给了你、诊断又骂你」。
+
+## 给 AI 助手的 MCP
+
+扩展内嵌了一个 MCP 服务，AI 助手从此不再对着你幻觉 Web CSS。只要开着任何一个装了
+本扩展的 VS Code 窗口，就有一个小的 localhost 守护进程在提供与编辑器同源的引擎：
+
+- **`validate`**——从磁盘校验布局或样式文件；每条诊断带规则 ID、1 起始的行列和具体
+  替代写法。传入工作区根（或让它自动探测）时跨文件规则也会跑。
+- **`panel_info` / `property_info`**——245 种面板注册表与 VCSS 属性域，含 Web 对应写法
+  与 Panorama 为何不同。查 `display` 会得到「Web 独有 + `flow-children` 替代」，
+  而不是一次瞎猜。
+- **`symbols`**——工作区级的类名、id、`@define` 常量、`@keyframes`，定义与引用都带行号。
+- 另有三个 prompts（`review_file`、`web_to_panorama`、`scaffold_layout`）与原始参考数据
+  resources。
+
+命令面板执行 **`CS2 Panorama: 为 AI 助手启用 MCP`** 并选择客户端——Claude Code
+（`.mcp.json`）、VS Code（`.vscode/mcp.json`）、Cursor 直接写入配置，Claude Desktop 复制
+片段。端点是 `http://127.0.0.1:4377/mcp`（一个守护进程服务所有工作区，不需要每项目
+一个端口），只绑回环地址，文案跟随 VS Code 显示语言，闲置 90 秒自动退出。VS Code 自带
+的 Agent 则完全零配置：扩展已原生注册该服务。
+
+手动冒烟：在已安装扩展的目录里 `npx @modelcontextprotocol/inspector node dist/mcp-daemon.cjs`，
+或直接连运行中的 `http://127.0.0.1:4377/mcp`。
+
+需要 VS Code 1.101+。注意：守护进程从磁盘读文件（编辑器里未保存的缓冲区对它不可见）；
+远程开发时端口在远端一侧。
 
 ## 文件识别
 

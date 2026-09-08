@@ -489,3 +489,93 @@ export function fireConfigChange(changed: readonly string[]): void {
   };
   for (const h of [...__configChangeHandlers]) h(e);
 }
+
+// ---- 以下为 MCP 宿主（src/vscode/mcp-host.ts）所需，追加，勿改动上方已有导出 ----
+
+export const __statusBarItems: Array<{
+  name: string;
+  text: string;
+  tooltip: unknown;
+  command: string;
+  shown: number;
+  hidden: number;
+  dispose(): void;
+}> = [];
+
+export const __commands: Array<{ id: string; handler: unknown }> = [];
+
+/** registerMcpServerDefinitionProvider 注册进来的 provider 本体，供行为级断言 */
+export const __mcpProviders: Array<{ id: string; provider: unknown }> = [];
+
+export class McpHttpServerDefinition {
+  constructor(
+    public readonly label: string,
+    public uri: unknown,
+    public headers: Record<string, string> = {},
+    public version?: string,
+  ) {}
+}
+
+export const lm = {
+  registerMcpServerDefinitionProvider(id: string, provider: unknown) {
+    const disposable = { dispose() {} };
+    __mcpProviders.push({ id, provider });
+    return disposable;
+  },
+};
+
+Object.assign(Uri, {
+  joinPath(base: Uri, ...parts: string[]): Uri {
+    return Uri.file([base.fsPath.replace(/\/+$/, ''), ...parts].join('/'));
+  },
+  parse(s: string): Uri {
+    // MCP 宿主只 parse http URL；mock 里保底还原成可比较的字符串形态
+    return Uri.file(s.replace(/^[a-z]+:\/\//, '/'));
+  },
+});
+
+export const commands = {
+  registerCommand(id: string, handler: unknown) {
+    const disposable = { dispose() {} };
+    __commands.push({ id, handler });
+    return disposable;
+  },
+};
+
+export const StatusBarAlignment = { Left: 1, Right: 2 } as const;
+
+export const window = {
+  createStatusBarItem() {
+    const item = {
+      name: '',
+      text: '',
+      tooltip: '',
+      command: '',
+      shown: 0,
+      hidden: 0,
+      show() {
+        this.shown++;
+      },
+      hide() {
+        this.hidden++;
+      },
+      dispose() {},
+    };
+    __statusBarItems.push(item);
+    return item;
+  },
+  async showQuickPick(): Promise<undefined> {
+    return undefined;
+  },
+  async showInformationMessage(): Promise<undefined> {
+    return undefined;
+  },
+  async showWarningMessage(): Promise<undefined> {
+    return undefined;
+  },
+  async showTextDocument(): Promise<undefined> {
+    return undefined;
+  },
+};
+
+Object.assign(env, { clipboard: { async writeText(): Promise<void> {} } });

@@ -6,6 +6,25 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- **Embedded MCP server** for AI assistants (Claude Code, Claude Desktop, Cursor, VS Code agent):
+  a localhost daemon at `http://127.0.0.1:4377/mcp`, spawned on demand by any VS Code window and
+  shared by every workspace. Four tools — `validate` (disk-based, with cross-file rules when a
+  root is given or auto-detected), `panel_info`, `property_info`, `symbols` — plus the raw
+  reference data as resources and three prompts (`review_file`, `web_to_panorama`,
+  `scaffold_layout`). Messages follow VS Code's display language; the daemon exits after 90 idle
+  seconds. A Command Palette entry (`CS2 Panorama: Enable MCP for AI Assistants`) writes or
+  copies the client config. Requires VS Code 1.101+ (`engines.vscode` raised from 1.85 for the
+  stable `vscode.lm.registerMcpServerDefinitionProvider` API).
+
+### Changed
+
+- Release automation: pushing a `v*` tag now builds, tests, packages and publishes to the
+  Marketplace from CI (`.github/workflows/release.yml`, needs a `VSCE_PAT` secret; the tag must
+  match `package.json`'s version). CI gained a path filter (docs-only pushes no longer build) and
+  a guard that the packaged VSIX still contains `dist/mcp-daemon.cjs`.
+
 ## [1.0.0] — 2026-09-04
 
 First public release.

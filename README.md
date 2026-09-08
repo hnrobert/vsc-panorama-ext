@@ -50,7 +50,7 @@ Web equivalent would have been and why Panorama differs.
 "this is wrong":
 
 | Tier | Examples |
-|---|---|
+| --- | --- |
 | Provably wrong (`warning`) | Web-only properties, `position: absolute`, `vw`/`vh`/`em`/`rem`, `::before`, `visibility: hidden`, `--custom-props`, unquoted `@keyframes` names, color-last `box-shadow` |
 | Not in the known list (`hint`) | Unrecognised property, value or class name — capped at `hint` because the data is hand-curated and provably incomplete |
 | Structure (`warning`) | Unknown tags, `rootOnly` panels in a nested position, an `id` on the root panel, `<styles>`/`<scripts>`/`<snippets>` ordering, unclosed tags, duplicate ids |
@@ -65,7 +65,7 @@ recognise.
 The extension recognises that custom game HUDs run under a far stricter subset.
 
 | | Full Panorama | CustomHudLayout |
-|---|---|---|
+| --- | --- | --- |
 | When | everything else | paths matching `**/layout/custom_game/**` |
 | Panel types | 245 (202 usable as nested children, 43 root-only) | `Panel` / `Label` / `Image` / `Button` |
 | Attributes | full inheritance-resolved sets | a per-panel whitelist |
@@ -109,7 +109,7 @@ visible to it), and with the port forwarded to a remote it lives on the remote s
 ## File recognition
 
 | Language | Recognised by |
-|---|---|
+| --- | --- |
 | `panorama-vxml` | `**/panorama/**/layout/**/*.xml`, or any `.vxml` |
 | `panorama-vcss` | `**/panorama/**/styles/**/*.css`, or any `.vcss` |
 
@@ -119,7 +119,7 @@ hatch if your layout lives somewhere unusual.
 ## Settings
 
 | Setting | Default | What it does |
-|---|---|---|
+| --- | --- | --- |
 | `panorama.customHudLayout.include` | `["**/layout/custom_game/**"]` | Which layouts get the strict whitelist |
 | `panorama.contentRoots` | `[]` | Explicit roots for `s2r://` resolution; empty means auto-detect |
 | `panorama.index.enabled` | `true` | Turn off to drop back to single-file behaviour |
@@ -193,7 +193,7 @@ Panorama 为什么不一样。
 **诊断**——28 条规则分三档，每条都给出**替代写法**而不只是说「这样不行」：
 
 | 档位 | 举例 |
-|---|---|
+| --- | --- |
 | 能证明是错的（`warning`） | Web 独有属性、`position: absolute`、`vw`/`vh`/`em`/`rem`、`::before`、`visibility: hidden`、`--自定义属性`、`@keyframes` 名字没加引号、`box-shadow` 颜色写在后面 |
 | 只是没见过（`hint`） | 属性 / 取值 / 类名不在已知清单里——清单是人工整理且已被证明不全，所以级别最高只到 hint |
 | 结构（`warning`） | 未知标签、rootOnly 面板出现在嵌套位置、根面板带 `id`、`<styles>`/`<scripts>`/`<snippets>` 顺序、标签未闭合、id 重复 |
@@ -207,7 +207,7 @@ Panorama 为什么不一样。
 自定义游戏 HUD 跑在一个严格得多的子集上，扩展会自动区分。
 
 | | 完整 Panorama | CustomHudLayout |
-|---|---|---|
+| --- | --- | --- |
 | 何时 | 其余一切 | 路径匹配 `**/layout/custom_game/**` |
 | 面板类型 | 245 种（202 种可作嵌套子元素，43 种只能作根） | `Panel` / `Label` / `Image` / `Button` |
 | 属性 | 按继承解析的完整属性集 | 逐面板的白名单 |
@@ -246,7 +246,7 @@ Panorama 为什么不一样。
 ## 文件识别
 
 | 语言 | 识别方式 |
-|---|---|
+| --- | --- |
 | `panorama-vxml` | `**/panorama/**/layout/**/*.xml`，或任意 `.vxml` |
 | `panorama-vcss` | `**/panorama/**/styles/**/*.css`，或任意 `.vcss` |
 

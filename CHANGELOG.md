@@ -6,7 +6,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Added
+### Added (unreleased)
 
 - **Embedded MCP server** for AI assistants (Claude Code, Claude Desktop, Cursor, VS Code agent):
   a localhost daemon at `http://127.0.0.1:4377/mcp`, spawned on demand by any VS Code window and
@@ -18,12 +18,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   copies the client config. Requires VS Code 1.101+ (`engines.vscode` raised from 1.85 for the
   stable `vscode.lm.registerMcpServerDefinitionProvider` API).
 
-### Changed
+### Changed (unreleased)
 
-- Release automation: pushing a `v*` tag now builds, tests, packages and publishes to the
-  Marketplace from CI (`.github/workflows/release.yml`, needs a `VSCE_PAT` secret; the tag must
-  match `package.json`'s version). CI gained a path filter (docs-only pushes no longer build) and
-  a guard that the packaged VSIX still contains `dist/mcp-daemon.cjs`.
+- Release automation: a manual `workflow_dispatch` (`.github/workflows/release.yml`, modelled on
+  vscode-ssh-config-all-in-one) now bumps the version, tags, builds, tests, packages, creates the
+  GitHub Release with the VSIX attached and publishes to the Marketplace in one run — input the
+  version and a beta flag; needs a `VSCE_PAT` secret. CI gained a path filter (docs-only pushes
+  no longer build) and a guard that the packaged VSIX still contains `dist/mcp-daemon.cjs`.
 
 ## [1.0.0] — 2026-09-04
 

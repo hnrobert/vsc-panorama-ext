@@ -651,7 +651,32 @@ function checkRootPanelId(
     // `vxml.syntax` 两条 warning——那是最终评审 I-2 归在一起的同型第二处。
     const id = judgeableAttributes(text, panel).find((a) => a.name === 'id');
     if (!id) continue;
+    // 机械修复照 fix 文案办：把挂钩改成 class（名字保留），而不是删掉属性。
+    // 元素已有 class 时不能产出第二个 class 属性（非法 XML）——并入既有取值。
+    const attrs = judgeableAttributes(text, panel);
+    const classAttr = attrs.find((a) => a.name === 'class' && a !== id && !a.unterminated);
     const span = attributeSpan(text, id);
+    const idVal = id.value;
+    let edits;
+    if (
+      classAttr &&
+      classAttr.valueStart !== undefined &&
+      classAttr.valueEnd !== undefined &&
+      classAttr.value !== undefined
+    ) {
+      // 已有 class：并入既有取值（`class="a X"`），两个 class 属性是非法 XML
+      const merged =
+        classAttr.value === '' || idVal === undefined
+          ? (idVal ?? classAttr.value)
+          : `${classAttr.value} ${idVal}`;
+      edits = [
+        { start: span.start, end: span.end, text: '' },
+        { start: classAttr.valueStart, end: classAttr.valueEnd, text: merged },
+      ];
+    } else {
+      // 没有 class：只改属性名，值原样保留
+      edits = [{ start: id.nameStart, end: id.nameEnd, text: 'class' }];
+    }
     out.push({
       ...mkWarning(
         'vxml.rootPanelId',
@@ -660,7 +685,7 @@ function checkRootPanelId(
         msg.vxml.rootPanelId(panel.tag),
         msg.vxml.rootPanelIdFix(),
       ),
-      edits: [{ start: span.start, end: span.end, text: '' }],
+      edits,
     });
   }
 }

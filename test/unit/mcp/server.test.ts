@@ -243,7 +243,8 @@ describe('MCP server · apply_fixes', () => {
 
     const after = FILES.get(LAYOUT_PATH)!;
     expect(after).toContain('<Button><Label text="OK" /></Button>');
-    expect(after).toContain('<Panel class="hud-root">'); // id 已删，只剩 class
+    // 根面板 id 按提示转成 class 并入既有值，名字不丢
+    expect(after).toContain('<Panel class="hud-root root-panel">');
   });
 
   it('dryRun 演算但不落盘', async () => {
@@ -262,6 +263,7 @@ describe('MCP server · apply_fixes', () => {
     expect(r.applied.map((a) => a.ruleId)).toEqual(['hud.buttonText']);
     const after = FILES.get(LAYOUT_PATH)!;
     expect(after).toContain('<Button><Label text="OK" /></Button>');
-    expect(after).toContain('id="root-panel"'); // rootPanelId 不在名单里，未动
+    // rootPanelId 不在名单里：id 原样保留
+    expect(after).toContain('id="root-panel"');
   });
 });

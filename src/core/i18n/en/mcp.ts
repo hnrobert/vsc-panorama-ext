@@ -22,7 +22,7 @@ export const mcp: McpMessages = {
   toolApplyFixesDesc: () =>
     'Apply the deterministic auto-fixes to a Panorama file on disk (visibility: hidden to ' +
     'collapse, @keyframes quoting, box-shadow reordering, transition splitting, missing ' +
-    'closing tags, root-panel id removal, Button text into a child Label, binding prefixes) ' +
+    'closing tags, root-panel id converted to class, Button text into a child Label, binding prefixes) ' +
     'and re-validate. Only unambiguous fixes are applied mechanically — everything else is ' +
     'left for you to decide. dryRun returns the plan without writing',
   resourceDataDesc: () =>

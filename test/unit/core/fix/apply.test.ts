@@ -117,11 +117,12 @@ describe('修复闭环 · VCSS', () => {
 describe('修复闭环 · VXML（完整模式）', () => {
   const XML = ['<root>', '  <Panel id="X" class="a">', '    <Label text="hi" />', '</root>'].join('\n');
 
-  it('删根面板 id + 补闭合标签，缩进与原文对齐', () => {
+  it('根面板 id 按提示转 class（已有时并入）+ 补闭合标签，缩进与原文对齐', () => {
     const ds = diagnoseVxml(parseVxml(XML), { uri: 'x.xml', mode: 'full', panels, observed, msg });
     const r = applyFixEdits(XML, ds);
     expect(r.applied.map((d) => d.ruleId).sort()).toEqual(['vxml.rootPanelId', 'vxml.syntax']);
-    expect(r.text).toBe(['<root>', '  <Panel class="a">', '    <Label text="hi" />', '  </Panel>', '</root>'].join('\n'));
+    // fix 文案说「用 class 挂样式」：id 的名字保留并入既有 class，而不是删除
+    expect(r.text).toBe(['<root>', '  <Panel class="a X">', '    <Label text="hi" />', '  </Panel>', '</root>'].join('\n'));
 
     const again = diagnoseVxml(parseVxml(r.text), { uri: 'x.xml', mode: 'full', panels, observed, msg });
     expect(again.filter((d) => d.ruleId === 'vxml.rootPanelId' || d.ruleId === 'vxml.syntax')).toEqual([]);

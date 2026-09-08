@@ -17,8 +17,8 @@ export const mcp: McpMessages = {
     '@keyframes。根目录首次扫描后有缓存；传 refresh 强制重扫',
   toolApplyFixesDesc: () =>
     '对磁盘上的 Panorama 文件应用确定性自动修复（visibility: hidden 改 collapse、' +
-    '@keyframes 补引号、box-shadow 重排序、transition 简写拆分、补闭合标签、删根面板 ' +
-    'id、Button 文字挪进子 Label、绑定前缀置换）并复诊。只有唯一解的修复会被机械执行，' +
+    '@keyframes 补引号、box-shadow 重排序、transition 简写拆分、补闭合标签、根面板 ' +
+    'id 转 class、Button 文字挪进子 Label、绑定前缀置换）并复诊。只有唯一解的修复会被机械执行，' +
     '其余留给你判断；dryRun 只演算不落盘',
   resourceDataDesc: () =>
     '扩展背后的原始参考数据：面板注册表、VCSS 属性域、语料观察到的取值与属性，' +

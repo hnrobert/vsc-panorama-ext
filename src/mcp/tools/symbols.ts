@@ -65,7 +65,7 @@ export class WorkspaceScanner {
         truncated = true;
         break;
       }
-      const candidate = contentDirRoot ? underLayoutOrStyles(p) !== null : isIndexCandidate(p);
+      const candidate = contentDirRoot ? indexShapedPath(p) : isIndexCandidate(p);
       if (!candidate) continue;
       let text: string;
       try {
@@ -99,14 +99,22 @@ export class WorkspaceScanner {
   }
 }
 
-/** 路径是否在 layout/ 或 styles/ 段之下（段判定；不查 panorama 段、不查后缀） */
-function underLayoutOrStyles(path: string): 'layout' | 'styles' | null {
+/**
+ * 路径是否「layout/ 或 styles/ 段之下 **且** 后缀配对」（段判定；不查 panorama 段）。
+ * contentDir 模式专用：不查后缀的旧版把 styles/readme.txt 也收进来、
+ * 还按 VXML 解析——垃圾符号进了索引、scannedFiles 虚增。与 isIndexCandidate
+ * 的差别只有「不要求 panorama 段」（root 本身就是内容目录的形态）。
+ */
+function indexShapedPath(path: string): boolean {
   const segments = path.replace(/\\/g, '/').split('/');
   const file = segments.pop();
-  if (!file) return null;
-  if (segments.includes('layout')) return 'layout';
-  if (segments.includes('styles')) return 'styles';
-  return null;
+  if (!file) return false;
+  const underLayout = segments.includes('layout');
+  const underStyles = segments.includes('styles');
+  return (
+    (underLayout && (file.endsWith('.xml') || file.endsWith('.vxml'))) ||
+    (underStyles && (file.endsWith('.css') || file.endsWith('.vcss')))
+  );
 }
 
 export type SymbolKind = 'class' | 'id' | 'define' | 'keyframe';

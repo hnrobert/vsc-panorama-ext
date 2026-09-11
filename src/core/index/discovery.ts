@@ -95,10 +95,11 @@ export function isIndexCandidate(path: string): boolean {
 
   const underLayout = segments.includes('layout');
   const underStyles = segments.includes('styles');
-  if (!underLayout && !underStyles) return false;
-
-  const extOk = underLayout
-    ? file.endsWith('.xml') || file.endsWith('.vxml')
-    : file.endsWith('.css') || file.endsWith('.vcss');
+  // 两种段/后缀配对**独立成立即可**：一条路径可能同时含 layout 与 styles 段
+  // （/repo/layout/addon/panorama/styles/x.css 命中的是 styles 那条 glob）。
+  // 写成「layout 段优先、只认 XML」会在这种路径上与 glob 语义分叉。
+  const extOk =
+    (underLayout && (file.endsWith('.xml') || file.endsWith('.vxml'))) ||
+    (underStyles && (file.endsWith('.css') || file.endsWith('.vcss')));
   return extOk && isPanoramaContent(normalized);
 }

@@ -159,4 +159,64 @@ describe('daemon · HTTP 层', () => {
       rmSync(tmp, { force: true });
     }
   });
+
+  it('DNS rebinding 防护：伪造 Host 的请求被 403，且带 Origin 的一律拒绝（评审 #1）', async () => {
+    const { request } = await import('node:http');
+    // undici 的 fetch 会用 URL 覆盖 Host 头，伪造不出来；裸 http 才能如实
+    // 模拟 rebinding 页面发出的请求（Host = 攻击者域名）
+    const status = (path: string, headers: Record<string, string>): Promise<number> =>
+      new Promise((resolve, reject) => {
+        const req = request(
+          { host: '127.0.0.1', port, path, method: 'POST', headers },
+          (res) => {
+            res.resume();
+            res.on('end', () => resolve(res.statusCode ?? 0));
+          },
+        );
+        req.on('error', reject);
+        req.end(JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list' }));
+      });
+
+    // 伪造 Host（rebind 页面的典型形态）
+    expect(
+      await status('/mcp', {
+        'content-type': 'application/json',
+        host: 'evil.example',
+      }),
+    ).toBe(403);
+
+    // 合法 Host 但带 Origin（浏览器形态）——纵深一层，同样拒绝
+    expect(
+      await status('/mcp', {
+        'content-type': 'application/json',
+        origin: 'https://evil.example',
+      }),
+    ).toBe(403);
+
+    // 健康检查同样吃 Host 守卫
+    expect(await status('/health', { host: 'evil.example' })).toBe(403);
+  });
+
+  // 受控关停必须放在最后：它结束 daemon 进程
+  it('/shutdown 让 daemon 受控退出（评审 #10 的替换通道）', async () => {
+    const res = await fetch(`${BASE()}/shutdown`, { method: 'POST' });
+    expect(res.status).toBe(200);
+
+    // 进程退出、端口让出：健康探测随後失败
+    const deadline = Date.now() + 5000;
+    let gone = false;
+    while (Date.now() < deadline && !gone) {
+      try {
+        await fetch(`${BASE()}/health`, { signal: AbortSignal.timeout(500) });
+      } catch {
+        gone = true;
+        break;
+      }
+      await new Promise((r) => setTimeout(r, 200));
+    }
+    expect(gone, 'shutdown 后 5s 内端口应释放').toBe(true);
+
+    const exited = new Promise<number>((resolve) => child!.on('exit', (c) => resolve(c ?? 0)));
+    await Promise.race([exited, new Promise((r) => setTimeout(r, 3000))]);
+  });
 });

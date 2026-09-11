@@ -36,6 +36,11 @@ const FILES = new Map<string, string>([
   // 混合仓库噪音：不该被扫进索引
   ['/fake/repo/res/layout/main.xml', '<root />'],
   ['/fake/repo/src/styles/web.css', '.a { display: flex; }'],
+  // contentDir 形态：root 本身就是内容目录（无 panorama 段）
+  ['/fake/content/layout/hud2.xml', '<root><Panel class="cd-a" /></root>'],
+  ['/fake/content/styles/hud2.css', '.cd-a { width: 10px; }'],
+  // 后缀不配对的文件：contentDir 模式也不该收（评审 #8）
+  ['/fake/content/styles/readme.txt', 'not a stylesheet'],
 ]);
 
 beforeEach(() => {
@@ -52,7 +57,9 @@ function fakeEnv(): McpEnv {
       return t;
     },
     writeFile: (p, text) => FILES.set(p, text),
-    exists: (p) => FILES.has(p),
+    // 目录可探测（真实 fs 语义）：目录本身不在文件表里，但它是若干文件的前缀
+    exists: (p) =>
+      FILES.has(p) || [...FILES.keys()].some((f) => f.startsWith(p.replace(/\/+$/, '') + '/')),
     isDirectory: (p) =>
       [...FILES.keys()].some((f) => f.startsWith(p.replace(/\/+$/, '') + '/')),
     listFiles: (root) => [...FILES.keys()].filter((f) => f.startsWith(root)),
@@ -225,12 +232,22 @@ describe('MCP server · symbols', () => {
     expect(r.ok).toBe(false);
     expect(r.error).toBe('root-not-dir');
   });
+
+  it('contentDir 模式也做后缀配对：readme.txt 不进索引（评审 #8）', async () => {
+    const r = (await callJson('symbols', { root: '/fake/content', kind: 'class' })) as {
+      names?: string[];
+      scannedFiles: number;
+    };
+    expect(r.names).toEqual(['cd-a']);
+    // hud2.xml + hud2.css 各一，readme.txt 被后缀配对挡掉
+    expect(r.scannedFiles).toBe(2);
+  });
 });
 
 describe('MCP server · apply_fixes', () => {
   const LAYOUT_PATH = '/fake/repo/panorama/layout/custom_game/hud.xml';
 
-  it('确定性修复落盘，remaining 清零', async () => {
+  it('确定性修复落盘，remaining 清零（新类名即时被索引核验）', async () => {
     const r = (await callJson('apply_fixes', { path: LAYOUT_PATH })) as {
       ok: boolean;
       applied: { ruleId: string }[];
@@ -239,12 +256,41 @@ describe('MCP server · apply_fixes', () => {
     expect(r.ok).toBe(true);
     // 夹具里两处机械修复：Button text + 根面板 id（vxml.rootPanelId）
     expect(r.applied.map((a) => a.ruleId).sort()).toEqual(['hud.buttonText', 'vxml.rootPanelId']);
-    expect(r.remaining).toEqual([]);
+    // 合并出的新类名 root-panel 在工作区样式表里无定义 → 如实报一条 hint
+    expect(r.remaining.map((x) => x.ruleId)).toEqual(['vxml.unknownClass']);
 
     const after = FILES.get(LAYOUT_PATH)!;
     expect(after).toContain('<Button><Label text="OK" /></Button>');
     // 根面板 id 按提示转成 class 并入既有值，名字不丢
     expect(after).toContain('<Panel class="hud-root root-panel">');
+  });
+
+  it('ruleIds 传空数组 = 一条都不修（与「没传」语义分开，评审 #7）', async () => {
+    const r = (await callJson('apply_fixes', { path: LAYOUT_PATH, ruleIds: [] })) as {
+      applied: unknown[];
+      remaining: { ruleId: string }[];
+    };
+    expect(r.applied).toEqual([]);
+    expect(FILES.get(LAYOUT_PATH)).toBe(LAYOUT); // 文件一字未动
+    // remaining 仍是完整作业清单（两处可修问题都在）
+    expect(r.remaining.map((x) => x.ruleId).sort()).toEqual(['hud.buttonText', 'vxml.rootPanelId']);
+  });
+
+  it('显式 root 不是目录：报 root-not-dir 而不是静默空索引（评审 #9）', async () => {
+    const r = (await callJson('validate', {
+      path: LAYOUT_PATH,
+      root: '/typo/root',
+    })) as { ok: boolean; error: string };
+    expect(r.ok).toBe(false);
+    expect(r.error).toBe('root-not-dir');
+
+    const f = (await callJson('apply_fixes', { path: LAYOUT_PATH, root: '/typo/root' })) as {
+      ok: boolean;
+      error: string;
+    };
+    expect(f.ok).toBe(false);
+    expect(f.error).toBe('root-not-dir');
+    expect(FILES.get(LAYOUT_PATH)).toBe(LAYOUT); // 也没动文件
   });
 
   it('dryRun 演算但不落盘', async () => {

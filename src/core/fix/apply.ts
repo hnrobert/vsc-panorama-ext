@@ -30,8 +30,17 @@ export function applyFixEdits(text: string, diagnostics: readonly Diagnostic[]):
   const skipped: Diagnostic[] = [];
   const accepted: FixEdit[] = [];
 
+  // 半开区间的文本重叠 + 一个补丁：**同位置的纯插入互为冲突**。[5,5) 与 [5,5)
+  // 在文本重叠判定下恒不重叠（5<5 为假），于是两条诊断的插入会原地拼接——
+  // 未闭合 <Button text> 的「包 Label」与「补 </Button>」同落 openEnd 时，
+  // 拼出 </Button><Label… 或反之的畸形标签。插入落进别人的替换区间内
+  // （[5,5) vs [3,7)）本来就由第一支判定覆盖，这里只需补同位双插入。
   const overlaps = (edit: FixEdit): boolean =>
-    accepted.some((a) => edit.start < a.end && a.start < edit.end);
+    accepted.some(
+      (a) =>
+        (edit.start < a.end && a.start < edit.end) ||
+        (edit.start === a.start && edit.end === a.end && edit.start === edit.end),
+    );
 
   for (const d of fixable) {
     const edits = d.edits!;

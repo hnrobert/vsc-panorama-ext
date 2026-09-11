@@ -24,8 +24,8 @@ export const mcp: McpMessages = {
     '扩展背后的原始参考数据：面板注册表、VCSS 属性域、语料观察到的取值与属性，' +
     '由 CS2 自身生成的 schema 与 990 文件语料挖掘而来',
   promptReviewDesc: () =>
-    '校验一个 Panorama 文件，然后按每条诊断给出的替代写法逐条修复，' +
-    '每轮修完重新校验，直到清零',
+    '校验一个 Panorama 文件：先机械应用全部确定性修复，再逐条判断解决剩余问题，' +
+    '每轮修完重新校验，直到没有可证问题为止',
   promptWebConvertDesc: () =>
     '把 Web CSS 声明转换为 Panorama 等价写法，并用属性参考解释每一处差异',
   promptScaffoldDesc: () =>

@@ -58,6 +58,16 @@ describe('applyFixEdits 语义', () => {
     expect(none.text).toBe('ABC');
     expect(r.text).toBe('xBC');
   });
+
+  it('同一位置的纯插入互为冲突：整条让位，绝不原地拼接', () => {
+    const r = applyFixEdits('ab', [
+      diag('a', [{ start: 1, end: 1, text: 'X' }]),
+      diag('b', [{ start: 1, end: 1, text: 'Y' }]),
+    ]);
+    expect(r.applied.map((d) => d.ruleId)).toEqual(['a']);
+    expect(r.skipped.map((d) => d.ruleId)).toEqual(['b']);
+    expect(r.text).toBe('aXb'); // 不是 aXYb / aYXb
+  });
 });
 
 const props = PropertyRegistry.load('en');
@@ -149,5 +159,25 @@ describe('修复闭环 · CustomHudLayout', () => {
     const ds = diagnoseVxml(parseVxml(xml), { uri: 'c.xml', mode: 'customHudLayout', panels, observed, msg });
     const r = applyFixEdits(xml, ds);
     expect(r.text).toBe('<root><Button><Label text="Go" /><Panel /></Button></root>');
+  });
+
+  it('未闭合的 Button：两处插入同落 openEnd，一轮一个、两轮收敛（评审 #4）', () => {
+    const xml = '<root><Button text="Go"></root>';
+    const diagnose = (t: string) =>
+      diagnoseVxml(parseVxml(t), { uri: 'c.xml', mode: 'customHudLayout', panels, observed, msg });
+
+    const r1 = applyFixEdits(xml, diagnose(xml));
+    // buttonText 的首个 edit（删属性）更靠前，它赢；补 </Button> 的插入整条让位
+    expect(r1.applied.map((d) => d.ruleId)).toEqual(['hud.buttonText']);
+    expect(r1.skipped.map((d) => d.ruleId)).toEqual(['vxml.syntax']);
+    expect(r1.text).toBe('<root><Button><Label text="Go" /></root>');
+
+    const r2 = applyFixEdits(r1.text, diagnose(r1.text));
+    expect(r2.applied.map((d) => d.ruleId)).toEqual(['vxml.syntax']);
+    // 补闭合标签的插入带换行 + 开始标签行缩进；Button 在文档首行，缩进为空
+    expect(r2.text).toBe('<root><Button><Label text="Go" />\n</Button></root>');
+
+    // 第三轮：没有可证问题，闭环终止
+    expect(diagnose(r2.text).filter((d) => d.edits)).toEqual([]);
   });
 });

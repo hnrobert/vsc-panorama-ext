@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { spawn } from 'node:child_process';
 import { LOCALE } from './locale';
 import { messagesFor } from '../core/i18n';
+import { SERVER_NAME } from '../mcp/server';
 
 const MSG = messagesFor(LOCALE);
 
@@ -23,18 +24,34 @@ export function mcpUrl(port: number): string {
 }
 
 /**
- * daemon 健康探测。fetch + AbortSignal 足够：健康检查对超时敏感、对精度
- * 不敏感，不值得为它养一条 keep-alive 连接。
+ * daemon 健康探测（评审 #10）。不能只看 res.ok：端口上可能是别的东西，
+ * 更常见的是**上一个扩展版本留下的旧 daemon**——它活着、健康、但工具集
+ * 已过期；宿主会一边心跳给它续命，一边向客户端宣传新版本号。所以必须
+ * 校验应答体里的 server 与 version，与当前扩展一致才算「当前」。
  */
-async function isDaemonUp(port: number): Promise<boolean> {
+async function daemonHealth(port: number): Promise<{ ok: boolean; server?: string; version?: string } | undefined> {
   try {
     const res = await fetch(`http://127.0.0.1:${port}/health`, {
       signal: AbortSignal.timeout(1500),
     });
-    return res.ok;
+    if (!res.ok) return undefined;
+    return (await res.json()) as { ok: boolean; server?: string; version?: string };
   } catch {
-    return false;
+    return undefined;
   }
+}
+
+function expectedVersion(context: vscode.ExtensionContext): string | undefined {
+  return context.extension?.packageJSON?.version as string | undefined;
+}
+
+/** 端口上的 daemon 是否就是「本版本扩展该有的那个」 */
+async function isDaemonCurrent(context: vscode.ExtensionContext, port: number): Promise<boolean> {
+  const h = await daemonHealth(port);
+  if (!h?.ok || h.server !== SERVER_NAME) return false;
+  const want = expectedVersion(context);
+  // 拿不到期望版本（单测的极简 context）时只校验身份，不校验版本
+  return want === undefined || h.version === want;
 }
 
 /**
@@ -53,7 +70,17 @@ export async function ensureDaemon(context: vscode.ExtensionContext, port: numbe
   // 没有扩展安装位置就无从定位 daemon 产物——真实宿主不会走到这里，
   // 这道守卫主要拦的是单测的极简 context（避免真的去 spawn 进程）
   if (!context.extensionUri) return;
-  if (await isDaemonUp(port)) return;
+  if (await isDaemonCurrent(context, port)) return;
+
+  // 端口上有响应但不是当前版本（旧扩展留下的）→ 请它受控退出再拉新的。
+  // 不杀就永远是旧工具集：心跳会一直误判它「健康」
+  if (await daemonHealth(port)) {
+    await fetch(`http://127.0.0.1:${port}/shutdown`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(1500),
+    }).catch(() => {});
+    await new Promise((r) => setTimeout(r, 800));
+  }
 
   const daemonPath = vscode.Uri.joinPath(context.extensionUri, 'dist', 'mcp-daemon.cjs').fsPath;
 
@@ -84,7 +111,7 @@ export async function ensureDaemon(context: vscode.ExtensionContext, port: numbe
   // 等它把端口听上。600ms x 5 次覆盖冷启动；起不来也不抛——心跳循环会重试
   for (let i = 0; i < 5; i++) {
     await new Promise((r) => setTimeout(r, 600));
-    if (await isDaemonUp(port)) return;
+    if (await isDaemonCurrent(context, port)) return;
   }
 }
 
@@ -121,7 +148,7 @@ export function createMcpHost(context: vscode.ExtensionContext): { dispose(): vo
     void ensureDaemon(context, port);
     failures = 0;
     heartbeat = setInterval(() => {
-      void isDaemonUp(port).then((up) => {
+      void isDaemonCurrent(context, port).then((up) => {
         failures = up ? 0 : failures + 1;
         if (failures >= RESPAWN_AFTER_FAILURES) {
           failures = 0;
@@ -223,6 +250,13 @@ async function runEnableCommand(context: vscode.ExtensionContext): Promise<void>
   const folder = vscode.workspace.workspaceFolders?.[0];
   if (!folder) return;
   const fileUri = vscode.Uri.joinPath(folder.uri, target.file);
+
+  // writeFile 不建父目录（评审 #11）：全新工作区里 .vscode/、.cursor/
+  // 都可能不存在，先补目录再写
+  const dir = target.file.slice(0, target.file.lastIndexOf('/'));
+  if (dir) {
+    await vscode.workspace.fs.createDirectory(vscode.Uri.joinPath(folder.uri, dir));
+  }
 
   let doc: { [k: string]: unknown } = {};
   try {

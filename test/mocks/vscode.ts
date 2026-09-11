@@ -228,6 +228,8 @@ Object.assign(workspace, {
       if (text === undefined) throw new Error(`ENOENT: ${uri.fsPath}`);
       return new TextEncoder().encode(text);
     },
+    // enable 命令写 .vscode/mcp.json 前会先建父目录（评审 #11）
+    async createDirectory(_uri: Uri): Promise<void> {},
     async stat(uri: Uri): Promise<{ type: number }> {
       const p = uri.fsPath;
       if (__workspaceFiles.has(p)) return { type: 1 };

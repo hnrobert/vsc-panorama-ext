@@ -65,6 +65,15 @@ export function applyFixes(
     return { ok: false, error: 'unreadable', message: services.msg.mcp.errUnreadable(path) };
   }
 
+  // 与 validate 同一条守卫：显式 root 必须是目录，typo 不允许静默变成
+  // 「空但启用」的索引
+  if (input.root !== undefined) {
+    const given = input.root.replace(/\\/g, '/');
+    if (!env.fs.isDirectory(given)) {
+      return { ok: false, error: 'root-not-dir', message: services.msg.mcp.errRootNotDir(given) };
+    }
+  }
+
   const root = input.root?.replace(/\\/g, '/') ?? detectRoot(path, env);
   const index = root && scanner ? scanner.indexFor(root) : undefined;
 
@@ -77,8 +86,11 @@ export function applyFixes(
       : diagnoseVcss(parseVcss(t), { uri: path, props: services.props, index, msg: services.msg });
 
   const all = diagnose(text);
-  const selected =
-    input.ruleIds && input.ruleIds.length > 0 ? all.filter((d) => input.ruleIds!.includes(d.ruleId)) : all;
+  // 区分「没传」（= 全部可修的）与「传了空数组」（= 一条都不修）。
+  // 写盘端点上这两种语义必须分开：[] 被当成全选会让谨慎的客户端
+  // （想先看 remaining）意外改掉整个文件。
+  const ruleIds = input.ruleIds;
+  const selected = ruleIds === undefined ? all : all.filter((d) => ruleIds.includes(d.ruleId));
 
   const result = applyFixEdits(text, selected);
 

@@ -30,8 +30,8 @@ export const mcp: McpMessages = {
     'observed values and observed attributes, as generated from the schema CS2 emits and ' +
     'a 990-file corpus',
   promptReviewDesc: () =>
-    'Validate a Panorama file, then fix every reported diagnostic following its suggested ' +
-    'replacement, re-validating after each round until clean',
+    'Validate a Panorama file, apply the deterministic fixes mechanically, then resolve what ' +
+    'remains by judgement, re-validating each round until nothing provable is left',
   promptWebConvertDesc: () =>
     'Convert web CSS declarations into their Panorama equivalents, using the property ' +
     'reference to explain every difference',

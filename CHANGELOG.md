@@ -20,7 +20,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **Auto-fixes** — deterministic repairs are now machine-executable in two places: as editor quick
   fixes on the lightbulb, and as the MCP `apply_fixes` tool (`ruleIds` filter, `dryRun`, automatic
   re-validation). Covers `visibility: hidden`→`collapse`, `@keyframes` quoting, box-shadow
-  reordering, transition shorthand splitting, missing closing tags, root-panel `id` removal,
+  reordering, transition shorthand splitting, missing closing tags, root-panel `id` converted to `class`,
   `<Button>` text into a child `<Label>`, and binding prefixes `{d:}/{g:}/{t:}`→`{s:}`. Fixes
   with more than one defensible answer (what `display: flex` becomes, where an inline `style`
   moves) deliberately produce no mechanical edit.
@@ -32,6 +32,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   GitHub Release with the VSIX attached and publishes to the Marketplace in one run — input the
   version and a beta flag; needs a `VSCE_PAT` secret. CI gained a path filter (docs-only pushes
   no longer build) and a guard that the packaged VSIX still contains `dist/mcp-daemon.cjs`.
+
+### Fixed (unreleased)
+
+- MCP daemon hardening after code review: DNS-rebinding protection on the HTTP endpoint (Host
+  allowlist, all browser origins rejected) so a web page can no longer reach the file-mutating
+  tools; the health check now verifies the daemon's identity **and version**, replacing a stale
+  daemon from a previous extension version instead of heartbeating it forever; an explicit
+  `root` that is not a directory is rejected instead of silently producing an empty index that
+  framed every class as unknown; `apply_fixes` with `ruleIds: []` applies nothing instead of
+  everything; two fix edits inserting at the same offset no longer splice into malformed markup;
+  content-directory scanning honours the layout/XML and styles/CSS suffix pairing;
+  `panorama.mcp.port` is schema-constrained to a valid TCP port; the enable command creates the
+  config's parent directory; prompt descriptions are localized; CI's path filter no longer skips
+  localization-only changes.
 
 ## [1.0.0] — 2026-09-04
 

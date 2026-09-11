@@ -30,6 +30,10 @@ describe('index 判据：段判定与 glob 语义等价', () => {
     // 段在中段任意深度
     '/w/a/b/panorama/c/layout/d/e.xml',
     '/w/x/styles/deep/deeper/y.vcss',
+    // 双段路径：命中哪条 glob 由后缀配对决定，不由「layout 段先出现」决定
+    '/repo/layout/addon/panorama/styles/x.css',
+    '/repo/styles/addon/panorama/layout/y.xml',
+    '/repo/layout/panorama/styles/readme.txt',
     // Windows 形态
     'X:\\archive\\panorama\\layout\\x.xml',
     'X:\\archive\\res\\layout\\x.xml',

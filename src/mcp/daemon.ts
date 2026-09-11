@@ -23,6 +23,45 @@ import pkg from '../../package.json';
 const PORT = Number(process.env.PANORAMA_MCP_PORT ?? 4377);
 const HOST = '127.0.0.1';
 
+// 端口配置守卫（评审 #3）：settings.json 手改成小数/负数/越界值时，schema
+// 拦不住旧版本或绕过 UI 的写法，daemon 侧再挡一道。0 是刻意放行的——
+// 它是「OS 随机分配」的测试钩子（daemon.http.test.ts 靠它拿不冲突端口）。
+if (!Number.isInteger(PORT) || PORT < 0 || PORT > 65535) {
+  console.error(`panorama-mcp: 非法端口 ${process.env.PANORAMA_MCP_PORT ?? ''}（应为 0-65535 的整数）`);
+  process.exit(1);
+}
+
+/**
+ * 实际绑定的端口。PORT 为 0 时要等 listen 回调才知道分到了哪个，
+ * 而 Host 白名单必须带上端口精确匹配（见下），所以运行时才知道的值
+ * 存在这里，listen 之前一律用配置值。
+ */
+let boundPort = PORT;
+
+/**
+ * DNS rebinding 防护的 Host 白名单（评审 #1）。SDK 的校验是**整串精确
+ * 匹配**（含端口），所以每处都要带 `host:boundPort` 形态；裸 host 形态
+ * 一并放行，覆盖显式写了 80 端口以外的奇异客户端。
+ */
+function hostAllowed(req: IncomingMessage): boolean {
+  const host = req.headers.host ?? '';
+  return (
+    host === `127.0.0.1:${boundPort}` ||
+    host === `localhost:${boundPort}` ||
+    host === '127.0.0.1' ||
+    host === 'localhost'
+  );
+}
+
+/**
+ * Origin 哨兵（评审 #1 的纵深一层）。SDK 只在 allowedOrigins **非空**时才
+ * 校验 Origin，且「没有 Origin 头」永远放行——恰好是我们要的语义：
+ * 一切浏览器（必带 Origin）都被拒绝，一切非浏览器客户端（不带 Origin，
+ * 包括 Claude Code / Desktop / Cursor / inspector 的 proxy）照常工作。
+ * 值本身永不匹配任何真实 Origin。
+ */
+const ORIGIN_SENTINEL = 'panorama-daemon-denies-browsers';
+
 /** 心跳+流量的联合 TTL。扩展侧每 10s ping 一次，90s 容得下三次丢包。 */
 const ACTIVITY_TTL_MS = 90_000;
 /** 单次检查间隔 */
@@ -133,7 +172,14 @@ async function handleMcpPost(req: IncomingMessage, res: ServerResponse): Promise
   }
 
   const server = buildMcpServer(env, services, scanner);
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+  // DNS rebinding 防护（评审 #1）：apply_fixes 能改任意绝对路径，浏览器
+  // rebind 到本端口即可无鉴权调用它——Host 白名单是这类攻击的标准解。
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,
+    enableDnsRebindingProtection: true,
+    allowedHosts: [`127.0.0.1:${boundPort}`, `localhost:${boundPort}`, '127.0.0.1', 'localhost'],
+    allowedOrigins: [ORIGIN_SENTINEL],
+  });
   res.on('close', () => {
     void transport.close();
     void server.close();
@@ -146,8 +192,31 @@ const http = createServer((req, res) => {
   const url = (req.url ?? '').split('?')[0];
 
   if (url === '/health') {
+    // 健康检查虽是只读的，但 Host 守卫与 /mcp 一致：不给探测留旁门
+    if (!hostAllowed(req)) {
+      sendJson(res, 403, { error: 'forbidden host' });
+      return;
+    }
     touch();
     sendJson(res, 200, { ok: true, server: SERVER_NAME, version: pkg.version, locale });
+    return;
+  }
+
+  // 受控关停（评审 #10）：扩展升级后版本错配，宿主调这里让位、再拉新版本。
+  // 与 /mcp 同一道 Host 守卫——rebind 过来的浏览器不能顺手杀 daemon。
+  if (url === '/shutdown') {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { allow: 'POST' }).end();
+      return;
+    }
+    if (!hostAllowed(req)) {
+      sendJson(res, 403, { error: 'forbidden host' });
+      return;
+    }
+    touch();
+    sendJson(res, 200, { ok: true, shuttingDown: true });
+    http.close(() => process.exit(0));
+    setTimeout(() => process.exit(0), 500).unref();
     return;
   }
 
@@ -183,7 +252,7 @@ http.listen(PORT, HOST, () => {
   // stdout 一行 JSON：spawn 方（以及人）确认起来最方便。
   // PORT=0 时上报**实际**分到的端口——测试用它拿随机端口，永不撞车
   const actual = http.address();
-  const boundPort = actual && typeof actual === 'object' ? actual.port : PORT;
+  boundPort = actual && typeof actual === 'object' ? actual.port : PORT;
   console.log(JSON.stringify({ panoramaMcp: true, port: boundPort, host: HOST, locale, version: pkg.version }));
 });
 

@@ -92,7 +92,7 @@ export function buildMcpServer(env: McpEnv, services: McpServices, scanner: Work
       inputSchema: {
         path: z.string().describe('Absolute path of the file to fix (edited in place)'),
         root: z.string().optional().describe('Workspace root for cross-file checks; omitted = auto-detect'),
-        ruleIds: z.array(z.string()).optional().describe('Restrict to these rule ids; omitted = all fixable'),
+        ruleIds: z.array(z.string()).optional().describe('Restrict to these rule ids; omitted = all fixable, an empty list applies none'),
         dryRun: z.boolean().optional().describe('Compute the fixes without writing the file'),
       },
     },
@@ -101,7 +101,7 @@ export function buildMcpServer(env: McpEnv, services: McpServices, scanner: Work
   );
 
   registerDataResources(server, services);
-  registerPrompts(server);
+  registerPrompts(server, services);
 
   return server;
 }
@@ -128,15 +128,15 @@ function registerDataResources(server: McpServer, services: McpServices): void {
 }
 
 /**
- * Prompt **模板正文**刻意只用英文，尽管描述本地化了：正文是给模型的操作指令，
- * 英文指令的遵循度最稳；用户看的是描述（ localized），发起后模型再用用户的
- * 语言回答。i18n 目录里 prompt*Desc 三条就是这条边界的落点。
+ * Prompt 的**描述**走 i18n 目录（prompt*Desc 三条）——它是用户在客户端里
+ * 看到的元数据；**模板正文**刻意只用英文：正文是给模型的操作指令，英文指令
+ * 的遵循度最稳，发起后模型再用用户的语言回答。这就是两边语言策略的分界。
  */
-function registerPrompts(server: McpServer): void {
+function registerPrompts(server: McpServer, services: McpServices): void {
   server.registerPrompt(
     'review_file',
     {
-      description: 'Validate a Panorama file, then fix every reported diagnostic following its suggested replacement, re-validating after each round until clean',
+      description: services.msg.mcp.promptReviewDesc(),
       argsSchema: {
         path: z.string().describe('Absolute path of the file to review'),
         root: z.string().optional().describe('Workspace root for cross-file checks'),
@@ -169,7 +169,7 @@ function registerPrompts(server: McpServer): void {
   server.registerPrompt(
     'web_to_panorama',
     {
-      description: 'Convert web CSS declarations into Panorama equivalents, explaining every difference',
+      description: services.msg.mcp.promptWebConvertDesc(),
       argsSchema: {
         declarations: z.string().describe('The web CSS declarations to convert'),
       },
@@ -195,7 +195,7 @@ function registerPrompts(server: McpServer): void {
   server.registerPrompt(
     'scaffold_layout',
     {
-      description: 'Scaffold a new Panorama layout and stylesheet pair, honouring CustomHudLayout restrictions',
+      description: services.msg.mcp.promptScaffoldDesc(),
       argsSchema: {
         name: z.string().describe('Base name for the new files, e.g. score_panel'),
         directory: z.string().describe('Absolute directory where the files should be created'),

@@ -43,7 +43,7 @@ export interface ValidateOk {
 
 export interface ValidateErr {
   readonly ok: false;
-  readonly error: 'file-not-found' | 'unreadable' | 'unsupported-path';
+  readonly error: 'file-not-found' | 'unreadable' | 'unsupported-path' | 'root-not-dir';
   readonly message: string;
 }
 
@@ -105,6 +105,15 @@ export function validateFile(
 
   // 扫描根：显式 root > 自动探测 > 无（单文件）。探测本身可能很贵（逐级 exists），
   // 但都只是几次 stat，且结果交给 scanner 缓存。
+  // 显式 root 必须真的是目录：typo 出来的空索引 + crossFile:true 会让
+  // 所有类名背上 unknownClass 误报——空但「启用」比没有更坏。与 symbols
+  // 工具同一条守卫、同一个错误码，三个入口共用一套语义。
+  if (input.root !== undefined) {
+    const given = input.root.replace(/\\/g, '/');
+    if (!env.fs.isDirectory(given)) {
+      return { ok: false, error: 'root-not-dir', message: services.msg.mcp.errRootNotDir(given) };
+    }
+  }
   const root = input.root?.replace(/\\/g, '/') ?? detectRoot(path, env);
   const index = root && scanner ? scanner.indexFor(root) : undefined;
 

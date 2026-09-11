@@ -130,7 +130,9 @@
           "description": "%panorama.mcp.enabled.description%"
         },
         "panorama.mcp.port": {
-          "type": "number",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535,
           "default": 4377,
           "description": "%panorama.mcp.port.description%"
         },

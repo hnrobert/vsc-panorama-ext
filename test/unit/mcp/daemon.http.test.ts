@@ -95,6 +95,7 @@ describe('daemon · HTTP 层', () => {
       'property_info',
       'symbols',
       'validate',
+      'workspaces',
     ]);
   });
 
@@ -133,6 +134,37 @@ describe('daemon · HTTP 层', () => {
     expect(res.status).toBe(400);
     const body = (await res.json()) as { error: { code: number } };
     expect(body.error.code).toBe(-32700);
+  });
+
+  it('/register 注册工作区 → workspaces 工具可发现；伪造 Host 被拒', async () => {
+    const reg = await fetch(`${BASE()}/register`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ roots: ['/w/alpha', '/w/beta'] }),
+    });
+    expect(reg.status).toBe(200);
+    expect((await reg.json()) as object).toMatchObject({ ok: true, registered: 2 });
+
+    const ws = (await rpc('tools/call', { name: 'workspaces', arguments: {} }, 9)) as {
+      content: { text: string }[];
+    };
+    const parsed = JSON.parse(ws.content[0].text) as { count: number; workspaces: { root: string }[] };
+    expect(parsed.count).toBe(2);
+    expect(parsed.workspaces.map((w) => w.root)).toEqual(['/w/alpha', '/w/beta']);
+
+    const { request } = await import('node:http');
+    const forged = await new Promise<number>((resolve, reject) => {
+      const req = request(
+        { host: '127.0.0.1', port, path: '/register', method: 'POST', headers: { host: 'evil.example' } },
+        (res) => {
+          res.resume();
+          res.on('end', () => resolve(res.statusCode ?? 0));
+        },
+      );
+      req.on('error', reject);
+      req.end('{"roots":["/evil"]}');
+    });
+    expect(forged).toBe(403);
   });
 
   it('apply_fixes 真落盘：临时文件修复后可从磁盘读回', async () => {

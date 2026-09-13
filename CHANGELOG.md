@@ -10,8 +10,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - **Embedded MCP server** for AI assistants (Claude Code, Claude Desktop, Cursor, VS Code agent):
   a localhost daemon at `http://127.0.0.1:4377/mcp`, spawned on demand by any VS Code window and
-  shared by every workspace. Four tools — `validate` (disk-based, with cross-file rules when a
-  root is given or auto-detected), `panel_info`, `property_info`, `symbols` — plus the raw
+  shared by every workspace. Six tools — `validate` (disk-based, with cross-file rules when a
+  root is given or auto-detected), `panel_info`, `property_info`, `symbols`, `apply_fixes`, and
+  `workspaces` (discovers the roots currently open in VS Code windows via heartbeat registration) —
+  plus the raw
   reference data as resources and three prompts (`review_file`, `web_to_panorama`,
   `scaffold_layout`). Messages follow VS Code's display language; the daemon exits after 90 idle
   seconds. A Command Palette entry (`CS2 Panorama: Enable MCP for AI Assistants`) writes or

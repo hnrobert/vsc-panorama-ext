@@ -85,7 +85,7 @@ async function callJson(name: string, args: Record<string, unknown>): Promise<un
 }
 
 describe('MCP server · 工具面板', () => {
-  it('注册五个工具', async () => {
+  it('注册六个工具', async () => {
     const res = await client.listTools();
     expect(res.tools.map((t) => t.name).sort()).toEqual([
       'apply_fixes',
@@ -93,6 +93,7 @@ describe('MCP server · 工具面板', () => {
       'property_info',
       'symbols',
       'validate',
+      'workspaces',
     ]);
   });
 

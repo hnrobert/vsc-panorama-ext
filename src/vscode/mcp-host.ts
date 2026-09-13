@@ -55,6 +55,40 @@ async function isDaemonCurrent(context: vscode.ExtensionContext, port: number): 
 }
 
 /**
+ * 心跳升级为注册载体：一次 POST /register 同时完成活跃刷新、版本校验与
+ * workspace roots 上报（daemon 侧据此维护 `workspaces` 工具的注册表）。
+ * roots 在每次心跳时重读——窗口中途添加/移除文件夹不需要重新 wire。
+ */
+async function registerRoots(
+  context: vscode.ExtensionContext,
+  port: number,
+): Promise<{ ok: boolean; server?: string; version?: string } | undefined> {
+  const roots = (vscode.workspace.workspaceFolders ?? []).map((f) => f.uri.fsPath);
+  try {
+    const res = await fetch(`http://127.0.0.1:${port}/register`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ roots }),
+      signal: AbortSignal.timeout(1500),
+    });
+    if (!res.ok) return undefined;
+    return (await res.json()) as { ok: boolean; server?: string; version?: string };
+  } catch {
+    return undefined;
+  }
+}
+
+/** 注册应答是否同时满足「活着」与「是本版本」 */
+function registerLooksCurrent(
+  context: vscode.ExtensionContext,
+  h: { ok: boolean; server?: string; version?: string } | undefined,
+): boolean {
+  if (!h?.ok || h.server !== SERVER_NAME) return false;
+  const want = expectedVersion(context);
+  return want === undefined || h.version === want;
+}
+
+/**
  * 把 MCP daemon 拉起来（若已在服务则什么都不做）。
  *
  * spawn 的三个细节，各有来头：
@@ -148,7 +182,8 @@ export function createMcpHost(context: vscode.ExtensionContext): { dispose(): vo
     void ensureDaemon(context, port);
     failures = 0;
     heartbeat = setInterval(() => {
-      void isDaemonCurrent(context, port).then((up) => {
+      void registerRoots(context, port).then((h) => {
+        const up = registerLooksCurrent(context, h);
         failures = up ? 0 : failures + 1;
         if (failures >= RESPAWN_AFTER_FAILURES) {
           failures = 0;

@@ -20,6 +20,10 @@ export const mcp: McpMessages = {
     '@keyframes 补引号、box-shadow 重排序、transition 简写拆分、补闭合标签、根面板 ' +
     'id 转 class、Button 文字挪进子 Label、绑定前缀置换）并复诊。只有唯一解的修复会被机械执行，' +
     '其余留给你判断；dryRun 只演算不落盘',
+  toolWorkspacesDesc: () =>
+    '列出当前在 VS Code 窗口中打开的 Panorama 工作区（由各窗口心跳上报）。' +
+    'validate / apply_fixes / symbols 请直接使用这些根目录，不要猜。' +
+    '没有任何窗口打开工作区时为空列表',
   resourceDataDesc: () =>
     '扩展背后的原始参考数据：面板注册表、VCSS 属性域、语料观察到的取值与属性，' +
     '由 CS2 自身生成的 schema 与 990 文件语料挖掘而来',

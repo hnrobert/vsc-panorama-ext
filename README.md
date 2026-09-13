@@ -98,6 +98,9 @@ editor uses:
   the `flow-children` replacement, not as a guess.
 - **`symbols`** — workspace-wide class names, ids, `@define` constants and `@keyframes`, with
   definitions and references by line.
+- **`workspaces`** — the Panorama workspaces currently open in VS Code windows, reported by their
+  heartbeats: pick a root here instead of guessing directories. Closes itself when no window
+  refreshes it for 2 minutes.
 - Plus three prompts (`review_file`, `web_to_panorama`, `scaffold_layout`) and the raw reference
   data as resources.
 
@@ -243,6 +246,8 @@ Panorama 为什么不一样。
   与 Panorama 为何不同。查 `display` 会得到「Web 独有 + `flow-children` 替代」，
   而不是一次瞎猜。
 - **`symbols`**——工作区级的类名、id、`@define` 常量、`@keyframes`，定义与引用都带行号。
+- **`workspaces`**——当前在 VS Code 窗口中打开的 Panorama 工作区（由各窗口心跳上报）：
+  直接取这里的根目录，不要猜路径。窗口 2 分钟不再心跳即自动移除。
 - 另有三个 prompts（`review_file`、`web_to_panorama`、`scaffold_layout`）与原始参考数据
   resources。
 

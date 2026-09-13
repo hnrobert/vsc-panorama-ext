@@ -18,6 +18,7 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { buildMcpServer, SERVER_NAME } from './server';
 import { servicesFor, type McpEnv, type McpFs } from './env';
 import { WorkspaceScanner } from './tools/symbols';
+import { WorkspaceRegistry } from './tools/workspaces';
 import pkg from '../../package.json';
 
 const PORT = Number(process.env.PANORAMA_MCP_PORT ?? 4377);
@@ -124,6 +125,8 @@ const env: McpEnv = { fs, locale, ...(contentRoots.length > 0 ? { contentRoots }
 const services = servicesFor(locale);
 /** 进程级共享：scanner 的 TTL 缓存跨请求存活（见 buildMcpServer 注释） */
 const scanner = new WorkspaceScanner(env);
+/** 进程级共享：活跃工作区注册表，由各窗口心跳 POST /register 维护 */
+const registry = new WorkspaceRegistry();
 
 let lastActivity = Date.now();
 
@@ -171,7 +174,7 @@ async function handleMcpPost(req: IncomingMessage, res: ServerResponse): Promise
     return;
   }
 
-  const server = buildMcpServer(env, services, scanner);
+  const server = buildMcpServer(env, services, scanner, registry);
   // DNS rebinding 防护（评审 #1）：apply_fixes 能改任意绝对路径，浏览器
   // rebind 到本端口即可无鉴权调用它——Host 白名单是这类攻击的标准解。
   const transport = new StreamableHTTPServerTransport({
@@ -186,6 +189,30 @@ async function handleMcpPost(req: IncomingMessage, res: ServerResponse): Promise
   });
   await server.connect(transport);
   await transport.handleRequest(req, res, parsed);
+}
+
+/** /register 的异步体：读体、校验、刷新注册表（见路由处的注释） */
+async function handleRegister(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  touch();
+  let body: unknown;
+  try {
+    const raw = await readBody(req);
+    body = raw.length === 0 ? {} : JSON.parse(raw.toString('utf8'));
+  } catch {
+    sendJson(res, 400, { error: 'bad request' });
+    return;
+  }
+  const roots = (body as { roots?: unknown }).roots;
+  if (!Array.isArray(roots) || roots.length > 64 || roots.some((r) => typeof r !== 'string' || r.length > 4096)) {
+    sendJson(res, 400, { error: 'roots must be an array of path strings (max 64)' });
+    return;
+  }
+  sendJson(res, 200, {
+    ok: true,
+    server: SERVER_NAME,
+    version: pkg.version,
+    registered: registry.register(roots),
+  });
 }
 
 const http = createServer((req, res) => {
@@ -217,6 +244,24 @@ const http = createServer((req, res) => {
     sendJson(res, 200, { ok: true, shuttingDown: true });
     http.close(() => process.exit(0));
     setTimeout(() => process.exit(0), 500).unref();
+    return;
+  }
+
+  // 工作区注册（心跳载体）：应答与 /health 同形（含 server/version），
+  // 宿主一次往返同时完成活跃性、版本校验与 root 上报。与 /shutdown
+  // 同一道 Host 守卫 + 同一道请求体上限。
+  if (url === '/register') {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { allow: 'POST' }).end();
+      return;
+    }
+    if (!hostAllowed(req)) {
+      sendJson(res, 403, { error: 'forbidden host' });
+      return;
+    }
+    handleRegister(req, res).catch(() => {
+      if (!res.headersSent) sendJson(res, 500, { error: 'internal error' });
+    });
     return;
   }
 

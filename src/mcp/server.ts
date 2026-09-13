@@ -6,6 +6,7 @@ import { WorkspaceScanner, querySymbols } from './tools/symbols';
 import { validateFile } from './tools/validate';
 import { applyFixes } from './tools/fix';
 import { panelInfo, propertyInfo } from './tools/reference';
+import { listWorkspaces, WorkspaceRegistry } from './tools/workspaces';
 import rawPanels from '../../data/panels.json';
 import rawProperties from '../../data/vcss-properties.json';
 import rawObservedValues from '../../data/vcss-observed-values.json';
@@ -26,7 +27,12 @@ export const SERVER_NAME = 'cs2-panorama';
  * 持有、跨请求共享——注册表只读，scanner 的 TTL 缓存是进程级资产，
  * 按请求重建缓存等于没有缓存。
  */
-export function buildMcpServer(env: McpEnv, services: McpServices, scanner: WorkspaceScanner): McpServer {
+export function buildMcpServer(
+  env: McpEnv,
+  services: McpServices,
+  scanner: WorkspaceScanner,
+  registry?: WorkspaceRegistry,
+): McpServer {
   const server = new McpServer(
     { name: SERVER_NAME, version: pkg.version },
     { capabilities: { tools: {}, resources: {}, prompts: {} } },
@@ -100,6 +106,15 @@ export function buildMcpServer(env: McpEnv, services: McpServices, scanner: Work
       json(applyFixes({ path, root, ruleIds, dryRun }, env, services, scanner)),
   );
 
+  server.registerTool(
+    'workspaces',
+    {
+      description: services.msg.mcp.toolWorkspacesDesc(),
+      inputSchema: {},
+    },
+    async () => json(listWorkspaces(registry)),
+  );
+
   registerDataResources(server, services);
   registerPrompts(server, services);
 
@@ -150,6 +165,8 @@ function registerPrompts(server: McpServer, services: McpServices): void {
             type: 'text',
             text:
               `Review the Counter-Strike 2 Panorama file ${path}${root ? ` (workspace root ${root})` : ''}:\n` +
+              '0. If unsure which Panorama workspaces exist, call workspaces first and pick the root ' +
+              'that contains this file — never guess directories by scanning parents.\n' +
               '1. Call the validate tool on it.\n' +
               '2. Call apply_fixes to clear every deterministic fix mechanically (visibility: hidden, ' +
               '@keyframes quoting, box-shadow order, transition shorthand, closing tags, Button text, ' +

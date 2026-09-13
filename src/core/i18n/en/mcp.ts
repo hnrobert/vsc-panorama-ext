@@ -25,6 +25,10 @@ export const mcp: McpMessages = {
     'closing tags, root-panel id converted to class, Button text into a child Label, binding prefixes) ' +
     'and re-validate. Only unambiguous fixes are applied mechanically — everything else is ' +
     'left for you to decide. dryRun returns the plan without writing',
+  toolWorkspacesDesc: () =>
+    'List the Panorama workspaces currently open in VS Code windows, as reported by their ' +
+    'heartbeats. Use these roots for validate / apply_fixes / symbols instead of guessing ' +
+    'directories. Empty when no window has a workspace folder open',
   resourceDataDesc: () =>
     'Raw reference data behind the extension: panel registry, VCSS property domains, ' +
     'observed values and observed attributes, as generated from the schema CS2 emits and ' +
